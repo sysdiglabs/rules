@@ -255,7 +255,7 @@ def main():
 		elif opt[0] in ('-o', '--outfile'):
 			outfile = opt[1]
 
-	log = getLogger('Rules_Explorer', loglevel=loglevel)
+	log = getLogger('Rules_Metadata', loglevel=loglevel)
 
 	yaml = YAML(typ='rt')
 	yaml.width = 4096
