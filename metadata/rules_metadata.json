@@ -93,7 +93,7 @@
     ]
   },
   {
-    "desc": "Detects commands and file writes by AWS Simple Systems Manager (SSM) scripted events.  This rule can be tuned to exclude any known scripts to detect unknown activity.  An authenticated AWS user with necessary privileges could run arbitrary commands as root without EC2 system credentials.  For use in conjunction with rule \"SSM Send Command\".",
+    "desc": "Detects commands by AWS Simple Systems Manager (SSM) scripted events.  This rule can be tuned to exclude any known scripts to detect unknown activity.  An authenticated AWS user with necessary privileges could run arbitrary commands as root without EC2 system credentials.  For use in conjunction with rule \"SSM Send Command\".",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -104,6 +104,28 @@
     "oss_rule": false,
     "priority": "NOTICE",
     "rule": "AWS SSM Agent Activity",
+    "source": "falco",
+    "tags": [
+      "AWS",
+      "AWS EC2",
+      "AWS SSM",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0004 privilege escalation"
+    ]
+  },
+  {
+    "desc": "Detects file writes by AWS Simple Systems Manager (SSM) scripted events.  This rule can be tuned to exclude any known scripts to detect unknown activity.  An authenticated AWS user with necessary privileges could run arbitrary commands as root without EC2 system credentials.  For use in conjunction with rule \"SSM Send Command\".",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS (3)",
+      "Cloud",
+      "MITRE (2)"
+    ],
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "AWS SSM Agent File Write",
     "source": "falco",
     "tags": [
       "AWS",
@@ -8108,6 +8130,27 @@
     ]
   },
   {
+    "desc": "Detects access to a system using AWS EC2 Instance Connect.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS (2)",
+      "Cloud",
+      "MITRE (2)"
+    ],
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "EC2 Instance Connect System Access",
+    "source": "falco",
+    "tags": [
+      "AWS",
+      "AWS EC2",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0008 lateral movement"
+    ]
+  },
+  {
     "desc": "Detect a temporary SSH public key uploaded to an EC2 instance.  This is normally an indication of the EC2 Instance Connect web console being accessed.  It may also be a lateral move for unauthorized access to EC2 instances.",
     "disabled": true,
     "has_exceptions": true,
@@ -8592,6 +8635,50 @@
       "Process"
     ],
     "updated_oss_condition": true
+  },
+  {
+    "desc": "Detect attempts to steal Azure Credentials, via find or grep command",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (4)",
+      "Azure",
+      "Process"
+    ],
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "Find Azure Credentials",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1552 unsecured credentials",
+      "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery",
+      "Azure",
+      "Process"
+    ]
+  },
+  {
+    "desc": "detect attempts to steal GCP Credentials, via find or grep command",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (4)",
+      "Gcp",
+      "Process"
+    ],
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "Find GCP Credentials",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1552 unsecured credentials",
+      "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery",
+      "Gcp",
+      "Process"
+    ]
   },
   {
     "desc": "Detect any k8s operation by a user name that may be an administrator with full access.",
@@ -15304,7 +15391,7 @@
       "SOC2 CC8.1",
       "Filesystem"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "an attempt to read any sensitive file (e.g. files containing user/password/authentication information). Exceptions are made for known trusted programs.",
@@ -15670,6 +15757,23 @@
       "SOC2",
       "SOC2 CC6.1",
       "SOC2 CC8.1"
+    ]
+  },
+  {
+    "desc": "Detect removing MFA on the Admin in Okta",
+    "disabled": false,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "Okta"
+    ],
+    "oss_rule": false,
+    "policy": "Sysdig Okta Threat Detection",
+    "priority": "CRITICAL",
+    "rule": "Removing MFA from Admin in Okta",
+    "severity": 3,
+    "source": "okta",
+    "tags": [
+      "Okta"
     ]
   },
   {
