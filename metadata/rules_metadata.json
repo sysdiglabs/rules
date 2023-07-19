@@ -16989,7 +16989,7 @@
     ]
   },
   {
-    "desc": "This rule detects the usage of suspicious domains in cmdlines",
+    "desc": "This rule detects DNS queries that contain suspicious domains",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -17919,7 +17919,7 @@
       "MITRE TA0004 privilege escalation",
       "Syscall"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect a node successfully joined the cluster outside of the list of allowed nodes.",
