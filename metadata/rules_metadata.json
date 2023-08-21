@@ -68,6 +68,42 @@
     ]
   },
   {
+    "desc": "Detects the creation of an ECS Task Definition.  This could be used by attackers to execute commands from within the environment, access the internal AWS API, and start unauthorized programs.",
+    "disabled": true,
+    "has_exceptions": false,
+    "normalized_tags": [
+      "AWS (2)",
+      "Cloud"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "AWS ECS Create Task Definition",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS ECS",
+      "Cloud"
+    ]
+  },
+  {
+    "desc": "Detects when the master password for an AWS RDS Database is changed.",
+    "disabled": true,
+    "has_exceptions": false,
+    "normalized_tags": [
+      "AWS (2)",
+      "Cloud"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "AWS RDS Master Password Update",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS RDS",
+      "Cloud"
+    ]
+  },
+  {
     "desc": "Detect disabling of S3 bucket versioning.",
     "disabled": true,
     "has_exceptions": true,
@@ -2399,7 +2435,7 @@
   },
   {
     "desc": "Detect deletion of an alarm.",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
       "AWS (4)",
@@ -2412,10 +2448,8 @@
       "SOC2 (2)"
     ],
     "oss_rule": false,
-    "policy": "Sysdig AWS Threat Detection",
     "priority": "WARNING",
     "rule": "CloudWatch Delete Alarms",
-    "severity": 3,
     "source": "awscloudtrail",
     "tags": [
       "AWS",
@@ -2446,7 +2480,7 @@
   },
   {
     "desc": "Detect deletion of a CLoudWatch log group.",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
       "AWS (4)",
@@ -2460,10 +2494,8 @@
       "SOC2 (2)"
     ],
     "oss_rule": false,
-    "policy": "Sysdig AWS Threat Detection",
     "priority": "WARNING",
     "rule": "CloudWatch Delete Log Group",
-    "severity": 3,
     "source": "awscloudtrail",
     "tags": [
       "AWS",
@@ -3046,6 +3078,84 @@
     "updated_oss_condition": false
   },
   {
+    "desc": "Detect attempts to connect to the Azure IMDS from container",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "FedRAMP (2)",
+      "GDPR (3)",
+      "HIPAA (3)",
+      "HITRUST (18)",
+      "ISO (3)",
+      "MITRE (5)",
+      "NIST (14)",
+      "SOC2 (3)",
+      "Azure",
+      "Container",
+      "Network"
+    ],
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "Contact Azure Instance Metadata Service from Container",
+    "source": "falco",
+    "tags": [
+      "FedRAMP",
+      "FedRAMP CM-7",
+      "GDPR",
+      "GDPR 32.1",
+      "GDPR 32.2",
+      "HIPAA",
+      "HIPAA 164.308(a)",
+      "HIPAA 164.310(b)",
+      "HITRUST",
+      "HITRUST CSF",
+      "HITRUST CSF 01.c",
+      "HITRUST CSF 01.i",
+      "HITRUST CSF 01.j",
+      "HITRUST CSF 01.l",
+      "HITRUST CSF 01.n",
+      "HITRUST CSF 01.x",
+      "HITRUST CSF 01.y",
+      "HITRUST CSF 09.ab",
+      "HITRUST CSF 09.ac",
+      "HITRUST CSF 09.i",
+      "HITRUST CSF 09.m",
+      "HITRUST CSF 09.s",
+      "HITRUST CSF 10.j",
+      "HITRUST CSF 10.m",
+      "HITRUST CSF 11.a",
+      "HITRUST CSF 11.b",
+      "ISO",
+      "ISO 27001",
+      "ISO 27001 A.9.1.2",
+      "MITRE",
+      "MITRE T1552.005 unsecured credentials cloud instance metadata api",
+      "MITRE T1552 unsecured credentials",
+      "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery",
+      "NIST",
+      "NIST 800-171",
+      "NIST 800-171 3.1.1",
+      "NIST 800-171 3.1.2",
+      "NIST 800-171 3.1.3",
+      "NIST 800-171 3.14.6",
+      "NIST 800-171 3.14.7",
+      "NIST 800-171 3.4.6",
+      "NIST 800-53",
+      "NIST 800-53 AC-17",
+      "NIST 800-53 AC-4",
+      "NIST 800-53 CM-7",
+      "NIST 800-53 SI-4",
+      "NIST 800-53 SI-4(18)",
+      "SOC2",
+      "SOC2 CC6.1",
+      "SOC2 CC6.8",
+      "Azure",
+      "Container",
+      "Network"
+    ]
+  },
+  {
     "desc": "Detect attempts to contact the EC2 Instance Metadata Service from a container",
     "disabled": false,
     "has_exceptions": true,
@@ -3125,6 +3235,84 @@
       "Network"
     ],
     "updated_oss_condition": true
+  },
+  {
+    "desc": "Detect attempts to connect to the GCP IMDS from container",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "FedRAMP (2)",
+      "GDPR (3)",
+      "HIPAA (3)",
+      "HITRUST (18)",
+      "ISO (3)",
+      "MITRE (5)",
+      "NIST (14)",
+      "SOC2 (3)",
+      "Container",
+      "Gcp",
+      "Network"
+    ],
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "Contact GCP Instance Metadata Service from Container",
+    "source": "falco",
+    "tags": [
+      "FedRAMP",
+      "FedRAMP CM-7",
+      "GDPR",
+      "GDPR 32.1",
+      "GDPR 32.2",
+      "HIPAA",
+      "HIPAA 164.308(a)",
+      "HIPAA 164.310(b)",
+      "HITRUST",
+      "HITRUST CSF",
+      "HITRUST CSF 01.c",
+      "HITRUST CSF 01.i",
+      "HITRUST CSF 01.j",
+      "HITRUST CSF 01.l",
+      "HITRUST CSF 01.n",
+      "HITRUST CSF 01.x",
+      "HITRUST CSF 01.y",
+      "HITRUST CSF 09.ab",
+      "HITRUST CSF 09.ac",
+      "HITRUST CSF 09.i",
+      "HITRUST CSF 09.m",
+      "HITRUST CSF 09.s",
+      "HITRUST CSF 10.j",
+      "HITRUST CSF 10.m",
+      "HITRUST CSF 11.a",
+      "HITRUST CSF 11.b",
+      "ISO",
+      "ISO 27001",
+      "ISO 27001 A.9.1.2",
+      "MITRE",
+      "MITRE T1552.005 unsecured credentials cloud instance metadata api",
+      "MITRE T1552 unsecured credentials",
+      "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery",
+      "NIST",
+      "NIST 800-171",
+      "NIST 800-171 3.1.1",
+      "NIST 800-171 3.1.2",
+      "NIST 800-171 3.1.3",
+      "NIST 800-171 3.14.6",
+      "NIST 800-171 3.14.7",
+      "NIST 800-171 3.4.6",
+      "NIST 800-53",
+      "NIST 800-53 AC-17",
+      "NIST 800-53 AC-4",
+      "NIST 800-53 CM-7",
+      "NIST 800-53 SI-4",
+      "NIST 800-53 SI-4(18)",
+      "SOC2",
+      "SOC2 CC6.1",
+      "SOC2 CC6.8",
+      "Container",
+      "Gcp",
+      "Network"
+    ]
   },
   {
     "desc": "Detect attempts to contact the K8S API Server from a container",
@@ -8638,7 +8826,7 @@
   },
   {
     "desc": "Detect attempts to steal Azure Credentials, via find or grep command",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (4)",
@@ -8646,8 +8834,10 @@
       "Process"
     ],
     "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
     "priority": "NOTICE",
     "rule": "Find Azure Credentials",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -8660,7 +8850,7 @@
   },
   {
     "desc": "detect attempts to steal GCP Credentials, via find or grep command",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (4)",
@@ -8668,8 +8858,10 @@
       "Process"
     ],
     "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
     "priority": "NOTICE",
     "rule": "Find GCP Credentials",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -16989,7 +17181,7 @@
     ]
   },
   {
-    "desc": "This rule detects the usage of suspicious domains in cmdlines",
+    "desc": "This rule detects DNS queries that contain suspicious domains",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -17919,7 +18111,7 @@
       "MITRE TA0004 privilege escalation",
       "Syscall"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect a node successfully joined the cluster outside of the list of allowed nodes.",
