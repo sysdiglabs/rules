@@ -68,6 +68,42 @@
     ]
   },
   {
+    "desc": "Detects the creation of an ECS Task Definition.  This could be used by attackers to execute commands from within the environment, access the internal AWS API, and start unauthorized programs.",
+    "disabled": true,
+    "has_exceptions": false,
+    "normalized_tags": [
+      "AWS (2)",
+      "Cloud"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "AWS ECS Create Task Definition",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS ECS",
+      "Cloud"
+    ]
+  },
+  {
+    "desc": "Detects when the master password for an AWS RDS Database is changed.",
+    "disabled": true,
+    "has_exceptions": false,
+    "normalized_tags": [
+      "AWS (2)",
+      "Cloud"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "AWS RDS Master Password Update",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS RDS",
+      "Cloud"
+    ]
+  },
+  {
     "desc": "Detect disabling of S3 bucket versioning.",
     "disabled": true,
     "has_exceptions": true,
@@ -98,8 +134,9 @@
     "has_exceptions": true,
     "normalized_tags": [
       "AWS (3)",
+      "MITRE (2)",
       "Cloud",
-      "MITRE (2)"
+      "Container"
     ],
     "oss_rule": false,
     "priority": "NOTICE",
@@ -109,9 +146,10 @@
       "AWS",
       "AWS EC2",
       "AWS SSM",
-      "Cloud",
       "MITRE",
-      "MITRE TA0004 privilege escalation"
+      "MITRE TA0004 privilege escalation",
+      "Cloud",
+      "Container"
     ]
   },
   {
@@ -120,8 +158,9 @@
     "has_exceptions": true,
     "normalized_tags": [
       "AWS (3)",
+      "MITRE (2)",
       "Cloud",
-      "MITRE (2)"
+      "Container"
     ],
     "oss_rule": false,
     "priority": "NOTICE",
@@ -131,9 +170,10 @@
       "AWS",
       "AWS EC2",
       "AWS SSM",
-      "Cloud",
       "MITRE",
-      "MITRE TA0004 privilege escalation"
+      "MITRE TA0004 privilege escalation",
+      "Cloud",
+      "Container"
     ]
   },
   {
@@ -1750,7 +1790,9 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (3)"
+      "MITRE (3)",
+      "Container",
+      "Host"
     ],
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Detection",
@@ -1761,7 +1803,9 @@
     "tags": [
       "MITRE",
       "MITRE T1027 obfuscated files and information",
-      "MITRE TA0005 defense evasion"
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "Host"
     ]
   },
   {
@@ -1769,7 +1813,9 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (3)"
+      "MITRE (3)",
+      "Container",
+      "Host"
     ],
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Detection",
@@ -1780,7 +1826,9 @@
     "tags": [
       "MITRE",
       "MITRE T1027 obfuscated files and information",
-      "MITRE TA0005 defense evasion"
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "Host"
     ]
   },
   {
@@ -1788,7 +1836,9 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (7)"
+      "MITRE (7)",
+      "Container",
+      "Host"
     ],
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Detection",
@@ -1803,7 +1853,9 @@
       "MITRE T1132.001 data encoding standard encoding",
       "MITRE TA0002 execution",
       "MITRE TA0005 defense evasion",
-      "MITRE TA0011 command and control"
+      "MITRE TA0011 command and control",
+      "Container",
+      "Host"
     ]
   },
   {
@@ -1871,9 +1923,11 @@
       "NIST (13)",
       "PCI (3)",
       "SOC2 (2)",
+      "Container",
+      "Host",
       "Process"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "Change thread namespace",
     "source": "falco",
@@ -1913,9 +1967,10 @@
       "PCI DSS 2.6",
       "SOC2",
       "SOC2 CC6.8",
+      "Container",
+      "Host",
       "Process"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detect clearing of critical log files",
@@ -1930,7 +1985,9 @@
       "NIST (11)",
       "PCI (3)",
       "SOC2 (2)",
-      "File"
+      "Container",
+      "File",
+      "Host"
     ],
     "oss_rule": true,
     "priority": "WARNING",
@@ -1980,7 +2037,9 @@
       "PCI DSS 10.5.5",
       "SOC2",
       "SOC2 CC6.7",
-      "File"
+      "Container",
+      "File",
+      "Host"
     ],
     "updated_oss_condition": true
   },
@@ -2399,7 +2458,7 @@
   },
   {
     "desc": "Detect deletion of an alarm.",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
       "AWS (4)",
@@ -2412,10 +2471,8 @@
       "SOC2 (2)"
     ],
     "oss_rule": false,
-    "policy": "Sysdig AWS Threat Detection",
     "priority": "WARNING",
     "rule": "CloudWatch Delete Alarms",
-    "severity": 3,
     "source": "awscloudtrail",
     "tags": [
       "AWS",
@@ -2446,7 +2503,7 @@
   },
   {
     "desc": "Detect deletion of a CLoudWatch log group.",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
       "AWS (4)",
@@ -2460,10 +2517,8 @@
       "SOC2 (2)"
     ],
     "oss_rule": false,
-    "policy": "Sysdig AWS Threat Detection",
     "priority": "WARNING",
     "rule": "CloudWatch Delete Log Group",
-    "severity": 3,
     "source": "awscloudtrail",
     "tags": [
       "AWS",
@@ -2798,6 +2853,8 @@
       "NIST (11)",
       "PCI (3)",
       "SOC2 (3)",
+      "Container",
+      "Host",
       "Network"
     ],
     "oss_rule": false,
@@ -2857,6 +2914,8 @@
       "SOC2",
       "SOC2 CC6.6",
       "SOC2 CC7.1",
+      "Container",
+      "Host",
       "Network"
     ]
   },
@@ -3046,6 +3105,84 @@
     "updated_oss_condition": false
   },
   {
+    "desc": "Detect attempts to connect to the Azure IMDS from container",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "FedRAMP (2)",
+      "GDPR (3)",
+      "HIPAA (3)",
+      "HITRUST (18)",
+      "ISO (3)",
+      "MITRE (5)",
+      "NIST (14)",
+      "SOC2 (3)",
+      "Azure",
+      "Container",
+      "Network"
+    ],
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "Contact Azure Instance Metadata Service from Container",
+    "source": "falco",
+    "tags": [
+      "FedRAMP",
+      "FedRAMP CM-7",
+      "GDPR",
+      "GDPR 32.1",
+      "GDPR 32.2",
+      "HIPAA",
+      "HIPAA 164.308(a)",
+      "HIPAA 164.310(b)",
+      "HITRUST",
+      "HITRUST CSF",
+      "HITRUST CSF 01.c",
+      "HITRUST CSF 01.i",
+      "HITRUST CSF 01.j",
+      "HITRUST CSF 01.l",
+      "HITRUST CSF 01.n",
+      "HITRUST CSF 01.x",
+      "HITRUST CSF 01.y",
+      "HITRUST CSF 09.ab",
+      "HITRUST CSF 09.ac",
+      "HITRUST CSF 09.i",
+      "HITRUST CSF 09.m",
+      "HITRUST CSF 09.s",
+      "HITRUST CSF 10.j",
+      "HITRUST CSF 10.m",
+      "HITRUST CSF 11.a",
+      "HITRUST CSF 11.b",
+      "ISO",
+      "ISO 27001",
+      "ISO 27001 A.9.1.2",
+      "MITRE",
+      "MITRE T1552.005 unsecured credentials cloud instance metadata api",
+      "MITRE T1552 unsecured credentials",
+      "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery",
+      "NIST",
+      "NIST 800-171",
+      "NIST 800-171 3.1.1",
+      "NIST 800-171 3.1.2",
+      "NIST 800-171 3.1.3",
+      "NIST 800-171 3.14.6",
+      "NIST 800-171 3.14.7",
+      "NIST 800-171 3.4.6",
+      "NIST 800-53",
+      "NIST 800-53 AC-17",
+      "NIST 800-53 AC-4",
+      "NIST 800-53 CM-7",
+      "NIST 800-53 SI-4",
+      "NIST 800-53 SI-4(18)",
+      "SOC2",
+      "SOC2 CC6.1",
+      "SOC2 CC6.8",
+      "Azure",
+      "Container",
+      "Network"
+    ]
+  },
+  {
     "desc": "Detect attempts to contact the EC2 Instance Metadata Service from a container",
     "disabled": false,
     "has_exceptions": true,
@@ -3062,7 +3199,7 @@
       "Container",
       "Network"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "policy": "Sysdig Runtime Threat Detection",
     "priority": "NOTICE",
     "rule": "Contact EC2 Instance Metadata Service From Container",
@@ -3123,8 +3260,85 @@
       "Aws",
       "Container",
       "Network"
+    ]
+  },
+  {
+    "desc": "Detect attempts to connect to the GCP IMDS from container",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "FedRAMP (2)",
+      "GDPR (3)",
+      "HIPAA (3)",
+      "HITRUST (18)",
+      "ISO (3)",
+      "MITRE (5)",
+      "NIST (14)",
+      "SOC2 (3)",
+      "Container",
+      "Gcp",
+      "Network"
     ],
-    "updated_oss_condition": true
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "Contact GCP Instance Metadata Service from Container",
+    "source": "falco",
+    "tags": [
+      "FedRAMP",
+      "FedRAMP CM-7",
+      "GDPR",
+      "GDPR 32.1",
+      "GDPR 32.2",
+      "HIPAA",
+      "HIPAA 164.308(a)",
+      "HIPAA 164.310(b)",
+      "HITRUST",
+      "HITRUST CSF",
+      "HITRUST CSF 01.c",
+      "HITRUST CSF 01.i",
+      "HITRUST CSF 01.j",
+      "HITRUST CSF 01.l",
+      "HITRUST CSF 01.n",
+      "HITRUST CSF 01.x",
+      "HITRUST CSF 01.y",
+      "HITRUST CSF 09.ab",
+      "HITRUST CSF 09.ac",
+      "HITRUST CSF 09.i",
+      "HITRUST CSF 09.m",
+      "HITRUST CSF 09.s",
+      "HITRUST CSF 10.j",
+      "HITRUST CSF 10.m",
+      "HITRUST CSF 11.a",
+      "HITRUST CSF 11.b",
+      "ISO",
+      "ISO 27001",
+      "ISO 27001 A.9.1.2",
+      "MITRE",
+      "MITRE T1552.005 unsecured credentials cloud instance metadata api",
+      "MITRE T1552 unsecured credentials",
+      "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery",
+      "NIST",
+      "NIST 800-171",
+      "NIST 800-171 3.1.1",
+      "NIST 800-171 3.1.2",
+      "NIST 800-171 3.1.3",
+      "NIST 800-171 3.14.6",
+      "NIST 800-171 3.14.7",
+      "NIST 800-171 3.4.6",
+      "NIST 800-53",
+      "NIST 800-53 AC-17",
+      "NIST 800-53 AC-4",
+      "NIST 800-53 CM-7",
+      "NIST 800-53 SI-4",
+      "NIST 800-53 SI-4(18)",
+      "SOC2",
+      "SOC2 CC6.1",
+      "SOC2 CC6.8",
+      "Container",
+      "Gcp",
+      "Network"
+    ]
   },
   {
     "desc": "Detect attempts to contact the K8S API Server from a container",
@@ -3289,7 +3503,7 @@
       "Container",
       "Network"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "Contact cloud metadata service from container",
     "source": "falco",
@@ -3347,8 +3561,7 @@
       "SOC2 CC6.8",
       "Container",
       "Network"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "New executable created in a container due to chmod",
@@ -3361,9 +3574,10 @@
       "MITRE (3)",
       "NIST (5)",
       "PCI (3)",
-      "SOC2 (3)"
+      "SOC2 (3)",
+      "Container"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "ERROR",
     "rule": "Container Drift Detected (chmod)",
     "source": "falco",
@@ -3392,9 +3606,9 @@
       "PCI DSS 11.5.1",
       "SOC2",
       "SOC2 CC6.8",
-      "SOC2 CC7.2"
-    ],
-    "updated_oss_condition": true
+      "SOC2 CC7.2",
+      "Container"
+    ]
   },
   {
     "desc": "New executable created in a container due to open+create",
@@ -3407,9 +3621,10 @@
       "MITRE (3)",
       "NIST (5)",
       "PCI (3)",
-      "SOC2 (3)"
+      "SOC2 (3)",
+      "Container"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "ERROR",
     "rule": "Container Drift Detected (open+create)",
     "source": "falco",
@@ -3438,9 +3653,9 @@
       "PCI DSS 11.5.1",
       "SOC2",
       "SOC2 CC6.8",
-      "SOC2 CC7.2"
-    ],
-    "updated_oss_condition": true
+      "SOC2 CC7.2",
+      "Container"
+    ]
   },
   {
     "desc": "Detected container running as root user",
@@ -3452,7 +3667,7 @@
       "Container",
       "Process"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "INFO",
     "rule": "Container Run as Root User",
     "source": "falco",
@@ -3463,8 +3678,7 @@
       "MITRE TA0004 privilege escalation",
       "Container",
       "Process"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detect creation of a new AWS user.",
@@ -4004,7 +4218,9 @@
       "MITRE (5)",
       "NIST (16)",
       "SOC2 (2)",
-      "File"
+      "Container",
+      "File",
+      "Host"
     ],
     "oss_rule": true,
     "policy": "Sysdig Runtime Threat Detection",
@@ -4055,7 +4271,9 @@
       "NIST 800-53 SI-3",
       "SOC2",
       "SOC2 CC6.3",
-      "File"
+      "Container",
+      "File",
+      "Host"
     ],
     "updated_oss_condition": true
   },
@@ -4070,9 +4288,11 @@
       "ISO (3)",
       "MITRE (5)",
       "NIST (8)",
-      "File"
+      "Container",
+      "File",
+      "Host"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "Create Hidden Files or Directories",
     "source": "falco",
@@ -4110,9 +4330,10 @@
       "NIST 800-53",
       "NIST 800-53 AU-2",
       "NIST 800-53 SI-7",
-      "File"
-    ],
-    "updated_oss_condition": true
+      "Container",
+      "File",
+      "Host"
+    ]
   },
   {
     "desc": "Detect an attempt to start a pod using the host network.",
@@ -4950,7 +5171,9 @@
       "MITRE (8)",
       "NIST (16)",
       "SOC2 (2)",
-      "File"
+      "Container",
+      "File",
+      "Host"
     ],
     "oss_rule": true,
     "policy": "Sysdig Runtime Threat Detection",
@@ -5004,7 +5227,9 @@
       "NIST 800-53 SI-3",
       "SOC2",
       "SOC2 CC6.3",
-      "File"
+      "Container",
+      "File",
+      "Host"
     ],
     "updated_oss_condition": true
   },
@@ -5318,9 +5543,11 @@
       "MITRE (6)",
       "NIST (14)",
       "SOC2 (2)",
-      "Filesystem"
+      "Container",
+      "Filesystem",
+      "Host"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "ERROR",
     "rule": "Create files below dev",
     "source": "falco",
@@ -5374,9 +5601,10 @@
       "NIST 800-53 SI-4",
       "SOC2",
       "SOC2 CC6.8",
-      "Filesystem"
-    ],
-    "updated_oss_condition": true
+      "Container",
+      "Filesystem",
+      "Host"
+    ]
   },
   {
     "desc": "Detect creating/modifying a configmap containing a private credential (aws key, password, etc.)",
@@ -5574,10 +5802,12 @@
       "NIST (12)",
       "PCI (3)",
       "SOC2 (2)",
+      "Container",
       "Database",
+      "Host",
       "Process"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "DB program spawned process",
     "source": "falco",
@@ -5630,10 +5860,11 @@
       "PCI DSS 6.5.1",
       "SOC2",
       "SOC2 CC6.8",
+      "Container",
       "Database",
+      "Host",
       "Process"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detect deactivating hardware MFA configuration for root.",
@@ -5868,7 +6099,7 @@
       "MITRE TA0008 lateral movement",
       "Container"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect file system debugger debugfs launched on host which might lead to escape detection.",
@@ -6082,9 +6313,11 @@
       "MITRE (3)",
       "NIST (7)",
       "SOC2 (2)",
+      "Container",
+      "Host",
       "Process"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "WARNING",
     "rule": "Delete Bash History",
     "source": "falco",
@@ -6115,9 +6348,10 @@
       "NIST 800-53 SI-7",
       "SOC2",
       "SOC2 CC6.7",
+      "Container",
+      "Host",
       "Process"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detect the deletion of an AWS S3 bucket.",
@@ -7248,9 +7482,11 @@
       "MITRE (3)",
       "NIST (7)",
       "SOC2 (2)",
+      "Container",
+      "Host",
       "Process"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "WARNING",
     "rule": "Delete or rename shell history",
     "source": "falco",
@@ -7281,9 +7517,10 @@
       "NIST 800-53 SI-7",
       "SOC2",
       "SOC2 CC6.7",
+      "Container",
+      "Host",
       "Process"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detect the deployment of an App Runner service.",
@@ -7342,10 +7579,12 @@
       "NIST (10)",
       "PCI (3)",
       "SOC2 (2)",
+      "Container",
       "Crypto",
+      "Host",
       "Process"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "policy": "Sysdig Runtime Threat Intelligence",
     "priority": "CRITICAL",
     "rule": "Detect crypto miners using the Stratum protocol",
@@ -7394,10 +7633,11 @@
       "PCI DSS 5.1.2",
       "SOC2",
       "SOC2 CC6.8",
+      "Container",
       "Crypto",
+      "Host",
       "Process"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "This rule detects curl being run using a socks proxy.",
@@ -7405,6 +7645,8 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (2)",
+      "Container",
+      "Host",
       "Network",
       "Process"
     ],
@@ -7417,6 +7659,8 @@
     "tags": [
       "MITRE T1090 proxy",
       "MITRE TA0011 command and control",
+      "Container",
+      "Host",
       "Network",
       "Process"
     ]
@@ -7427,6 +7671,8 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (4)",
+      "Container",
+      "Host",
       "Process"
     ],
     "oss_rule": false,
@@ -7440,6 +7686,8 @@
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation",
+      "Container",
+      "Host",
       "Process"
     ]
   },
@@ -7476,6 +7724,8 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (4)",
+      "Container",
+      "Host",
       "Network"
     ],
     "oss_rule": false,
@@ -7489,6 +7739,8 @@
       "MITRE T1090.003 proxy multi hop proxy",
       "MITRE TA0010 execution",
       "MITRE TA0011 command and control",
+      "Container",
+      "Host",
       "Network"
     ]
   },
@@ -7504,10 +7756,12 @@
       "MITRE (6)",
       "NIST (9)",
       "SOC2 (2)",
+      "Container",
       "Crypto",
+      "Host",
       "Network"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "policy": "Sysdig Runtime Threat Intelligence",
     "priority": "CRITICAL",
     "rule": "Detect outbound connections to common miner pool ports",
@@ -7550,10 +7804,11 @@
       "NIST 800-53 SI-4(4)",
       "SOC2",
       "SOC2 CC6.8",
+      "Container",
       "Crypto",
+      "Host",
       "Network"
-    ],
-    "updated_oss_condition": false
+    ]
   },
   {
     "desc": "This rule detects the use of reconnaissance scripts.",
@@ -7601,7 +7856,7 @@
       "MITRE TA0008 lateral movement",
       "Container"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect a logins event based on user geolocation in Okta",
@@ -7624,6 +7879,7 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (5)",
+      "Container",
       "Host",
       "Rootkit"
     ],
@@ -7639,6 +7895,7 @@
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation",
       "MITRE TA0005 defense evasion",
+      "Container",
       "Host",
       "Rootkit"
     ]
@@ -7952,9 +8209,11 @@
       "MITRE (5)",
       "NIST (17)",
       "SOC2 (2)",
+      "Container",
+      "Host",
       "Network"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "Disallowed SSH Connection",
     "source": "falco",
@@ -8017,9 +8276,10 @@
       "NIST 800-53 SI-4",
       "SOC2",
       "SOC2 CC6.1",
+      "Container",
+      "Host",
       "Network"
-    ],
-    "updated_oss_condition": false
+    ]
   },
   {
     "desc": "Detect dissociation of a Lambda function from a VPC.",
@@ -8135,8 +8395,9 @@
     "has_exceptions": true,
     "normalized_tags": [
       "AWS (2)",
+      "MITRE (2)",
       "Cloud",
-      "MITRE (2)"
+      "Container"
     ],
     "oss_rule": false,
     "priority": "NOTICE",
@@ -8145,9 +8406,10 @@
     "tags": [
       "AWS",
       "AWS EC2",
-      "Cloud",
       "MITRE",
-      "MITRE TA0008 lateral movement"
+      "MITRE TA0008 lateral movement",
+      "Cloud",
+      "Container"
     ]
   },
   {
@@ -8557,7 +8819,9 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (4)"
+      "MITRE (4)",
+      "Container",
+      "Host"
     ],
     "oss_rule": true,
     "policy": "Sysdig Runtime Threat Detection",
@@ -8569,7 +8833,9 @@
       "MITRE",
       "MITRE T1055 process injection",
       "MITRE TA0004 privilege escalation",
-      "MITRE TA0005 defense evasion"
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "Host"
     ],
     "updated_oss_condition": true
   },
@@ -8578,7 +8844,9 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (6)"
+      "MITRE (6)",
+      "Container",
+      "Host"
     ],
     "oss_rule": false,
     "priority": "WARNING",
@@ -8590,7 +8858,9 @@
       "MITRE T1564.001 hide artifacts hidden files and directories",
       "MITRE TA0002 execution",
       "MITRE TA0005 defense evasion",
-      "MITRE TA004 privilege escalation"
+      "MITRE TA004 privilege escalation",
+      "Container",
+      "Host"
     ]
   },
   {
@@ -8598,7 +8868,9 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (5)"
+      "MITRE (5)",
+      "Container",
+      "Host"
     ],
     "oss_rule": false,
     "priority": "WARNING",
@@ -8609,7 +8881,9 @@
       "MITRE T1574.006 hijack execution flow dynamic linker hijacking",
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation",
-      "MITRE TA0005 defense evasion"
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "Host"
     ]
   },
   {
@@ -8619,6 +8893,8 @@
     "normalized_tags": [
       "MITRE (3)",
       "Aws",
+      "Container",
+      "Host",
       "Process"
     ],
     "oss_rule": true,
@@ -8632,22 +8908,27 @@
       "MITRE TA0006 credential access",
       "MITRE TA0007 discovery",
       "Aws",
+      "Container",
+      "Host",
       "Process"
     ],
     "updated_oss_condition": true
   },
   {
     "desc": "Detect attempts to steal Azure Credentials, via find or grep command",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (4)",
       "Azure",
+      "Container",
       "Process"
     ],
     "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
     "priority": "NOTICE",
     "rule": "Find Azure Credentials",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -8655,27 +8936,32 @@
       "MITRE TA0006 credential access",
       "MITRE TA0007 discovery",
       "Azure",
+      "Container",
       "Process"
     ]
   },
   {
     "desc": "detect attempts to steal GCP Credentials, via find or grep command",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (4)",
+      "Container",
       "Gcp",
       "Process"
     ],
     "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
     "priority": "NOTICE",
     "rule": "Find GCP Credentials",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
       "MITRE T1552 unsecured credentials",
       "MITRE TA0006 credential access",
       "MITRE TA0007 discovery",
+      "Container",
       "Gcp",
       "Process"
     ]
@@ -11128,6 +11414,8 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (5)",
+      "Container",
+      "Host",
       "Recon",
       "Reconnaissance"
     ],
@@ -11143,6 +11431,8 @@
       "MITRE TA0003 reconnaissance",
       "MITRE TA0006 credential access",
       "MITRE TA0007 discovery",
+      "Container",
+      "Host",
       "Recon",
       "Reconnaissance"
     ]
@@ -11507,9 +11797,11 @@
       "MITRE (2)",
       "NIST (9)",
       "SOC2 (2)",
+      "Container",
+      "Host",
       "Network"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "Interpreted procs inbound network activity",
     "source": "falco",
@@ -11543,9 +11835,10 @@
       "NIST 800-53 SC-7(3)",
       "SOC2",
       "SOC2 CC6.7",
+      "Container",
+      "Host",
       "Network"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Any outbound network activity performed by any interpreted program (perl, python, ruby, etc.)",
@@ -11558,9 +11851,11 @@
       "ISO (3)",
       "MITRE (2)",
       "NIST (9)",
+      "Container",
+      "Host",
       "Network"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "Interpreted procs outbound network activity",
     "source": "falco",
@@ -11592,18 +11887,21 @@
       "NIST 800-53 CM-7(1)",
       "NIST 800-53 SC-7(10)",
       "NIST 800-53 SC-7(3)",
+      "Container",
+      "Host",
       "Network"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detected Java process downloading a class file which could indicate a successful exploit of the log4shell Log4j vulnerability (CVE-2021-44228)",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (2)"
+      "MITRE (2)",
+      "Container",
+      "Host"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "policy": "Sysdig Runtime Threat Detection",
     "priority": "CRITICAL",
     "rule": "Java Process Class File Download",
@@ -11611,9 +11909,10 @@
     "source": "falco",
     "tags": [
       "MITRE",
-      "MITRE TA0001 initial access"
-    ],
-    "updated_oss_condition": true
+      "MITRE TA0001 initial access",
+      "Container",
+      "Host"
+    ]
   },
   {
     "desc": "Detect any attempt to create a configmap",
@@ -12565,7 +12864,9 @@
       "NIST (11)",
       "PCI (3)",
       "SOC2 (2)",
-      "File"
+      "Container",
+      "File",
+      "Host"
     ],
     "oss_rule": false,
     "priority": "WARNING",
@@ -12615,7 +12916,9 @@
       "PCI DSS 10.5.5",
       "SOC2",
       "SOC2 CC6.7",
-      "File"
+      "Container",
+      "File",
+      "Host"
     ]
   },
   {
@@ -12653,7 +12956,7 @@
       "SOC2 (2)",
       "Container"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "WARNING",
     "rule": "Launch Disallowed Container",
     "source": "falco",
@@ -12693,8 +12996,7 @@
       "SOC2",
       "SOC2 CC6.1",
       "Container"
-    ],
-    "updated_oss_condition": false
+    ]
   },
   {
     "desc": "Detect container started with a powerful set of capabilities. Exceptions are made for known trusted images.",
@@ -12705,7 +13007,7 @@
       "MITRE (6)",
       "Container"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "WARNING",
     "rule": "Launch Excessively Capable Container",
     "source": "falco",
@@ -12718,8 +13020,7 @@
       "MITRE TA0004 privilege escalation",
       "MITRE TA0008 lateral movement",
       "Container"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detect ingress remote file copy tools launched in container",
@@ -12727,10 +13028,11 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (3)",
+      "Container",
       "Network",
       "Process"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "Launch Ingress Remote File Copy Tools in Container",
     "source": "falco",
@@ -12738,10 +13040,10 @@
       "MITRE",
       "MITRE T1021 remote services",
       "MITRE TA0008 lateral movement",
+      "Container",
       "Network",
       "Process"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Package management process ran inside container",
@@ -12756,9 +13058,10 @@
       "MITRE (4)",
       "NIST (15)",
       "SOC2 (2)",
+      "Container",
       "Process"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "ERROR",
     "rule": "Launch Package Management Process in Container",
     "source": "falco",
@@ -12812,9 +13115,9 @@
       "NIST 800-53 SI-7",
       "SOC2",
       "SOC2 CC6.1",
+      "Container",
       "Process"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detect the initial process started in a privileged container. Exceptions are made for known trusted images.",
@@ -12832,7 +13135,7 @@
       "SOC2 (2)",
       "Container"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "INFO",
     "rule": "Launch Privileged Container",
     "source": "falco",
@@ -12872,8 +13175,7 @@
       "SOC2",
       "SOC2 CC6.1",
       "Container"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detect remote file copy tools launched in container",
@@ -12886,10 +13188,11 @@
       "MITRE (3)",
       "NIST (6)",
       "SOC2 (3)",
+      "Container",
       "Network",
       "Process"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "Launch Remote File Copy Tools in Container",
     "source": "falco",
@@ -12914,10 +13217,10 @@
       "SOC2",
       "SOC2 CC6.3",
       "SOC2 CC6.7",
+      "Container",
       "Network",
       "Process"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detect a container being started and configured to run as root. This differs from Container Run as Root User in that it looks for the container started event rather that processes running inside the container.",
@@ -12955,7 +13258,7 @@
       "SOC2 (2)",
       "Container"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "INFO",
     "rule": "Launch Sensitive Mount Container",
     "source": "falco",
@@ -12994,8 +13297,7 @@
       "SOC2",
       "SOC2 CC6.1",
       "Container"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detect network tools launched inside container",
@@ -13010,10 +13312,11 @@
       "MITRE (4)",
       "NIST (15)",
       "SOC2 (3)",
+      "Container",
       "Network",
       "Process"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "Launch Suspicious Network Tool in Container",
     "source": "falco",
@@ -13064,10 +13367,10 @@
       "SOC2",
       "SOC2 CC6.1",
       "SOC2 CC6.7",
+      "Container",
       "Network",
       "Process"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detect network tools launched on the host",
@@ -13082,10 +13385,11 @@
       "MITRE (4)",
       "NIST (15)",
       "SOC2 (3)",
+      "Host",
       "Network",
       "Process"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "Launch Suspicious Network Tool on Host",
     "source": "falco",
@@ -13136,10 +13440,10 @@
       "SOC2",
       "SOC2 CC6.1",
       "SOC2 CC6.7",
+      "Host",
       "Network",
       "Process"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detect a new container launched using a malicious sha256 image",
@@ -13147,6 +13451,7 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (5)",
+      "Container",
       "Ioc"
     ],
     "oss_rule": false,
@@ -13161,6 +13466,7 @@
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
+      "Container",
       "Ioc"
     ]
   },
@@ -13177,6 +13483,7 @@
       "NIST (8)",
       "PCI (3)",
       "SOC2 (2)",
+      "Container",
       "Process"
     ],
     "oss_rule": true,
@@ -13223,6 +13530,7 @@
       "PCI DSS 7.1",
       "SOC2",
       "SOC2 CC6.8",
+      "Container",
       "Process"
     ],
     "updated_oss_condition": true
@@ -13363,7 +13671,10 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (3)",
-      "Ioc"
+      "Container",
+      "Host",
+      "Ioc",
+      "Network"
     ],
     "oss_rule": false,
     "priority": "WARNING",
@@ -13373,7 +13684,10 @@
       "MITRE",
       "MITRE T1190 exploit public facing application",
       "MITRE TA0001 initial access",
-      "Ioc"
+      "Container",
+      "Host",
+      "Ioc",
+      "Network"
     ]
   },
   {
@@ -13382,6 +13696,8 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (4)",
+      "Container",
+      "Host",
       "Ioc"
     ],
     "oss_rule": false,
@@ -13395,6 +13711,8 @@
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
+      "Container",
+      "Host",
       "Ioc"
     ]
   },
@@ -13404,6 +13722,8 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (4)",
+      "Container",
+      "Host",
       "Ioc"
     ],
     "oss_rule": false,
@@ -13417,6 +13737,8 @@
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
+      "Container",
+      "Host",
       "Ioc"
     ]
   },
@@ -13426,6 +13748,8 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (4)",
+      "Container",
+      "Host",
       "Ioc"
     ],
     "oss_rule": false,
@@ -13439,6 +13763,8 @@
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
+      "Container",
+      "Host",
       "Ioc"
     ]
   },
@@ -13448,6 +13774,8 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (4)",
+      "Container",
+      "Host",
       "Ioc"
     ],
     "oss_rule": false,
@@ -13461,6 +13789,8 @@
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
+      "Container",
+      "Host",
       "Ioc"
     ]
   },
@@ -13469,6 +13799,9 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "MITRE (4)",
+      "Container",
+      "Host",
       "Ioc"
     ],
     "oss_rule": false,
@@ -13476,6 +13809,12 @@
     "rule": "Malicious process detected",
     "source": "falco",
     "tags": [
+      "MITRE",
+      "MITRE TA0002 execution",
+      "MITRE TA0003 persistence",
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "Host",
       "Ioc"
     ]
   },
@@ -13492,9 +13831,11 @@
       "NIST (11)",
       "PCI (3)",
       "SOC2 (3)",
-      "Filesystem"
+      "Container",
+      "Filesystem",
+      "Host"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "ERROR",
     "rule": "Mkdir binary dirs",
     "source": "falco",
@@ -13543,9 +13884,10 @@
       "SOC2",
       "SOC2 CC6.8",
       "SOC2 CC7.1",
-      "Filesystem"
-    ],
-    "updated_oss_condition": true
+      "Container",
+      "Filesystem",
+      "Host"
+    ]
   },
   {
     "desc": "Detect modification of the specified attribute of the specified AMI.",
@@ -13712,9 +14054,11 @@
       "MITRE (6)",
       "NIST (12)",
       "SOC2 (2)",
-      "File"
+      "Container",
+      "File",
+      "Host"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "WARNING",
     "rule": "Modify Shell Configuration File",
     "source": "falco",
@@ -13763,9 +14107,10 @@
       "NIST 800-53 SI-7",
       "SOC2",
       "SOC2 CC6.8",
-      "File"
-    ],
-    "updated_oss_condition": true
+      "Container",
+      "File",
+      "Host"
+    ]
   },
   {
     "desc": "Detect addition or removal of permission settings for the specified EC2 snapshot.",
@@ -13828,9 +14173,11 @@
       "NIST (11)",
       "PCI (3)",
       "SOC2 (3)",
-      "Filesystem"
+      "Container",
+      "Filesystem",
+      "Host"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "ERROR",
     "rule": "Modify binary dirs",
     "source": "falco",
@@ -13879,9 +14226,10 @@
       "SOC2",
       "SOC2 CC6.8",
       "SOC2 CC7.1",
-      "Filesystem"
-    ],
-    "updated_oss_condition": true
+      "Container",
+      "Filesystem",
+      "Host"
+    ]
   },
   {
     "desc": "Detect an attempt to write to file /etc/ld.so.preload",
@@ -13889,7 +14237,9 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (4)",
-      "Filesystem"
+      "Container",
+      "Filesystem",
+      "Host"
     ],
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Detection",
@@ -13902,7 +14252,9 @@
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation",
       "MITRE TA0005 defense evasion",
-      "Filesystem"
+      "Container",
+      "Filesystem",
+      "Host"
     ]
   },
   {
@@ -13914,7 +14266,7 @@
       "MITRE",
       "Container"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "policy": "Sysdig Runtime Threat Detection",
     "priority": "WARNING",
     "rule": "Mount Launched in Privileged Container",
@@ -13924,8 +14276,7 @@
       "CIS",
       "MITRE TA0008 lateral movement",
       "Container"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detect a pod mutated by a mutating admission controller.",
@@ -13960,6 +14311,7 @@
       "MITRE (4)",
       "NIST (15)",
       "SOC2 (2)",
+      "Container",
       "Network",
       "Process"
     ],
@@ -14015,6 +14367,7 @@
       "NIST 800-53 SI-4",
       "SOC2",
       "SOC2 CC6.1",
+      "Container",
       "Network",
       "Process"
     ],
@@ -14033,9 +14386,10 @@
       "NIST (14)",
       "PCI (3)",
       "SOC2 (3)",
+      "Container",
       "Network"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "WARNING",
     "rule": "Network Connection outside Local Subnet",
     "source": "falco",
@@ -14086,9 +14440,9 @@
       "SOC2",
       "SOC2 CC6.1",
       "SOC2 CC6.6",
+      "Container",
       "Network"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "an attempt to change users by calling setuid. sudo/su are excluded. users \"root\" and \"nobody\" suing to itself are also excluded, as setuid calls typically involve dropping privileges.",
@@ -14102,9 +14456,11 @@
       "MITRE (3)",
       "NIST (5)",
       "SOC2 (2)",
+      "Container",
+      "Host",
       "Users"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "Non sudo setuid",
     "source": "falco",
@@ -14133,9 +14489,10 @@
       "NIST 800-53 AU-6(8)",
       "SOC2",
       "SOC2 CC6.1",
+      "Container",
+      "Host",
       "Users"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "The Okta CAPTCHA settings have been modified.  This may be attempts by attackers to disable or delete CAPTCHA checks.",
@@ -14194,7 +14551,9 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (3)",
+      "Container",
       "File",
+      "Host",
       "Process"
     ],
     "oss_rule": false,
@@ -14205,7 +14564,9 @@
       "MITRE",
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
+      "Container",
       "File",
+      "Host",
       "Process"
     ]
   },
@@ -14223,9 +14584,11 @@
       "NIST (11)",
       "PCI (3)",
       "SOC2 (3)",
+      "Container",
+      "Host",
       "Network"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "policy": "Sysdig Runtime Threat Intelligence",
     "priority": "WARNING",
     "rule": "Outbound Connection to C2 Servers",
@@ -14282,9 +14645,10 @@
       "SOC2",
       "SOC2 CC6.6",
       "SOC2 CC7.1",
+      "Container",
+      "Host",
       "Network"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detect traffic that is not to authorized server process and port.",
@@ -14300,9 +14664,10 @@
       "NIST (14)",
       "PCI (4)",
       "SOC2 (3)",
+      "Container",
       "Network"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "WARNING",
     "rule": "Outbound or Inbound Traffic not to Authorized Server Process and Port",
     "source": "falco",
@@ -14362,9 +14727,9 @@
       "SOC2",
       "SOC2 CC6.1",
       "SOC2 CC6.6",
+      "Container",
       "Network"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detect usage of the PTRACE system call with the PTRACE_TRACEME argument, indicating a program actively attempting to avoid debuggers attaching to the process. This behavior is typically indicative of malware activity.",
@@ -14372,6 +14737,8 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (4)",
+      "Container",
+      "Host",
       "Process"
     ],
     "oss_rule": true,
@@ -14385,6 +14752,8 @@
       "MITRE T1622 debugger evasion",
       "MITRE TA0005 defense evasion",
       "MITRE TA0007 discovery",
+      "Container",
+      "Host",
       "Process"
     ],
     "updated_oss_condition": true
@@ -14395,6 +14764,8 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (4)",
+      "Container",
+      "Host",
       "Process"
     ],
     "oss_rule": true,
@@ -14408,6 +14779,8 @@
       "MITRE T1055.008 process injection ptrace system calls",
       "MITRE TA0004 privilege escalation",
       "MITRE TA0005 defense evasion",
+      "Container",
+      "Host",
       "Process"
     ],
     "updated_oss_condition": true
@@ -14423,6 +14796,7 @@
       "MITRE (7)",
       "NIST (4)",
       "SOC2 (2)",
+      "Container",
       "Network"
     ],
     "oss_rule": true,
@@ -14455,6 +14829,7 @@
       "NIST 800-53 AC-6(9)",
       "SOC2",
       "SOC2 CC6.8",
+      "Container",
       "Network"
     ],
     "updated_oss_condition": true
@@ -14561,9 +14936,11 @@
     "has_exceptions": false,
     "normalized_tags": [
       "MITRE (2)",
+      "Container",
+      "Host",
       "Process"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "policy": "Sysdig Runtime Threat Detection",
     "priority": "CRITICAL",
     "rule": "Polkit Local Privilege Escalation Vulnerability (CVE-2021-4034)",
@@ -14572,9 +14949,10 @@
     "tags": [
       "MITRE",
       "MITRE TA0004 privilege escalation",
+      "Container",
+      "Host",
       "Process"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "A process was seen using BPF on a network socket, this could indicate packet sniffing for use in a backdoor such as BPFDoor. Network diagnostic tools may also trigger this rule.",
@@ -14582,6 +14960,8 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (5)",
+      "Container",
+      "Host",
       "Network"
     ],
     "oss_rule": false,
@@ -14596,6 +14976,8 @@
       "MITRE TA0005 defense evasion",
       "MITRE TA0006 credential access",
       "MITRE TA0007 discovery",
+      "Container",
+      "Host",
       "Network"
     ]
   },
@@ -14690,10 +15072,11 @@
       "MITRE (4)",
       "NIST (14)",
       "SOC2 (3)",
+      "Container",
       "Host",
       "Users"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "Program run with disallowed http proxy env",
     "source": "falco",
@@ -14749,10 +15132,10 @@
       "SOC2",
       "SOC2 CC6.1",
       "SOC2 CC6.7",
+      "Container",
       "Host",
       "Users"
-    ],
-    "updated_oss_condition": false
+    ]
   },
   {
     "desc": "Detect setting the permissions on an existing bucket using access control lists.",
@@ -15264,8 +15647,7 @@
     "normalized_tags": [
       "MITRE (5)",
       "Container",
-      "Filesystem",
-      "Host"
+      "Filesystem"
     ],
     "oss_rule": false,
     "priority": "WARNING",
@@ -15278,8 +15660,7 @@
       "MITRE TA0006 credential access",
       "MITRE TA0007 discovery",
       "Container",
-      "Filesystem",
-      "Host"
+      "Filesystem"
     ]
   },
   {
@@ -15293,9 +15674,11 @@
       "ISO (3)",
       "MITRE (3)",
       "NIST (12)",
-      "File"
+      "Container",
+      "File",
+      "Host"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "WARNING",
     "rule": "Read Shell Configuration File",
     "source": "falco",
@@ -15339,9 +15722,10 @@
       "NIST 800-53 AU-6(8)",
       "NIST 800-53 CM-5",
       "NIST 800-53 SI-7",
-      "File"
-    ],
-    "updated_oss_condition": true
+      "Container",
+      "File",
+      "Host"
+    ]
   },
   {
     "desc": "an attempt to read any sensitive file (e.g. files containing user/password/authentication information) by a trusted program after startup. Trusted programs might read these files at startup to load initial state, but not afterwards.",
@@ -15354,7 +15738,9 @@
       "MITRE (9)",
       "NIST (6)",
       "SOC2 (5)",
-      "Filesystem"
+      "Container",
+      "Filesystem",
+      "Host"
     ],
     "oss_rule": true,
     "priority": "WARNING",
@@ -15389,7 +15775,9 @@
       "SOC2 CC6.8",
       "SOC2 CC7.1",
       "SOC2 CC8.1",
-      "Filesystem"
+      "Container",
+      "Filesystem",
+      "Host"
     ],
     "updated_oss_condition": true
   },
@@ -15404,7 +15792,9 @@
       "MITRE (9)",
       "NIST (9)",
       "SOC2 (4)",
-      "Filesystem"
+      "Container",
+      "Filesystem",
+      "Host"
     ],
     "oss_rule": true,
     "priority": "WARNING",
@@ -15442,7 +15832,9 @@
       "SOC2 CC6.3",
       "SOC2 CC6.7",
       "SOC2 CC7.1",
-      "Filesystem"
+      "Container",
+      "Filesystem",
+      "Host"
     ],
     "updated_oss_condition": true
   },
@@ -15457,9 +15849,11 @@
       "MITRE (3)",
       "NIST (6)",
       "SOC2 (4)",
-      "Filesystem"
+      "Container",
+      "Filesystem",
+      "Host"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "ERROR",
     "rule": "Read ssh information",
     "source": "falco",
@@ -15485,9 +15879,10 @@
       "SOC2 CC6.3",
       "SOC2 CC6.7",
       "SOC2 CC8.1",
-      "Filesystem"
-    ],
-    "updated_oss_condition": true
+      "Container",
+      "Filesystem",
+      "Host"
+    ]
   },
   {
     "desc": "An attempt was made to enumerate SUID binaries. This typically occurs as part of reconaissance on a compromised machine, where an attacker is looking to escalate privileges.",
@@ -15495,7 +15890,9 @@
     "has_exceptions": true,
     "normalized_tags": [
       "CIS",
-      "MITRE (4)"
+      "MITRE (4)",
+      "Container",
+      "Host"
     ],
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Detection",
@@ -15508,7 +15905,9 @@
       "MITRE",
       "MITRE T1083 file and directory discovery",
       "MITRE TA0007 discovery",
-      "MITRE TA0043 reconnaissance"
+      "MITRE TA0043 reconnaissance",
+      "Container",
+      "Host"
     ]
   },
   {
@@ -15520,7 +15919,8 @@
       "HITRUST (4)",
       "MITRE (4)",
       "NIST (5)",
-      "SOC2 (3)"
+      "SOC2 (3)",
+      "Container"
     ],
     "oss_rule": true,
     "priority": "WARNING",
@@ -15546,9 +15946,10 @@
       "NIST 800-53 AU-6(8)",
       "SOC2",
       "SOC2 CC6.6",
-      "SOC2 CC6.7"
+      "SOC2 CC6.7",
+      "Container"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect redirecting stdout/stdin to network connection in host (potential reverse shell).",
@@ -15559,7 +15960,8 @@
       "HITRUST (4)",
       "MITRE (4)",
       "NIST (5)",
-      "SOC2 (3)"
+      "SOC2 (3)",
+      "Host"
     ],
     "oss_rule": false,
     "priority": "WARNING",
@@ -15585,7 +15987,8 @@
       "NIST 800-53 AU-6(8)",
       "SOC2",
       "SOC2 CC6.6",
-      "SOC2 CC6.7"
+      "SOC2 CC6.7",
+      "Host"
     ]
   },
   {
@@ -15652,6 +16055,8 @@
       "MITRE (6)",
       "NIST (9)",
       "SOC2 (3)",
+      "Container",
+      "Host",
       "Process"
     ],
     "oss_rule": true,
@@ -15702,9 +16107,11 @@
       "SOC2",
       "SOC2 C1.1",
       "SOC2 CC6.7",
+      "Container",
+      "Host",
       "Process"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect the removal of a collaborator from a Github repository",
@@ -16171,6 +16578,8 @@
       "MITRE (9)",
       "NIST (24)",
       "SOC2 (2)",
+      "Container",
+      "Host",
       "Shell"
     ],
     "oss_rule": true,
@@ -16255,6 +16664,8 @@
       "NIST 800-53 SI-4(24)",
       "SOC2",
       "SOC2 CC6.1",
+      "Container",
+      "Host",
       "Shell"
     ],
     "updated_oss_condition": true
@@ -16294,9 +16705,11 @@
       "MITRE (5)",
       "NIST (9)",
       "SOC2 (2)",
-      "File"
+      "Container",
+      "File",
+      "Host"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "Schedule Cron Jobs",
     "source": "falco",
@@ -16342,9 +16755,10 @@
       "NIST 800-53 SI-4",
       "SOC2",
       "SOC2 CC6.8",
-      "File"
-    ],
-    "updated_oss_condition": true
+      "Container",
+      "File",
+      "Host"
+    ]
   },
   {
     "desc": "Detect scheduling of the deletion of a customer master key.",
@@ -16384,7 +16798,9 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (3)"
+      "MITRE (3)",
+      "Container",
+      "Host"
     ],
     "oss_rule": false,
     "priority": "WARNING",
@@ -16393,7 +16809,9 @@
     "tags": [
       "MITRE",
       "MITRE T1059 command and scripting interpreter",
-      "MITRE TA0002 execution"
+      "MITRE TA0002 execution",
+      "Container",
+      "Host"
     ]
   },
   {
@@ -16407,6 +16825,8 @@
       "MITRE (4)",
       "NIST (8)",
       "SOC2 (3)",
+      "Container",
+      "Host",
       "Process"
     ],
     "oss_rule": true,
@@ -16439,6 +16859,8 @@
       "SOC2",
       "SOC2 CC6.3",
       "SOC2 CC6.7",
+      "Container",
+      "Host",
       "Process"
     ],
     "updated_oss_condition": true
@@ -16633,9 +17055,11 @@
       "MITRE (4)",
       "NIST (11)",
       "SOC2 (2)",
+      "Container",
+      "Host",
       "Process"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "Set Setuid or Setgid bit",
     "source": "falco",
@@ -16679,9 +17103,10 @@
       "NIST 800-53 SI-7",
       "SOC2",
       "SOC2 CC6.6",
+      "Container",
+      "Host",
       "Process"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detect sharing an RDS snapshot with a foreign AWS account.",
@@ -16733,6 +17158,8 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (4)",
+      "Container",
+      "Host",
       "Network"
     ],
     "oss_rule": false,
@@ -16744,6 +17171,8 @@
       "MITRE T1059.004 command and scripting interpreter unix shell",
       "MITRE TA0002 execution",
       "MITRE TA0005 defense evasion",
+      "Container",
+      "Host",
       "Network"
     ]
   },
@@ -16903,9 +17332,11 @@
     "has_exceptions": false,
     "normalized_tags": [
       "MITRE (3)",
-      "Filesystem"
+      "Container",
+      "Filesystem",
+      "Host"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "policy": "Sysdig Runtime Threat Detection",
     "priority": "CRITICAL",
     "rule": "Sudo Potential Privilege Escalation",
@@ -16915,9 +17346,10 @@
       "MITRE T1548.003 abuse elevation control mechanism sudo and sudo caching",
       "MITRE TA0004 privilege escalation",
       "MITRE TA0005 defense evasion",
-      "Filesystem"
-    ],
-    "updated_oss_condition": true
+      "Container",
+      "Filesystem",
+      "Host"
+    ]
   },
   {
     "desc": "Detect direct writes to cron job files.  May be an indication of compromise.",
@@ -16932,7 +17364,9 @@
       "MITRE (8)",
       "NIST (9)",
       "SOC2 (2)",
-      "File"
+      "Container",
+      "File",
+      "Host"
     ],
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Detection",
@@ -16985,11 +17419,13 @@
       "NIST 800-53 SI-4",
       "SOC2",
       "SOC2 CC6.8",
-      "File"
+      "Container",
+      "File",
+      "Host"
     ]
   },
   {
-    "desc": "This rule detects the usage of suspicious domains in cmdlines",
+    "desc": "This rule detects DNS queries that contain suspicious domains",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -17015,7 +17451,9 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (3)"
+      "MITRE (3)",
+      "Container",
+      "Host"
     ],
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Detection",
@@ -17026,7 +17464,9 @@
     "tags": [
       "MITRE",
       "MITRE T1136 create account",
-      "MITRE TA0003 persistence"
+      "MITRE TA0003 persistence",
+      "Container",
+      "Host"
     ]
   },
   {
@@ -17035,6 +17475,8 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (2)",
+      "Container",
+      "Host",
       "Process"
     ],
     "oss_rule": false,
@@ -17044,6 +17486,8 @@
     "tags": [
       "MITRE",
       "MITRE TA0002 execution",
+      "Container",
+      "Host",
       "Process"
     ]
   },
@@ -17053,7 +17497,9 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (6)",
-      "File"
+      "Container",
+      "File",
+      "Host"
     ],
     "oss_rule": false,
     "priority": "WARNING",
@@ -17066,7 +17512,9 @@
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation",
       "MITRE TA0005 defense evasion",
-      "File"
+      "Container",
+      "File",
+      "Host"
     ]
   },
   {
@@ -17075,7 +17523,9 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (3)",
+      "Container",
       "File",
+      "Host",
       "Process"
     ],
     "oss_rule": false,
@@ -17088,7 +17538,9 @@
       "MITRE",
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
+      "Container",
       "File",
+      "Host",
       "Process"
     ]
   },
@@ -17098,7 +17550,9 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (6)",
+      "Container",
       "Firewall",
+      "Host",
       "Network"
     ],
     "oss_rule": false,
@@ -17112,7 +17566,9 @@
       "MITRE T1562.007 impair defenses disable or modify cloud firewall",
       "MITRE TA0005 defense evasion",
       "MITRE TA0007 discovery",
+      "Container",
       "Firewall",
+      "Host",
       "Network"
     ]
   },
@@ -17129,7 +17585,9 @@
       "MITRE (6)",
       "NIST (9)",
       "SOC2 (2)",
-      "File"
+      "Container",
+      "File",
+      "Host"
     ],
     "oss_rule": false,
     "priority": "WARNING",
@@ -17178,7 +17636,9 @@
       "NIST 800-53 SI-4",
       "SOC2",
       "SOC2 CC6.8",
-      "File"
+      "Container",
+      "File",
+      "Host"
     ]
   },
   {
@@ -17245,9 +17705,11 @@
       "MITRE (3)",
       "NIST (6)",
       "SOC2 (3)",
+      "Container",
+      "Host",
       "Network"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "System procs network activity",
     "source": "falco",
@@ -17278,9 +17740,10 @@
       "SOC2",
       "SOC2 CC6.7",
       "SOC2 CC6.8",
+      "Container",
+      "Host",
       "Network"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "an attempt to run interactive commands by a system (i.e. non-login) user",
@@ -17295,6 +17758,8 @@
       "MITRE (7)",
       "NIST (24)",
       "SOC2 (2)",
+      "Container",
+      "Host",
       "Users"
     ],
     "oss_rule": true,
@@ -17377,16 +17842,19 @@
       "NIST 800-53 SI-4(24)",
       "SOC2",
       "SOC2 CC6.1",
+      "Container",
+      "Host",
       "Users"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "This rule detects common techniques by threat actors to disable runtime security software.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (3)"
+      "MITRE (3)",
+      "Container"
     ],
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Detection",
@@ -17397,7 +17865,8 @@
     "tags": [
       "MITRE",
       "MITRE T1562.001 impair defenses modify or disable tools",
-      "MITRE TA0005 defense evasion"
+      "MITRE TA0005 defense evasion",
+      "Container"
     ]
   },
   {
@@ -17515,7 +17984,7 @@
       "Container",
       "Shell"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect a k8s client tool executed inside a container",
@@ -17532,7 +18001,7 @@
       "NIST (8)",
       "Container"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "WARNING",
     "rule": "The docker client is executed in a container",
     "source": "falco",
@@ -17575,8 +18044,7 @@
       "NIST 800-53 AU-2",
       "NIST 800-53 SI-4",
       "Container"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detect a process that is using a network connection and it shouldn't or is using an unusual port.",
@@ -17622,7 +18090,7 @@
       "K8S",
       "Network"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "Unexpected K8s NodePort Connection",
     "source": "falco",
@@ -17674,8 +18142,7 @@
       "Container",
       "K8S",
       "Network"
-    ],
-    "updated_oss_condition": false
+    ]
   },
   {
     "desc": "UDP traffic not on port 53 (DNS) or other commonly used ports",
@@ -17689,9 +18156,11 @@
       "MITRE (5)",
       "NIST (15)",
       "SOC2 (3)",
+      "Container",
+      "Host",
       "Network"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "Unexpected UDP Traffic",
     "source": "falco",
@@ -17741,9 +18210,10 @@
       "SOC2",
       "SOC2 CC6.1",
       "SOC2 CC6.7",
+      "Container",
+      "Host",
       "Network"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detect any inbound connection from a source outside of an allowed set of ips, networks, or domain names",
@@ -17758,9 +18228,11 @@
       "MITRE (5)",
       "NIST (20)",
       "SOC2 (2)",
+      "Container",
+      "Host",
       "Network"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "Unexpected inbound connection source",
     "source": "falco",
@@ -17816,9 +18288,10 @@
       "NIST 800-53 SI-4(4)",
       "SOC2",
       "SOC2 CC6.1",
+      "Container",
+      "Host",
       "Network"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detect any outbound connection to a destination outside of an allowed set of ips, networks, or domain names",
@@ -17833,9 +18306,11 @@
       "MITRE (8)",
       "NIST (19)",
       "SOC2 (2)",
+      "Container",
+      "Host",
       "Network"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "Unexpected outbound connection destination",
     "source": "falco",
@@ -17893,9 +18368,10 @@
       "NIST 800-53 SI-4(4)",
       "SOC2",
       "SOC2 CC6.1",
+      "Container",
+      "Host",
       "Network"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detect a successful unprivileged userfaultfd syscall which might act as an attack primitive to exploit other bugs",
@@ -17903,9 +18379,11 @@
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (5)",
+      "Container",
+      "Host",
       "Syscall"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "policy": "Sysdig Runtime Threat Detection",
     "priority": "CRITICAL",
     "rule": "Unprivileged Delegation of Page Faults Handling to a Userspace Process",
@@ -17917,9 +18395,10 @@
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation",
+      "Container",
+      "Host",
       "Syscall"
-    ],
-    "updated_oss_condition": false
+    ]
   },
   {
     "desc": "Detect a node successfully joined the cluster outside of the list of allowed nodes.",
@@ -18653,9 +19132,11 @@
       "MITRE (7)",
       "NIST (13)",
       "SOC2 (2)",
-      "Filesystem"
+      "Container",
+      "Filesystem",
+      "Host"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "Update Package Repository",
     "source": "falco",
@@ -18707,9 +19188,10 @@
       "NIST 800-53 SI-7",
       "SOC2",
       "SOC2 CC6.8",
-      "Filesystem"
-    ],
-    "updated_oss_condition": false
+      "Container",
+      "Filesystem",
+      "Host"
+    ]
   },
   {
     "desc": "Detect the changing of the password for root.",
@@ -19008,7 +19490,7 @@
       "Host",
       "Users"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "NOTICE",
     "rule": "User mgmt binaries",
     "source": "falco",
@@ -19051,8 +19533,7 @@
       "SOC2 CC6.6",
       "Host",
       "Users"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "Detect a password reset on a user done by Okta Admin Account",
@@ -19105,9 +19586,11 @@
       "MITRE (6)",
       "NIST (16)",
       "SOC2 (3)",
-      "Filesystem"
+      "Container",
+      "Filesystem",
+      "Host"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "ERROR",
     "rule": "Write below binary dir",
     "source": "falco",
@@ -19169,9 +19652,10 @@
       "SOC2",
       "SOC2 CC6.8",
       "SOC2 CC7.1",
-      "Filesystem"
-    ],
-    "updated_oss_condition": true
+      "Container",
+      "Filesystem",
+      "Host"
+    ]
   },
   {
     "desc": "an attempt to write to any file below /etc",
@@ -19185,9 +19669,11 @@
       "MITRE (6)",
       "NIST (9)",
       "SOC2 (3)",
-      "Filesystem"
+      "Container",
+      "Filesystem",
+      "Host"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "ERROR",
     "rule": "Write below etc",
     "source": "falco",
@@ -19229,9 +19715,10 @@
       "SOC2",
       "SOC2 CC6.8",
       "SOC2 CC7.1",
-      "Filesystem"
-    ],
-    "updated_oss_condition": true
+      "Container",
+      "Filesystem",
+      "Host"
+    ]
   },
   {
     "desc": "an attempt to write to any file below a set of binary directories",
@@ -19246,9 +19733,11 @@
       "MITRE (6)",
       "NIST (16)",
       "SOC2 (3)",
-      "Filesystem"
+      "Container",
+      "Filesystem",
+      "Host"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "ERROR",
     "rule": "Write below monitored dir",
     "source": "falco",
@@ -19310,9 +19799,10 @@
       "SOC2",
       "SOC2 CC6.8",
       "SOC2 CC7.1",
-      "Filesystem"
-    ],
-    "updated_oss_condition": true
+      "Container",
+      "Filesystem",
+      "Host"
+    ]
   },
   {
     "desc": "an attempt to write to any file directly below / or /root",
@@ -19326,9 +19816,11 @@
       "MITRE (6)",
       "NIST (10)",
       "SOC2 (2)",
-      "Filesystem"
+      "Container",
+      "Filesystem",
+      "Host"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "ERROR",
     "rule": "Write below root",
     "source": "falco",
@@ -19366,9 +19858,10 @@
       "NIST 800-53 CM-5",
       "SOC2",
       "SOC2 CC7.1",
-      "Filesystem"
-    ],
-    "updated_oss_condition": true
+      "Container",
+      "Filesystem",
+      "Host"
+    ]
   },
   {
     "desc": "an attempt to write to the rpm database by any non-rpm related program",
@@ -19382,10 +19875,12 @@
       "MITRE (6)",
       "NIST (7)",
       "SOC2 (2)",
+      "Container",
       "Filesystem",
+      "Host",
       "Software"
     ],
-    "oss_rule": true,
+    "oss_rule": false,
     "priority": "ERROR",
     "rule": "Write below rpm database",
     "source": "falco",
@@ -19424,17 +19919,20 @@
       "NIST 800-53 SI-7",
       "SOC2",
       "SOC2 CC6.8",
+      "Container",
       "Filesystem",
+      "Host",
       "Software Mgmt"
-    ],
-    "updated_oss_condition": true
+    ]
   },
   {
     "desc": "This rule detects the runtime loading of an eBPF program into the kernel. eBPF programs are extremely powerful, and as long as they conform to the constraints imposed by the eBPF verifier (ex: they don't cause a kernel panic), give near-arbitrary control over a target system.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (7)"
+      "MITRE (7)",
+      "Container",
+      "Host"
     ],
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Detection",
@@ -19449,7 +19947,9 @@
       "MITRE T1611 escape to host",
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation",
-      "MITRE TA0005 defense evasion"
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "Host"
     ]
   },
   {
