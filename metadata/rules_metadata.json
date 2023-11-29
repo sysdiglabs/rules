@@ -126,7 +126,7 @@
     "has_exceptions": false,
     "normalized_tags": [
       "AWS (2)",
-      "CLoud",
+      "Cloud",
       "MITRE (6)"
     ],
     "oss_rule": false,
@@ -136,7 +136,7 @@
     "tags": [
       "AWS",
       "AWS RDS",
-      "CLoud",
+      "Cloud",
       "MITRE",
       "MITRE T1098.001 account manipulation additional cloud credentials",
       "MITRE T1098 account manipulation",
@@ -667,6 +667,27 @@
     ]
   },
   {
+    "desc": "Detect an Assume Role made with temporary security credentials that were obtained by assuming an IAM role. A typical scenario consists in an attacker that already assumed a role, by stealing temporary credentials via IMDS, who gains more privileges by assuming another role.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (3)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Assume Role performed by an Assumed Role Identity",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0008 lateral movement"
+    ]
+  },
+  {
     "desc": "Detect attaching an administrator policy to a user.",
     "disabled": true,
     "has_exceptions": true,
@@ -718,6 +739,28 @@
       "NIST 800-53 AC-6",
       "SOC2",
       "SOC2 CC6.6"
+    ]
+  },
+  {
+    "desc": "Detect attaching an IAM policy to a group",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (4)"
+    ],
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "Attach IAM Policy to Group",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE T1098.003 account manipulation additional cloud roles",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation"
     ]
   },
   {
@@ -2252,6 +2295,23 @@
     ]
   },
   {
+    "desc": "Detect the creation or update of a User Managed Identity",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "Azure",
+      "Cloud"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Create/Update User Managed Identity",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud"
+    ]
+  },
+  {
     "desc": "Detect the creation or update of Web App Hostname Bindings",
     "disabled": true,
     "has_exceptions": true,
@@ -2422,6 +2482,23 @@
     ]
   },
   {
+    "desc": "Detect the creation or update of a Key Vault.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "Azure",
+      "Cloud"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Create/Update a Key Vault",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud"
+    ]
+  },
+  {
     "desc": "Detect the creation or update of a Linked Backend for a Static Site",
     "disabled": true,
     "has_exceptions": true,
@@ -2449,6 +2526,23 @@
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "Azure Create/Update a Network Interface",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud"
+    ]
+  },
+  {
+    "desc": "Detect the creation or update of a public IP address.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "Azure",
+      "Cloud"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Create/Update a Public IP Address",
     "source": "azure_platformlogs",
     "tags": [
       "Azure",
@@ -3084,6 +3178,23 @@
     ]
   },
   {
+    "desc": "Detect the deletion of a User Managed Identity",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "Azure",
+      "Cloud"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Delete User Managed Identity",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud"
+    ]
+  },
+  {
     "desc": "Detect the deletion of Web App Hostname Bindings",
     "disabled": true,
     "has_exceptions": true,
@@ -3254,6 +3365,23 @@
     ]
   },
   {
+    "desc": "Detect the deletion of a Key Vault.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "Azure",
+      "Cloud"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Delete a Key Vault",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud"
+    ]
+  },
+  {
     "desc": "Detect the deletion of a Linked Backend for a Static Site",
     "disabled": true,
     "has_exceptions": true,
@@ -3281,6 +3409,23 @@
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "Azure Delete a Network Interface",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud"
+    ]
+  },
+  {
+    "desc": "Detect the deletion of a public IP address.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "Azure",
+      "Cloud"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Delete a Public IP Address",
     "source": "azure_platformlogs",
     "tags": [
       "Azure",
@@ -4396,6 +4541,23 @@
     ]
   },
   {
+    "desc": "Detect the stopping of a Virtual Machine and the release of its computing resources",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "Azure",
+      "Cloud"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Stop a Virtual Machine",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud"
+    ]
+  },
+  {
     "desc": "Detect the stop of a Web App",
     "disabled": true,
     "has_exceptions": true,
@@ -4588,23 +4750,6 @@
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "Azure Sync Web App",
-    "source": "azure_platformlogs",
-    "tags": [
-      "Azure",
-      "Cloud"
-    ]
-  },
-  {
-    "desc": "Detect the termination of the Virtual Machine and releases the compute resources",
-    "disabled": true,
-    "has_exceptions": true,
-    "normalized_tags": [
-      "Azure",
-      "Cloud"
-    ],
-    "oss_rule": false,
-    "priority": "WARNING",
-    "rule": "Azure Terminate the Virtual Machine",
     "source": "azure_platformlogs",
     "tags": [
       "Azure",
@@ -4870,6 +5015,43 @@
     ]
   },
   {
+    "desc": "Changed to CODEOWNERS file can add privileges to users or undesired changes",
+    "disabled": false,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "Github"
+    ],
+    "oss_rule": false,
+    "policy": "Sysdig Github Threat Detection",
+    "priority": "WARNING",
+    "rule": "CODEOWNERS file modified",
+    "severity": 3,
+    "source": "github",
+    "tags": [
+      "Github"
+    ]
+  },
+  {
+    "desc": "Detect disabling the rotation of a Secret in Secrets Manager.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (2)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Cancel Secret Rotation in Secrets Manager",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0040 impact"
+    ]
+  },
+  {
     "desc": "Detect creation, changes, or deletion of a resource record set.",
     "disabled": true,
     "has_exceptions": true,
@@ -4892,7 +5074,7 @@
   },
   {
     "desc": "detect changes to the memory swap options",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE",
@@ -4900,8 +5082,10 @@
       "Host"
     ],
     "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
     "priority": "WARNING",
     "rule": "Change memory swap options",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -5120,6 +5304,24 @@
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation",
       "MITRE TA0005 defense evasion"
+    ]
+  },
+  {
+    "desc": "A CloudRun Service instance has started",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "Cloud",
+      "GCP (2)"
+    ],
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "CloudRun Service Started",
+    "source": "gcp_auditlog",
+    "tags": [
+      "Cloud",
+      "GCP",
+      "GCP CloudRun"
     ]
   },
   {
@@ -5536,7 +5738,7 @@
     ]
   },
   {
-    "desc": "Detect deletion of a CLoudWatch log group.",
+    "desc": "Detect deletion of a CloudWatch log group.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -5596,7 +5798,7 @@
     ]
   },
   {
-    "desc": "Detect deletion of a CLoudWatch log stream.",
+    "desc": "Detect deletion of a CloudWatch log stream.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -5653,6 +5855,29 @@
       "NIST 800-53 SI-4",
       "SOC2",
       "SOC2 CC7.2"
+    ]
+  },
+  {
+    "desc": "Detect disabling Management Events via Event Selectors in Cloudtrail. This can be leveraged as a defense evasion technique.",
+    "disabled": false,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS (2)",
+      "Cloud",
+      "MITRE (2)"
+    ],
+    "oss_rule": false,
+    "policy": "Sysdig AWS Threat Detection",
+    "priority": "WARNING",
+    "rule": "Cloudtrail Management Events Disabled via Event Selectors",
+    "severity": 3,
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS CloudTrail",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0005 defense evasion"
     ]
   },
   {
@@ -6310,7 +6535,7 @@
       "HIPAA (3)",
       "HITRUST (18)",
       "ISO (3)",
-      "MITRE (7)",
+      "MITRE (9)",
       "NIST (14)",
       "SOC2 (3)",
       "Azure",
@@ -6354,10 +6579,12 @@
       "MITRE",
       "MITRE T0885 commonly used port",
       "MITRE T1033 system owner user discovery",
+      "MITRE T119 automated-collection",
       "MITRE T1552.005 unsecured credentials cloud instance metadata api",
       "MITRE T1552 unsecured credentials",
       "MITRE TA0006 credential access",
       "MITRE TA0007 discovery",
+      "MITRE TA0009 collection",
       "NIST",
       "NIST 800-171",
       "NIST 800-171 3.1.1",
@@ -6390,7 +6617,7 @@
       "HIPAA (3)",
       "HITRUST (18)",
       "ISO (3)",
-      "MITRE (7)",
+      "MITRE (9)",
       "NIST (14)",
       "SOC2 (3)",
       "Aws",
@@ -6435,11 +6662,13 @@
       "ISO 27001 A.9.1.2",
       "MITRE",
       "MITRE T1033 system owner user discovery",
+      "MITRE T119 automated-collection",
       "MITRE T1552.005 unsecured credentials cloud instance metadata api",
       "MITRE T1552.007 unsecured credentials container api",
       "MITRE T1552 unsecured credentials",
       "MITRE TA0006 credential access",
       "MITRE TA0007 discovery",
+      "MITRE TA0009 collection",
       "NIST",
       "NIST 800-171",
       "NIST 800-171 3.1.1",
@@ -6472,7 +6701,7 @@
       "HIPAA (3)",
       "HITRUST (18)",
       "ISO (3)",
-      "MITRE (7)",
+      "MITRE (9)",
       "NIST (14)",
       "SOC2 (3)",
       "Container",
@@ -6516,10 +6745,12 @@
       "MITRE",
       "MITRE T0885 commonly used port",
       "MITRE T1033 system owner user discovery",
+      "MITRE T119 automated-collection",
       "MITRE T1552.005 unsecured credentials cloud instance metadata api",
       "MITRE T1552 unsecured credentials",
       "MITRE TA0006 credential access",
       "MITRE TA0007 discovery",
+      "MITRE TA0009 collection",
       "NIST",
       "NIST 800-171",
       "NIST 800-171 3.1.1",
@@ -6551,7 +6782,7 @@
       "HIPAA (3)",
       "HITRUST (13)",
       "ISO (3)",
-      "MITRE (6)",
+      "MITRE (8)",
       "NIST (15)",
       "SOC2 (2)",
       "Container",
@@ -6586,11 +6817,13 @@
       "ISO 27001",
       "ISO 27001 A.9.1.2",
       "MITRE",
+      "MITRE T119 automated-collection",
       "MITRE T1552.007 unsecured credentials container api",
       "MITRE T1609 container administration command",
       "MITRE TA0002 execution",
       "MITRE TA0006 credential access",
       "MITRE TA0007 discovery",
+      "MITRE TA0009 collection",
       "NIST",
       "NIST 800-171",
       "NIST 800-171 3.1.1",
@@ -6616,7 +6849,7 @@
   },
   {
     "desc": "This rule detects the connections to the dedicated task metadata endpoints",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
       "FedRAMP (2)",
@@ -6632,8 +6865,10 @@
       "Network"
     ],
     "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
     "priority": "INFO",
     "rule": "Contact Task Metadata Endpoint",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "FedRAMP",
@@ -6705,7 +6940,7 @@
       "HIPAA (3)",
       "HITRUST (18)",
       "ISO (3)",
-      "MITRE (6)",
+      "MITRE (8)",
       "NIST (14)",
       "SOC2 (3)",
       "Container",
@@ -6747,10 +6982,12 @@
       "ISO 27001 A.9.1.2",
       "MITRE",
       "MITRE T1033 system owner user discovery",
+      "MITRE T119 automated-collection",
       "MITRE T1552.005 unsecured credentials cloud instance metadata api",
       "MITRE T1552 unsecured credentials",
       "MITRE TA0006 credential access",
       "MITRE TA0007 discovery",
+      "MITRE TA0009 collection",
       "NIST",
       "NIST 800-171",
       "NIST 800-171 3.1.1",
@@ -6913,6 +7150,31 @@
     ]
   },
   {
+    "desc": "Attackers can build container images directly on the target host in order to deploy their tools easily or try to bypass security controls on well-known malicious images",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (7)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Container image built on host",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1525 implant internal image",
+      "MITRE T1610 deploy container",
+      "MITRE T1612 build image on host",
+      "MITRE TA0002 execution",
+      "MITRE TA0003 persistence",
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect creation of a new AWS user.",
     "disabled": true,
     "has_exceptions": true,
@@ -7001,7 +7263,7 @@
       "Cloud",
       "GDPR (4)",
       "ISO (4)",
-      "MITRE (14)",
+      "MITRE (15)",
       "PCI (5)",
       "SOC2 (3)"
     ],
@@ -7036,6 +7298,7 @@
       "MITRE T1098.001 account manipulation additional cloud credentials",
       "MITRE T1098 account manipulation",
       "MITRE T1550.001 use alternate authentication material application access token",
+      "MITRE T1550 use alternate authentication material",
       "MITRE T1556 modify authentication process",
       "MITRE T1578 modify cloud compute infrastructure",
       "MITRE TA0001 initial access",
@@ -7060,7 +7323,7 @@
     "normalized_tags": [
       "AWS (2)",
       "Cloud",
-      "MITRE (10)"
+      "MITRE (11)"
     ],
     "oss_rule": false,
     "priority": "WARNING",
@@ -7076,6 +7339,7 @@
       "MITRE T1098.001 account manipulation additional cloud credentials",
       "MITRE T1098 account manipulation",
       "MITRE T1550.001 use alternate authentication material application access token",
+      "MITRE T1550 use alternate authentication material",
       "MITRE T1556 modify authentication process",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
@@ -7755,6 +8019,28 @@
     ]
   },
   {
+    "desc": "Detect the creation of an ED25519 or 2048-bit RSA key pair used to connect to EC2 instances via SSH",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS (2)",
+      "Cloud",
+      "MITRE (3)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Create Key Pair",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS EC2",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0002 execution",
+      "MITRE TA0003 persistence"
+    ]
+  },
+  {
     "desc": "Detect creation of a Lambda function.",
     "disabled": true,
     "has_exceptions": true,
@@ -8212,6 +8498,26 @@
       "PCI DSS 1.3.6",
       "SOC2",
       "SOC2 CC8.1"
+    ]
+  },
+  {
+    "desc": "Detect the creation of a Secret in Secrets Manager.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (2)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Create Secret in Secrets Manager",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0040 impact"
     ]
   },
   {
@@ -10491,6 +10797,26 @@
     ]
   },
   {
+    "desc": "Detect the deletion of a Secret in Secrets Manager.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (2)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Delete Secret in Secrets Manager",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0040 impact"
+    ]
+  },
+  {
     "desc": "Detect deletion of the specified subnet.",
     "disabled": true,
     "has_exceptions": true,
@@ -11762,6 +12088,29 @@
     ]
   },
   {
+    "desc": "Detect adding User Data to an EC2 Instance. Attackers can add malicious commands to a stopped instance. Those commands will be executed when that instance is launched again.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS (2)",
+      "Cloud",
+      "MITRE (4)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "EC2 Add User Data",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS EC2",
+      "Cloud",
+      "MITRE",
+      "MITRE T1059 command and scripting interpreter",
+      "MITRE T1578 modify cloud compute infrastructure",
+      "MITRE TA0002 execution"
+    ]
+  },
+  {
     "desc": "Detect the creation of an EC2 Auto Scaling Group",
     "disabled": true,
     "has_exceptions": true,
@@ -11830,7 +12179,7 @@
   },
   {
     "desc": "Detect a temporary SSH public key uploaded to an EC2 instance.  This is normally an indication of the EC2 Instance Connect web console being accessed.  It may also be a lateral move for unauthorized access to EC2 instances.",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
       "AWS (2)",
@@ -11838,8 +12187,10 @@
       "MITRE (4)"
     ],
     "oss_rule": false,
+    "policy": "Sysdig AWS Threat Detection",
     "priority": "WARNING",
     "rule": "EC2 Instance Connect/SSH Public Key Uploaded",
+    "severity": 3,
     "source": "awscloudtrail",
     "tags": [
       "AWS",
@@ -12189,6 +12540,27 @@
     ]
   },
   {
+    "desc": "if a container has the SYS_PTRACE capability it's possible to inject commands to process running on the host",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (5)",
+      "Container"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Escape to host via command injection in process",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1559 inter-process-communication",
+      "MITRE T1611 escape to host",
+      "MITRE TA0002 execution",
+      "MITRE TA0004 privilege escalation",
+      "Container"
+    ]
+  },
+  {
     "desc": "Detect execution of a command inside an ECS container.",
     "disabled": true,
     "has_exceptions": true,
@@ -12350,7 +12722,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (5)",
+      "MITRE (7)",
       "Aws",
       "Container",
       "Host",
@@ -12364,10 +12736,12 @@
     "source": "falco",
     "tags": [
       "MITRE T1033 system owner user discovery",
+      "MITRE T119 automated-collection",
       "MITRE T1552.004 unsecured credentials private keys",
       "MITRE T1552 unsecured credentials",
       "MITRE TA0006 credential access",
       "MITRE TA0007 discovery",
+      "MITRE TA0009 collection",
       "Aws",
       "Container",
       "Host",
@@ -12380,7 +12754,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (5)",
+      "MITRE (7)",
       "Azure",
       "Container",
       "Host",
@@ -12394,10 +12768,12 @@
     "source": "falco",
     "tags": [
       "MITRE",
+      "MITRE T119 automated-collection",
       "MITRE T1552.004 unsecured credentials private keys",
       "MITRE T1552 unsecured credentials",
       "MITRE TA0006 credential access",
       "MITRE TA0007 discovery",
+      "MITRE TA0009 collection",
       "Azure",
       "Container",
       "Host",
@@ -12409,7 +12785,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (5)",
+      "MITRE (7)",
       "Container",
       "Gcp",
       "Host",
@@ -12423,10 +12799,12 @@
     "source": "falco",
     "tags": [
       "MITRE",
+      "MITRE T119 automated-collection",
       "MITRE T1552.004 unsecured credentials private keys",
       "MITRE T1552 unsecured credentials",
       "MITRE TA0006 credential access",
       "MITRE TA0007 discovery",
+      "MITRE TA0009 collection",
       "Container",
       "Gcp",
       "Host",
@@ -12495,6 +12873,27 @@
       "SOC2 CC6.2",
       "SOC2 CC7.1",
       "K8S"
+    ]
+  },
+  {
+    "desc": "Detect any action performed by a federated session. If federated sessions are not used widely in the AWS account or organization, all actions taken using federated sessions will return high fidelity indicators of compromise",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (3)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Full Visibility on Federated Sessions",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0003 persistence",
+      "MITRE TA0005 defense evasion"
     ]
   },
   {
@@ -15455,7 +15854,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (5)",
+      "MITRE (6)",
       "Container",
       "Host"
     ],
@@ -15470,6 +15869,7 @@
       "MITRE T1027.010 obfuscated files or information command obfuscation",
       "MITRE T1027 obfuscated files and information",
       "MITRE T1132.001 data encoding standard encoding",
+      "MITRE T1132 data encoding",
       "MITRE TA0005 defense evasion",
       "Container",
       "Host"
@@ -17315,6 +17715,26 @@
     ]
   },
   {
+    "desc": "Detect a member account leaving its organization. This can be used to bypass organization-level policies.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (2)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Leave Organization",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0005 defense evasion"
+    ]
+  },
+  {
     "desc": "Detect kernel module was injected (from container).",
     "disabled": false,
     "has_exceptions": true,
@@ -17519,7 +17939,7 @@
     ]
   },
   {
-    "desc": "Malicious connections detected in pod or host. The rule was triggered by IPs or domains that exploit log4j",
+    "desc": "Connection to malicious IPs detected in pod or host. This rule is deprecated. The malicious_log4j_c2 list will no longer be maintained.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -18402,7 +18822,7 @@
     ]
   },
   {
-    "desc": "Detect unusual access to the Admin Console that triggers a Velocity behavior condition",
+    "desc": "Detect unusual access to the Admin Console that triggers a Velocity behavior condition. The velocity is based on changes in the end user's geographical location using two subsequent sign-in attempts.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -18490,6 +18910,23 @@
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "Okta FastPass Phishing Attempt",
+    "source": "okta",
+    "tags": [
+      "Okta"
+    ]
+  },
+  {
+    "desc": "This rule detects a second usage of a one-time refresh token.",
+    "disabled": false,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "Okta"
+    ],
+    "oss_rule": false,
+    "policy": "Sysdig Okta Threat Detection",
+    "priority": "CRITICAL",
+    "rule": "Okta One-Time Token Reused",
+    "severity": 3,
     "source": "okta",
     "tags": [
       "Okta"
@@ -19749,7 +20186,7 @@
       "HIPAA (5)",
       "HITRUST (13)",
       "ISO (3)",
-      "MITRE (3)",
+      "MITRE (4)",
       "NIST (12)",
       "Container",
       "File",
@@ -19786,6 +20223,7 @@
       "ISO 27001 A.9.4.1",
       "MITRE",
       "MITRE T1083 file and directory discovery",
+      "MITRE T1654 log enumeration",
       "MITRE TA0007 discovery",
       "NIST",
       "NIST 800-171",
@@ -20270,16 +20708,14 @@
   },
   {
     "desc": "Detect removing MFA on a user in Okta",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
       "Okta"
     ],
     "oss_rule": false,
-    "policy": "Sysdig Okta Threat Detection",
     "priority": "WARNING",
     "rule": "Removing MFA from user in Okta",
-    "severity": 3,
     "source": "okta",
     "tags": [
       "Okta"
@@ -20516,7 +20952,7 @@
       "HIPAA (4)",
       "HITRUST (4)",
       "ISO (4)",
-      "MITRE (4)",
+      "MITRE (6)",
       "NIST (4)",
       "SOC2 (3)"
     ],
@@ -20547,6 +20983,8 @@
       "ISO 27001 A.6.1.2",
       "ISO 27001 A.9.2.3",
       "MITRE",
+      "MITRE T1078.001 valid accounts default accounts",
+      "MITRE T1078 valid accounts",
       "MITRE T1548 abuse elevation control mechanism",
       "MITRE TA0004 privilege escalation",
       "MITRE TA0005 defense evasion",
@@ -20786,7 +21224,7 @@
     "normalized_tags": [
       "AWS (3)",
       "Cloud",
-      "MITRE (2)"
+      "MITRE (4)"
     ],
     "oss_rule": false,
     "priority": "WARNING",
@@ -20798,6 +21236,8 @@
       "AWS SSM",
       "Cloud",
       "MITRE",
+      "MITRE T1651 cloud administration command",
+      "MITRE TA0002 execution",
       "MITRE TA0004 privilege escalation"
     ]
   },
@@ -20808,7 +21248,7 @@
     "normalized_tags": [
       "AWS (3)",
       "Cloud",
-      "MITRE (2)"
+      "MITRE (4)"
     ],
     "oss_rule": false,
     "priority": "WARNING",
@@ -20820,6 +21260,8 @@
       "AWS SSM",
       "Cloud",
       "MITRE",
+      "MITRE T1651 cloud administration command",
+      "MITRE TA0002 execution",
       "MITRE TA0004 privilege escalation"
     ]
   },
@@ -20830,7 +21272,7 @@
     "normalized_tags": [
       "AWS (2)",
       "Cloud",
-      "MITRE"
+      "MITRE (6)"
     ],
     "oss_rule": false,
     "priority": "WARNING",
@@ -20840,7 +21282,12 @@
       "AWS",
       "AWS SAGEMAKER",
       "Cloud",
-      "MITRE"
+      "MITRE",
+      "MITRE T1027 obfuscated files or information",
+      "MITRE T1053 scheduled task job",
+      "MITRE T1651 cloud administration command",
+      "MITRE TA0002 execution",
+      "MITRE TA0005 defense evasion"
     ]
   },
   {
@@ -20917,15 +21364,17 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "001",
       "AWS (6)",
       "Cloud",
-      "MITRE (8)"
+      "MITRE (9)"
     ],
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "Schedule Key Deletion",
     "source": "awscloudtrail",
     "tags": [
+      "001 Weaken Encryption Reduce Key Space",
       "AWS",
       "AWS FSBP",
       "AWS FSBP kms.3",
@@ -20936,11 +21385,12 @@
       "MITRE",
       "MITRE T1053 scheduled task job",
       "MITRE T1530 data from cloud storage object",
-      "MITRE T1600.001 weaken encryption reduce key space",
+      "MITRE T1531 account access removal",
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation",
-      "MITRE TA0009 collection"
+      "MITRE TA0009 collection",
+      "MITRE TA0040 impact"
     ]
   },
   {
@@ -20972,7 +21422,7 @@
       "HIPAA (2)",
       "HITRUST (3)",
       "ISO (3)",
-      "MITRE (5)",
+      "MITRE (7)",
       "NIST (8)",
       "SOC2 (3)",
       "Container",
@@ -20995,10 +21445,12 @@
       "ISO 27001",
       "ISO 27001 A.9.4.1",
       "MITRE",
+      "MITRE T119 automated-collection",
       "MITRE T1552.004 unsecured credentials private keys",
       "MITRE T1552 unsecured credentials",
       "MITRE TA0006 credential access",
       "MITRE TA0007 discovery",
+      "MITRE TA0009 collection",
       "NIST",
       "NIST 800-171",
       "NIST 800-171 3.13.4",
@@ -21334,6 +21786,30 @@
     ]
   },
   {
+    "desc": "Adversaries may turn off or reboot the system as part of an attack path",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (6)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Shutdown or Reboot detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1489 service stop",
+      "MITRE T1529 system shutdown reboot",
+      "MITRE T1653 power settings",
+      "MITRE TA0003 persistence",
+      "MITRE TA0040 impact",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect stopping the configuration recorder.",
     "disabled": true,
     "has_exceptions": true,
@@ -21433,6 +21909,29 @@
       "Cloud",
       "MITRE",
       "MITRE T1489 service stop",
+      "MITRE T1578 modify cloud compute infrastructure",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA0040 impact"
+    ]
+  },
+  {
+    "desc": "Detect stopping EC2 instances. Attackers can stop an instance and re-run it adding malicious scripts in the user data",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS (2)",
+      "Cloud",
+      "MITRE (4)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Stop EC2 Instances",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS EC2",
+      "Cloud",
+      "MITRE",
       "MITRE T1578 modify cloud compute infrastructure",
       "MITRE TA0005 defense evasion",
       "MITRE TA0040 impact"
@@ -21720,7 +22219,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (9)",
+      "MITRE (7)",
       "Container",
       "Firewall",
       "Host",
@@ -21733,13 +22232,11 @@
     "tags": [
       "MITRE",
       "MITRE T1070 indicator removal",
-      "MITRE T1518.001 software discovery security software discovery",
       "MITRE T1562.004 impair defenses disable or modify firewall",
       "MITRE T1562.007 impair defenses disable or modify cloud firewall",
-      "MITRE T1565 data manipulation",
+      "MITRE T1562 impair defenses",
       "MITRE TA0005 defense evasion",
       "MITRE TA0007 discovery",
-      "MITRE TA0040 impact",
       "Container",
       "Firewall",
       "Host",
@@ -22749,7 +23246,7 @@
       "Cloud",
       "GDPR (4)",
       "ISO (4)",
-      "MITRE (6)",
+      "MITRE (9)",
       "PCI (3)",
       "SOC2 (2)"
     ],
@@ -22779,10 +23276,13 @@
       "ISO 27001 A.9.4.2",
       "MITRE",
       "MITRE T1098 account manipulation",
+      "MITRE T1201 password policy discovery",
+      "MITRE T1548 abuse elevation control mechanism",
       "MITRE T1556 modify authentication process",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
       "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery",
       "PCI",
       "PCI DSS",
       "PCI DSS 8.2.4",
@@ -22800,7 +23300,7 @@
       "Cloud",
       "GDPR (4)",
       "ISO (4)",
-      "MITRE (6)",
+      "MITRE (9)",
       "PCI (3)",
       "SOC2 (2)"
     ],
@@ -22830,10 +23330,13 @@
       "ISO 27001 A.9.4.2",
       "MITRE",
       "MITRE T1098 account manipulation",
+      "MITRE T1201 password policy discovery",
+      "MITRE T1548 abuse elevation control mechanism",
       "MITRE T1556 modify authentication process",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
       "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery",
       "PCI",
       "PCI DSS",
       "PCI DSS 8.2.4",
@@ -22881,10 +23384,10 @@
       "ISO 27001 A.9.4.3",
       "MITRE",
       "MITRE T1098 account manipulation",
-      "MITRE T1556 modify authentication process",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
       "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery",
       "NIST",
       "NIST 800-171",
       "NIST 800-171 3.5.8",
@@ -22919,10 +23422,10 @@
       "ISO 27001 A.9.4.3",
       "MITRE",
       "MITRE T1098 account manipulation",
-      "MITRE T1556 modify authentication process",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
       "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery",
       "NIST",
       "NIST 800-171",
       "NIST 800-171 3.5.8",
@@ -22943,7 +23446,7 @@
       "Cloud",
       "GDPR (4)",
       "ISO (4)",
-      "MITRE (6)",
+      "MITRE (7)",
       "NIST (3)",
       "SOC2 (2)"
     ],
@@ -22977,6 +23480,7 @@
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
       "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery",
       "NIST",
       "NIST 800-171",
       "NIST 800-171 3.5.7",
@@ -22992,7 +23496,7 @@
       "AWS (2)",
       "Cloud",
       "ISO (4)",
-      "MITRE (6)",
+      "MITRE (7)",
       "NIST (3)",
       "PCI (3)",
       "SOC2 (2)"
@@ -23007,14 +23511,15 @@
       "Cloud",
       "ISO",
       "ISO 27001",
+      "ISO 27001 A.9.4.",
       "ISO 27001 A.9.4.2",
-      "ISO 27001 A.9.4.3",
       "MITRE",
       "MITRE T1098 account manipulation",
       "MITRE T1556 modify authentication process",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
       "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery",
       "NIST",
       "NIST 800-171",
       "NIST 800-171 3.5.7",
@@ -23061,10 +23566,10 @@
       "ISO 27001 A.9.4.3",
       "MITRE",
       "MITRE T1098 account manipulation",
-      "MITRE T1556 modify authentication process",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
       "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery",
       "NIST",
       "NIST 800-171",
       "NIST 800-171 3.5.7",
@@ -23099,7 +23604,7 @@
       "AWS FSBP iam.7",
       "AWS IAM",
       "AWS WAF",
-      "AWS WAF SEC-1",
+      "AWS WAF SEC-1.",
       "Cloud",
       "GDPR",
       "GDPR 25.1",
@@ -23111,10 +23616,10 @@
       "ISO 27001 A.9.4.3",
       "MITRE",
       "MITRE T1098 account manipulation",
-      "MITRE T1556 modify authentication process",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
       "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery",
       "NIST",
       "NIST 800-171",
       "NIST 800-171 3.5.7",
@@ -23161,10 +23666,10 @@
       "ISO 27001 A.9.4.3",
       "MITRE",
       "MITRE T1098 account manipulation",
-      "MITRE T1556 modify authentication process",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
       "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery",
       "NIST",
       "NIST 800-171",
       "NIST 800-171 3.5.7",
@@ -23211,10 +23716,10 @@
       "ISO 27001 A.9.4.3",
       "MITRE",
       "MITRE T1098 account manipulation",
-      "MITRE T1556 modify authentication process",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
       "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery",
       "NIST",
       "NIST 800-171",
       "NIST 800-171 3.5.7",
@@ -23447,7 +23952,7 @@
       "Cloud",
       "GDPR (4)",
       "ISO (4)",
-      "MITRE (8)",
+      "MITRE (9)",
       "PCI (5)",
       "SOC2 (3)"
     ],
@@ -23476,6 +23981,7 @@
       "ISO 27001 A.10.1.2",
       "ISO 27001 A.9.2.3",
       "MITRE",
+      "MITRE T1078.001 valid accounts default accounts",
       "MITRE T1078 valid accounts",
       "MITRE T1098 account manipulation",
       "MITRE T1556 modify authentication process",
@@ -23500,7 +24006,7 @@
     "normalized_tags": [
       "AWS (2)",
       "Cloud",
-      "MITRE (6)"
+      "MITRE (7)"
     ],
     "oss_rule": false,
     "priority": "WARNING",
@@ -23511,11 +24017,32 @@
       "AWS IAM",
       "Cloud",
       "MITRE",
+      "MITRE T1078 valid accounts",
       "MITRE T1098 account manipulation",
       "MITRE T1556 modify authentication process",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
       "MITRE TA0006 credential access"
+    ]
+  },
+  {
+    "desc": "Detect the update of a Secret in Secrets Manager.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (2)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Update Secret in Secrets Manager",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0040 impact"
     ]
   },
   {
