@@ -18755,6 +18755,21 @@
     ]
   },
   {
+    "desc": "This rule detects the creation of a new GitHub Action Workflow. GitHub Action workflows may be abused to search for secrets and other sensitive company information.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "Github"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "New GitHub Action Workflow Deployed",
+    "source": "github",
+    "tags": [
+      "Github"
+    ]
+  },
+  {
     "desc": "an attempt to change users by calling setuid. sudo/su are excluded. users \"root\" and \"nobody\" suing to itself are also excluded, as setuid calls typically involve dropping privileges.",
     "disabled": true,
     "has_exceptions": true,
@@ -18910,6 +18925,40 @@
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "Okta FastPass Phishing Attempt",
+    "source": "okta",
+    "tags": [
+      "Okta"
+    ]
+  },
+  {
+    "desc": "Detects potential MFA bypasses for a given user.",
+    "disabled": false,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "Okta"
+    ],
+    "oss_rule": false,
+    "policy": "Sysdig Okta Threat Detection",
+    "priority": "CRITICAL",
+    "rule": "Okta MFA Bypass Attempt",
+    "severity": 3,
+    "source": "okta",
+    "tags": [
+      "Okta"
+    ]
+  },
+  {
+    "desc": "Detects multiple failed authentication requests for a given client ID to an Okta application. Attackers may utilize previously compromised credentials to attempt accessing applications that the compromised accounts are not authorized to access as part of discovery activities.",
+    "disabled": false,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "Okta"
+    ],
+    "oss_rule": false,
+    "policy": "Sysdig Okta Threat Detection",
+    "priority": "WARNING",
+    "rule": "Okta Multiple Application Requests with Invalid Credentials",
+    "severity": 3,
     "source": "okta",
     "tags": [
       "Okta"
@@ -19647,6 +19696,21 @@
       "Container",
       "Host",
       "Users"
+    ]
+  },
+  {
+    "desc": "This rule detects when a push event occurs on an existent GitHub Action workflow. GitHub Action workflows may be abused to search for secrets and other sensitive company information.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "Github"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Push on Github Actions Detected",
+    "source": "github",
+    "tags": [
+      "Github"
     ]
   },
   {
