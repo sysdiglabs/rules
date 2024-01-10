@@ -1,7 +1,7 @@
 [
   {
-    "desc": "Detect AWS CLI used with the endpoint-url parameter, this may be used to bypass security measures based on CloudTrail logging",
-    "disabled": false,
+    "desc": "Detect AWS CLI used with the endpoint-url parameter, this may be used to exfiltrate data or download malicious resources from a remote bucket. Furthermore, with this parameter it's possible to avoid Cloudtrail logging requests",
+    "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
       "AWS",
@@ -10,10 +10,8 @@
       "Host"
     ],
     "oss_rule": false,
-    "policy": "Sysdig Runtime Threat Detection",
     "priority": "WARNING",
     "rule": "AWS CLI used with endpoint url parameter",
-    "severity": 3,
     "source": "falco",
     "tags": [
       "AWS",
@@ -883,6 +881,26 @@
     ]
   },
   {
+    "desc": "Detect attaching a Simple Email Service (SES) policy to a user. Attackers could attach an SES policy to start sending spam emails.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (2)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Attach SES Policy to User",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE T1566 phishing"
+    ]
+  },
+  {
     "desc": "Detect any attempt to create a ClusterRoleBinding to the cluster-admin user",
     "disabled": true,
     "has_exceptions": true,
@@ -996,6 +1014,29 @@
       "SOC2",
       "SOC2 CC6.1",
       "K8S"
+    ]
+  },
+  {
+    "desc": "The linux audit tool auditd can be used to commands execution and place them in log files",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (5)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Auditd Logging Commands",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1056.001 input capture keylogging",
+      "MITRE T1056 input capture",
+      "MITRE TA0006 credential access",
+      "MITRE TA0009 collection",
+      "Container",
+      "Host"
     ]
   },
   {
@@ -5161,6 +5202,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "FedRAMP (3)",
       "HIPAA (3)",
       "HITRUST (15)",
@@ -5178,6 +5220,7 @@
     "rule": "Clear Log Activities",
     "source": "falco",
     "tags": [
+      "FIM",
       "FedRAMP",
       "FedRAMP AU-10",
       "FedRAMP AU-2",
@@ -6535,7 +6578,7 @@
       "HIPAA (3)",
       "HITRUST (18)",
       "ISO (3)",
-      "MITRE (9)",
+      "MITRE (10)",
       "NIST (14)",
       "SOC2 (3)",
       "Azure",
@@ -6579,7 +6622,8 @@
       "MITRE",
       "MITRE T0885 commonly used port",
       "MITRE T1033 system owner user discovery",
-      "MITRE T119 automated-collection",
+      "MITRE T1119 automated collection",
+      "MITRE T1528 steal application access token",
       "MITRE T1552.005 unsecured credentials cloud instance metadata api",
       "MITRE T1552 unsecured credentials",
       "MITRE TA0006 credential access",
@@ -6617,7 +6661,7 @@
       "HIPAA (3)",
       "HITRUST (18)",
       "ISO (3)",
-      "MITRE (9)",
+      "MITRE (10)",
       "NIST (14)",
       "SOC2 (3)",
       "Aws",
@@ -6662,7 +6706,8 @@
       "ISO 27001 A.9.1.2",
       "MITRE",
       "MITRE T1033 system owner user discovery",
-      "MITRE T119 automated-collection",
+      "MITRE T1119 automated collection",
+      "MITRE T1528 steal application access token",
       "MITRE T1552.005 unsecured credentials cloud instance metadata api",
       "MITRE T1552.007 unsecured credentials container api",
       "MITRE T1552 unsecured credentials",
@@ -6940,7 +6985,7 @@
       "HIPAA (3)",
       "HITRUST (18)",
       "ISO (3)",
-      "MITRE (8)",
+      "MITRE (9)",
       "NIST (14)",
       "SOC2 (3)",
       "Container",
@@ -6982,7 +7027,8 @@
       "ISO 27001 A.9.1.2",
       "MITRE",
       "MITRE T1033 system owner user discovery",
-      "MITRE T119 automated-collection",
+      "MITRE T1119 automated collection",
+      "MITRE T1528 steal application access token",
       "MITRE T1552.005 unsecured credentials cloud instance metadata api",
       "MITRE T1552 unsecured credentials",
       "MITRE TA0006 credential access",
@@ -7717,6 +7763,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "FedRAMP (2)",
       "HIPAA (4)",
       "HITRUST (10)",
@@ -7735,6 +7782,7 @@
     "severity": 3,
     "source": "falco",
     "tags": [
+      "FIM",
       "FedRAMP",
       "FedRAMP SI-3",
       "HIPAA",
@@ -7791,6 +7839,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "FedRAMP (2)",
       "HIPAA (5)",
       "HITRUST (10)",
@@ -7806,6 +7855,7 @@
     "rule": "Create Hidden Files or Directories",
     "source": "falco",
     "tags": [
+      "FIM",
       "FedRAMP",
       "FedRAMP AU-2",
       "HIPAA",
@@ -8726,6 +8776,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "FedRAMP (2)",
       "HIPAA (4)",
       "HITRUST (10)",
@@ -8744,6 +8795,7 @@
     "severity": 3,
     "source": "falco",
     "tags": [
+      "FIM",
       "FedRAMP",
       "FedRAMP SI-3",
       "HIPAA",
@@ -9096,6 +9148,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "FedRAMP (2)",
       "GDPR (3)",
       "HIPAA (4)",
@@ -9105,7 +9158,7 @@
       "NIST (14)",
       "SOC2 (2)",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ],
     "oss_rule": false,
@@ -9113,6 +9166,7 @@
     "rule": "Create files below dev",
     "source": "falco",
     "tags": [
+      "FIM",
       "FedRAMP",
       "FedRAMP AU-2",
       "GDPR",
@@ -9165,7 +9219,7 @@
       "SOC2",
       "SOC2 CC6.8",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ]
   },
@@ -10398,7 +10452,7 @@
     "normalized_tags": [
       "AWS (4)",
       "Cloud",
-      "MITRE (5)"
+      "MITRE (6)"
     ],
     "oss_rule": false,
     "priority": "WARNING",
@@ -10412,6 +10466,7 @@
       "Cloud",
       "MITRE",
       "MITRE T1485 data destruction",
+      "MITRE T1490 inhibit system recovery",
       "MITRE T1578 modify cloud compute infrastructure",
       "MITRE TA0005 defense evasion",
       "MITRE TA0040 impact"
@@ -11307,7 +11362,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (6)",
+      "MITRE (7)",
       "Container",
       "Host",
       "Process"
@@ -11321,6 +11376,7 @@
     "tags": [
       "MITRE",
       "MITRE T1485 data destruction",
+      "MITRE T1490 inhibit system recovery",
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation",
@@ -12014,6 +12070,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "MITRE (8)",
       "Container",
       "File",
@@ -12027,6 +12084,7 @@
     "severity": 3,
     "source": "falco",
     "tags": [
+      "FIM",
       "MITRE",
       "MITRE T1003.007 os credential dumping proc filesystem",
       "MITRE T1003 os credential dumping",
@@ -14044,7 +14102,7 @@
       "MITRE",
       "MITRE T1098 account manipulation",
       "MITRE T1531 account access removal",
-      "MITRE TA00040 impact"
+      "MITRE TA0040 impact"
     ]
   },
   {
@@ -17067,6 +17125,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "FedRAMP (3)",
       "HIPAA (3)",
       "HITRUST (15)",
@@ -17084,6 +17143,7 @@
     "rule": "Lastlog Files Cleared",
     "source": "falco",
     "tags": [
+      "FIM",
       "FedRAMP",
       "FedRAMP AU-10",
       "FedRAMP AU-2",
@@ -17542,7 +17602,7 @@
       "HIPAA (4)",
       "HITRUST (12)",
       "ISO (3)",
-      "MITRE (11)",
+      "MITRE (12)",
       "NIST (15)",
       "SOC2 (3)",
       "Container",
@@ -17581,6 +17641,7 @@
       "MITRE",
       "MITRE  T1016.001 system network configuration discovery internet connection discovery",
       "MITRE T0842 network sniffing",
+      "MITRE T1018 remote system discovery",
       "MITRE T1046 network service discovery",
       "MITRE T1046 network service scanning",
       "MITRE T1049 system network connections discovery",
@@ -17622,7 +17683,7 @@
       "HIPAA (4)",
       "HITRUST (12)",
       "ISO (3)",
-      "MITRE (8)",
+      "MITRE (9)",
       "NIST (15)",
       "SOC2 (3)",
       "Host",
@@ -17661,6 +17722,7 @@
       "MITRE",
       "MITRE  T1016.001 system network configuration discovery internet connection discovery",
       "MITRE T0842 network sniffing",
+      "MITRE T1018 remote system discovery",
       "MITRE T1046 network service discovery",
       "MITRE T1046 network service scanning",
       "MITRE T1049 system network connections discovery",
@@ -18101,6 +18163,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "GDPR (3)",
       "HIPAA (4)",
       "HITRUST (12)",
@@ -18110,7 +18173,7 @@
       "PCI (3)",
       "SOC2 (3)",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ],
     "oss_rule": false,
@@ -18118,6 +18181,7 @@
     "rule": "Mkdir binary dirs",
     "source": "falco",
     "tags": [
+      "FIM",
       "GDPR",
       "GDPR 32.1",
       "GDPR 32.2",
@@ -18164,7 +18228,7 @@
       "SOC2 CC6.8",
       "SOC2 CC7.1",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ]
   },
@@ -18352,6 +18416,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "FedRAMP (3)",
       "HIPAA (5)",
       "HITRUST (13)",
@@ -18368,6 +18433,7 @@
     "rule": "Modify Shell Configuration File",
     "source": "falco",
     "tags": [
+      "FIM",
       "FedRAMP",
       "FedRAMP AU-12",
       "FedRAMP AU-2",
@@ -18473,6 +18539,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "GDPR (3)",
       "HIPAA (4)",
       "HITRUST (12)",
@@ -18482,7 +18549,7 @@
       "PCI (3)",
       "SOC2 (3)",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ],
     "oss_rule": false,
@@ -18490,6 +18557,7 @@
     "rule": "Modify binary dirs",
     "source": "falco",
     "tags": [
+      "FIM",
       "GDPR",
       "GDPR 32.1",
       "GDPR 32.2",
@@ -18535,7 +18603,7 @@
       "SOC2 CC6.8",
       "SOC2 CC7.1",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ]
   },
@@ -18544,9 +18612,10 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "MITRE (4)",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ],
     "oss_rule": false,
@@ -18556,12 +18625,13 @@
     "severity": 3,
     "source": "falco",
     "tags": [
+      "FIM",
       "MITRE T1574.006 hijack execution flow dynamic linker hijacking",
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation",
       "MITRE TA0005 defense evasion",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ]
   },
@@ -19069,6 +19139,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "MITRE (5)",
       "Container",
       "File",
@@ -19080,6 +19151,7 @@
     "rule": "OpenSSL File Read or Write",
     "source": "falco",
     "tags": [
+      "FIM",
       "MITRE",
       "MITRE T1486 data encrypted for impact",
       "MITRE TA0002 execution",
@@ -19089,6 +19161,66 @@
       "File",
       "Host",
       "Process"
+    ]
+  },
+  {
+    "desc": "Detect the creation of a new Service Control Policy (SCP) in the AWS Organization. SCPs enable central administration over the permissions available within the accounts in the organization.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (2)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Organization Create Service Control Policy",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0005 defense evasion"
+    ]
+  },
+  {
+    "desc": "Detect the deletion of a new Service Control Policy (SCP) in the AWS Organization. Attackers could delete a SCP to bypass limitations on the permissions within the accounts in the organization.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (2)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Organization Delete Service Control Policy",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0005 defense evasion"
+    ]
+  },
+  {
+    "desc": "Detect the update of a new Service Control Policy (SCP) in the AWS Organization. Attackers could update a SCP to bypass limitations on the permissions within the accounts in the organization.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (2)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Organization Update Service Control Policy",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0005 defense evasion"
     ]
   },
   {
@@ -20219,26 +20351,58 @@
     ]
   },
   {
+    "desc": "This rule may be triggered due to the presence of ransomware writing or renaming files with suspicious extension or well known ransom note files.",
+    "disabled": false,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (8)",
+      "Container",
+      "Host",
+      "Ioc"
+    ],
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Intelligence",
+    "priority": "WARNING",
+    "rule": "Ransomware Filenames Detected",
+    "severity": 3,
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1027 obfuscated files or information",
+      "MITRE T1486 data encrypted for impact",
+      "MITRE T1608.001 upload malware",
+      "MITRE T1608 stage capabilities",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA0040 impact",
+      "MITRE TA0042 resource development",
+      "Container",
+      "Host",
+      "Ioc"
+    ]
+  },
+  {
     "desc": "An attempt to read process environment variables from /proc files",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "MITRE (5)",
       "Container",
-      "Filesystem"
+      "File"
     ],
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "Read Environment Variable from /proc files in Container",
     "source": "falco",
     "tags": [
+      "FIM",
       "MITRE",
       "MITRE T1552 unsecured credentials",
       "MITRE TA0004 privilege escalation",
       "MITRE TA0006 credential access",
       "MITRE TA0007 discovery",
       "Container",
-      "Filesystem"
+      "File"
     ]
   },
   {
@@ -20246,6 +20410,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "FedRAMP (3)",
       "HIPAA (5)",
       "HITRUST (13)",
@@ -20261,6 +20426,7 @@
     "rule": "Read Shell Configuration File",
     "source": "falco",
     "tags": [
+      "FIM",
       "FedRAMP",
       "FedRAMP AU-12",
       "FedRAMP AU-2",
@@ -20311,6 +20477,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "HIPAA (2)",
       "HITRUST (3)",
       "ISO (3)",
@@ -20318,7 +20485,7 @@
       "NIST (6)",
       "SOC2 (5)",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ],
     "oss_rule": true,
@@ -20326,6 +20493,7 @@
     "rule": "Read sensitive file trusted after startup",
     "source": "falco",
     "tags": [
+      "FIM",
       "HIPAA",
       "HIPAA 164.308(a)",
       "HITRUST",
@@ -20358,7 +20526,7 @@
       "SOC2 CC7.1",
       "SOC2 CC8.1",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ],
     "updated_oss_condition": true
@@ -20368,6 +20536,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "HIPAA (2)",
       "HITRUST (4)",
       "ISO (3)",
@@ -20375,7 +20544,7 @@
       "NIST (9)",
       "SOC2 (4)",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ],
     "oss_rule": true,
@@ -20383,6 +20552,7 @@
     "rule": "Read sensitive file untrusted",
     "source": "falco",
     "tags": [
+      "FIM",
       "HIPAA",
       "HIPAA 164.308(a)",
       "HITRUST",
@@ -20416,7 +20586,7 @@
       "SOC2 CC6.7",
       "SOC2 CC7.1",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ],
     "updated_oss_condition": true
@@ -20426,6 +20596,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "HIPAA (2)",
       "HITRUST (3)",
       "ISO (3)",
@@ -20433,7 +20604,7 @@
       "NIST (6)",
       "SOC2 (4)",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ],
     "oss_rule": false,
@@ -20441,6 +20612,7 @@
     "rule": "Read ssh information",
     "source": "falco",
     "tags": [
+      "FIM",
       "HIPAA",
       "HIPAA 164.308(a)",
       "HITRUST",
@@ -20464,7 +20636,7 @@
       "SOC2 CC6.7",
       "SOC2 CC8.1",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ]
   },
@@ -20635,7 +20807,7 @@
       "HIPAA (3)",
       "HITRUST (12)",
       "ISO (3)",
-      "MITRE (10)",
+      "MITRE (11)",
       "NIST (9)",
       "SOC2 (3)",
       "Container",
@@ -20677,6 +20849,7 @@
       "MITRE T1070.003 indicator removal clear command history",
       "MITRE T1070 indicator removal on host",
       "MITRE T1485 data destruction",
+      "MITRE T1490 inhibit system recovery",
       "MITRE T1561 disk wipe",
       "MITRE T1561 disk wipe disk content wipe",
       "MITRE T1565 data manipulation",
@@ -20897,6 +21070,48 @@
       "MITRE TA0005 defense evasion",
       "SOC2",
       "SOC2 CC6.1"
+    ]
+  },
+  {
+    "desc": "This rule detects whenever a new private fork of a source repository is created. Adversaries may make alterations to the original source repository within a private fork, thus creating malicious versions of legitimate repositories.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (3)",
+      "Fork",
+      "Github",
+      "Repository"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Repository Fork Set to Private",
+    "source": "github",
+    "tags": [
+      "MITRE",
+      "MITRE T1036 masquerading",
+      "MITRE TA0005 defense evasion",
+      "Fork",
+      "Github",
+      "Repository"
+    ]
+  },
+  {
+    "desc": "This rule detects whenever a new public fork of a source repository is created. Misconfigured repository forks set to public may inadvertedly leak proprietary source code and information.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "Fork",
+      "Github",
+      "Repository"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Repository Fork Set to Public",
+    "source": "github",
+    "tags": [
+      "Fork",
+      "Github",
+      "Repository"
     ]
   },
   {
@@ -21258,12 +21473,134 @@
     "updated_oss_condition": true
   },
   {
+    "desc": "Detect the creation of an SMTP User from the Simple Email Service (SES) console. Attackers could use the SMTP credentials of a new user to send spam emails from an email tool.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (2)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "SES Create SMTP User",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE T1566 phishing"
+    ]
+  },
+  {
+    "desc": "Detect the deletion of a verified identity in the Simple Email Service (SES) account. This can be leveraged by attackers to disrupt business operations that use SES to send automated internal and external emails.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (2)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "SES Delete Identity",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0040 impact"
+    ]
+  },
+  {
+    "desc": "Detect enabling/disabling email sending in the Simple Email Service (SES) account. By disabling email sending, attackers could disrupt business operations that use SES to send automated internal and external emails. Instead, if the SES account has email sending disabled, attackers could enable it to send spam emails.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (3)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "SES Update Account Sending",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE T1566 phishing",
+      "MITRE TA0040 impact"
+    ]
+  },
+  {
+    "desc": "Detect adding an email address or domain to the list of identities to be verified for the Simple Email Service (SES) account. Attackers could add an email address or domain they own to send emails with the victim\u2019s SES account.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (2)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "SES Verify Identity",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE T1566 phishing"
+    ]
+  },
+  {
+    "desc": "Detect the deletion of a Simple Notification Service (SNS) subscription. Attackers could disrupt logging and monitoring processes based on SNS by deleting an SNS subscription.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (2)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "SNS Delete Subscription",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0005 defense evasion"
+    ]
+  },
+  {
+    "desc": "Detect the deletion of a Simple Notification Service (SNS) topic. Attackers could disrupt logging and monitoring processes based on SNS by deleting an SNS topic.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (2)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "SNS Delete Topic",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0005 defense evasion"
+    ]
+  },
+  {
     "desc": "After gaining access, attackers can modify the authorized_keys file to maintain persistence on a victim host. Where authorized_keys files are modified via cloud APIs or command line interfaces, an adversary may achieve privilege escalation on the target  virtual machine if they add a key to a higher-privileged user. This rules aims at detecting any modification to the authorized_keys file, that is usually located under the .ssh directory in any user's home directory.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "MITRE (6)",
-      "Filesystem",
+      "File",
       "Host"
     ],
     "oss_rule": false,
@@ -21271,13 +21608,14 @@
     "rule": "SSH keys added to authorized_keys",
     "source": "falco",
     "tags": [
+      "FIM",
       "MITRE T1059.004 command and scripting interpreter unix shell",
       "MITRE T1059.009 command and scripting interpreter cloud api",
       "MITRE T1098.004 account manipulation SSH keys",
       "MITRE T1552.004 unsecured credentials private keys",
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation",
-      "Filesystem",
+      "File",
       "Host"
     ]
   },
@@ -21359,6 +21697,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "FedRAMP (2)",
       "GDPR (3)",
       "HIPAA (3)",
@@ -21376,6 +21715,7 @@
     "rule": "Schedule Cron Jobs",
     "source": "falco",
     "tags": [
+      "FIM",
       "FedRAMP",
       "FedRAMP AU-2",
       "GDPR",
@@ -22051,9 +22391,10 @@
     "disabled": false,
     "has_exceptions": false,
     "normalized_tags": [
+      "FIM",
       "MITRE (7)",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ],
     "oss_rule": false,
@@ -22063,6 +22404,7 @@
     "severity": 3,
     "source": "falco",
     "tags": [
+      "FIM",
       "MITRE T1068 exploitation for privilege escalation",
       "MITRE T1548.003 abuse elevation control mechanism sudo and sudo caching",
       "MITRE T1588.006 obtain capabilities vulnerabilities",
@@ -22071,7 +22413,7 @@
       "MITRE TA0005 defense evasion",
       "MITRE TA0042 resource development",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ]
   },
@@ -22080,6 +22422,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "FedRAMP (2)",
       "GDPR (3)",
       "HIPAA (3)",
@@ -22099,6 +22442,7 @@
     "severity": 3,
     "source": "falco",
     "tags": [
+      "FIM",
       "FedRAMP",
       "FedRAMP AU-2",
       "GDPR",
@@ -22228,6 +22572,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "MITRE (8)",
       "Container",
       "File",
@@ -22238,6 +22583,7 @@
     "rule": "Suspicious Kernel Parameter Modification",
     "source": "falco",
     "tags": [
+      "FIM",
       "MITRE",
       "MITRE T1055.009 process injection proc memory",
       "MITRE T1495 firmware corruption",
@@ -22256,6 +22602,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "MITRE (3)",
       "Container",
       "File",
@@ -22269,6 +22616,7 @@
     "severity": 3,
     "source": "falco",
     "tags": [
+      "FIM",
       "MITRE",
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
@@ -22283,7 +22631,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (7)",
+      "MITRE (8)",
       "Container",
       "Firewall",
       "Host",
@@ -22296,6 +22644,7 @@
     "tags": [
       "MITRE",
       "MITRE T1070 indicator removal",
+      "MITRE T1498 network denial of service",
       "MITRE T1562.004 impair defenses disable or modify firewall",
       "MITRE T1562.007 impair defenses disable or modify cloud firewall",
       "MITRE T1562 impair defenses",
@@ -22312,6 +22661,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "FedRAMP (2)",
       "GDPR (3)",
       "HIPAA (3)",
@@ -22329,6 +22679,7 @@
     "rule": "Suspicious System Service Modification",
     "source": "falco",
     "tags": [
+      "FIM",
       "FedRAMP",
       "FedRAMP AU-2",
       "GDPR",
@@ -23935,6 +24286,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "FedRAMP (2)",
       "GDPR (3)",
       "HIPAA (4)",
@@ -23944,7 +24296,7 @@
       "NIST (13)",
       "SOC2 (2)",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ],
     "oss_rule": false,
@@ -23952,6 +24304,7 @@
     "rule": "Update Package Repository",
     "source": "falco",
     "tags": [
+      "FIM",
       "FedRAMP",
       "FedRAMP SI-3",
       "GDPR",
@@ -24002,7 +24355,7 @@
       "SOC2",
       "SOC2 CC6.8",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ]
   },
@@ -24420,6 +24773,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "FedRAMP (3)",
       "GDPR (3)",
       "HIPAA (5)",
@@ -24429,7 +24783,7 @@
       "NIST (16)",
       "SOC2 (3)",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ],
     "oss_rule": false,
@@ -24437,6 +24791,7 @@
     "rule": "Write below binary dir",
     "source": "falco",
     "tags": [
+      "FIM",
       "FedRAMP",
       "FedRAMP AU-12",
       "FedRAMP AU-2",
@@ -24495,7 +24850,7 @@
       "SOC2 CC6.8",
       "SOC2 CC7.1",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ]
   },
@@ -24504,6 +24859,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "GDPR (3)",
       "HIPAA (4)",
       "HITRUST (9)",
@@ -24512,7 +24868,7 @@
       "NIST (9)",
       "SOC2 (3)",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ],
     "oss_rule": false,
@@ -24520,6 +24876,7 @@
     "rule": "Write below etc",
     "source": "falco",
     "tags": [
+      "FIM",
       "GDPR",
       "GDPR 32.1",
       "GDPR 32.2",
@@ -24558,7 +24915,7 @@
       "SOC2 CC6.8",
       "SOC2 CC7.1",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ]
   },
@@ -24567,6 +24924,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "FedRAMP (3)",
       "GDPR (3)",
       "HIPAA (5)",
@@ -24576,7 +24934,7 @@
       "NIST (16)",
       "SOC2 (3)",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ],
     "oss_rule": false,
@@ -24584,6 +24942,7 @@
     "rule": "Write below monitored dir",
     "source": "falco",
     "tags": [
+      "FIM",
       "FedRAMP",
       "FedRAMP AU-12",
       "FedRAMP AU-2",
@@ -24642,7 +25001,7 @@
       "SOC2 CC6.8",
       "SOC2 CC7.1",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ]
   },
@@ -24652,6 +25011,7 @@
     "has_exceptions": true,
     "normalized_tags": [
       "CIS",
+      "FIM",
       "HIPAA (4)",
       "HITRUST (7)",
       "ISO (3)",
@@ -24659,7 +25019,7 @@
       "NIST (10)",
       "SOC2 (2)",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ],
     "oss_rule": false,
@@ -24668,6 +25028,7 @@
     "source": "falco",
     "tags": [
       "CIS",
+      "FIM",
       "HIPAA",
       "HIPAA 164.308(a)",
       "HIPAA 164.312(a)",
@@ -24701,7 +25062,7 @@
       "SOC2",
       "SOC2 CC7.1",
       "Container",
-      "Filesystem",
+      "File",
       "Host"
     ]
   },
@@ -24710,6 +25071,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
+      "FIM",
       "GDPR (3)",
       "HIPAA (4)",
       "HITRUST (9)",
@@ -24718,7 +25080,7 @@
       "NIST (7)",
       "SOC2 (2)",
       "Container",
-      "Filesystem",
+      "File",
       "Host",
       "Software"
     ],
@@ -24727,6 +25089,7 @@
     "rule": "Write below rpm database",
     "source": "falco",
     "tags": [
+      "FIM",
       "GDPR",
       "GDPR 32.1",
       "GDPR 32.2",
@@ -24763,7 +25126,7 @@
       "SOC2",
       "SOC2 CC6.8",
       "Container",
-      "Filesystem",
+      "File",
       "Host",
       "Software Mgmt"
     ]
