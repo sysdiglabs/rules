@@ -1132,7 +1132,7 @@
     ]
   },
   {
-    "desc": "Anonymous, public read access to a container and its blobs can be enabled in Azure Blob storage. It grants read-only access to these resources without sharing the account key, and without requiring a shared access signature. It is recommended not to provide anonymous access to blob containers until, and unless, it is strongly desired. A shared access signature token should be used for providing controlled and timed access to blob containers. If no anonymous access is needed on the storage account, it\u2019s recommended to set allowBlobPublicAccess false.",
+    "desc": "DEPRECATED",
     "disabled": true,
     "has_exceptions": false,
     "normalized_tags": [
@@ -1310,7 +1310,7 @@
     ]
   },
   {
-    "desc": "A blob has been created in a storage container.",
+    "desc": "DEPRECATED",
     "disabled": true,
     "has_exceptions": false,
     "normalized_tags": [
@@ -1332,7 +1332,7 @@
     ]
   },
   {
-    "desc": "A blob has been deleted from a storage container.",
+    "desc": "DEPRECATED",
     "disabled": true,
     "has_exceptions": false,
     "normalized_tags": [
@@ -2795,7 +2795,7 @@
     ]
   },
   {
-    "desc": "Detect the creation or update of a Storage Account",
+    "desc": "DEPRECATED",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -3168,7 +3168,7 @@
     ]
   },
   {
-    "desc": "Detect the deletion of a function key",
+    "desc": "DEPRECATED",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -3661,7 +3661,7 @@
     ]
   },
   {
-    "desc": "Detect the deletion of a Storage Account",
+    "desc": "DEPRECATED",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -6578,7 +6578,7 @@
       "HIPAA (3)",
       "HITRUST (18)",
       "ISO (3)",
-      "MITRE (10)",
+      "MITRE (12)",
       "NIST (14)",
       "SOC2 (3)",
       "Azure",
@@ -6624,6 +6624,8 @@
       "MITRE T1033 system owner user discovery",
       "MITRE T1119 automated collection",
       "MITRE T1528 steal application access token",
+      "MITRE T1550.001 application access token",
+      "MITRE T1550 use alternate authentication material",
       "MITRE T1552.005 unsecured credentials cloud instance metadata api",
       "MITRE T1552 unsecured credentials",
       "MITRE TA0006 credential access",
@@ -6661,7 +6663,7 @@
       "HIPAA (3)",
       "HITRUST (18)",
       "ISO (3)",
-      "MITRE (10)",
+      "MITRE (12)",
       "NIST (14)",
       "SOC2 (3)",
       "Aws",
@@ -6708,6 +6710,8 @@
       "MITRE T1033 system owner user discovery",
       "MITRE T1119 automated collection",
       "MITRE T1528 steal application access token",
+      "MITRE T1550.001 application access token",
+      "MITRE T1550 use alternate authentication material",
       "MITRE T1552.005 unsecured credentials cloud instance metadata api",
       "MITRE T1552.007 unsecured credentials container api",
       "MITRE T1552 unsecured credentials",
@@ -6746,7 +6750,7 @@
       "HIPAA (3)",
       "HITRUST (18)",
       "ISO (3)",
-      "MITRE (9)",
+      "MITRE (11)",
       "NIST (14)",
       "SOC2 (3)",
       "Container",
@@ -6790,7 +6794,9 @@
       "MITRE",
       "MITRE T0885 commonly used port",
       "MITRE T1033 system owner user discovery",
-      "MITRE T119 automated-collection",
+      "MITRE T1119 automated collection",
+      "MITRE T1550.001 application access token",
+      "MITRE T1550 use alternate authentication material",
       "MITRE T1552.005 unsecured credentials cloud instance metadata api",
       "MITRE T1552 unsecured credentials",
       "MITRE TA0006 credential access",
@@ -6827,7 +6833,7 @@
       "HIPAA (3)",
       "HITRUST (13)",
       "ISO (3)",
-      "MITRE (8)",
+      "MITRE (10)",
       "NIST (15)",
       "SOC2 (2)",
       "Container",
@@ -6863,6 +6869,8 @@
       "ISO 27001 A.9.1.2",
       "MITRE",
       "MITRE T119 automated-collection",
+      "MITRE T1550.001 use alternate authentication material application access token",
+      "MITRE T1550 use alternate authentication material",
       "MITRE T1552.007 unsecured credentials container api",
       "MITRE T1609 container administration command",
       "MITRE TA0002 execution",
@@ -9366,7 +9374,7 @@
     ]
   },
   {
-    "desc": "The secure transfer option enhances the security of a storage account by only allowing requests to the storage account by a secure connection. For example, when calling REST APIs to access storage accounts, the connection must use HTTPS. Any requests using HTTP will be rejected when 'secure transfer required' is enabled. When using the Azure files service, connection without encryption will fail, including scenarios using SMB 2.1, SMB 3.0 without encryption, and some flavors of the Linux SMB client. Because Azure storage doesn\u2019t support HTTPS for custom domain names, this option is not applied when using a custom domain name.",
+    "desc": "DEPRECATED",
     "disabled": true,
     "has_exceptions": false,
     "normalized_tags": [
@@ -11263,7 +11271,7 @@
       "HIPAA (2)",
       "HITRUST (13)",
       "ISO (3)",
-      "MITRE (7)",
+      "MITRE (8)",
       "NIST (10)",
       "PCI (3)",
       "SOC2 (2)",
@@ -11304,6 +11312,7 @@
       "MITRE T1059.004 command and scripting interpreter unix shell",
       "MITRE T1071 application layer protocol",
       "MITRE T1496 resource hijacking",
+      "MITRE T1657 financial theft",
       "MITRE TA0002 execution",
       "MITRE TA0011 command and control",
       "MITRE TA0040 impact",
@@ -11450,7 +11459,7 @@
       "HIPAA (3)",
       "HITRUST (10)",
       "ISO (3)",
-      "MITRE (8)",
+      "MITRE (9)",
       "NIST (9)",
       "SOC2 (2)",
       "Container",
@@ -11489,6 +11498,7 @@
       "MITRE T1059.004 command and scripting interpreter unix shell",
       "MITRE T1071 application layer protocol",
       "MITRE T1496 resource hijacking",
+      "MITRE T1657 financial theft",
       "MITRE TA0002 execution",
       "MITRE TA0011 command and control",
       "MITRE TA0040 impact",
@@ -15934,6 +15944,30 @@
     ]
   },
   {
+    "desc": "adversaries may try to hide malicious processes by mounting something else to proc/[pid] folder",
+    "disabled": false,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (4)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
+    "priority": "WARNING",
+    "rule": "Hide Process with Mount",
+    "severity": 3,
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1055.009 proc memory",
+      "MITRE T1055 process injection",
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect the creation of an EC2 Image Builder Component. Attackers can put arbitrary commands to be executed during the build phase of an image.",
     "disabled": true,
     "has_exceptions": true,
@@ -18001,7 +18035,7 @@
     ]
   },
   {
-    "desc": "Connection to malicious IPs detected in pod or host. This rule is deprecated. The malicious_log4j_c2 list will no longer be maintained.",
+    "desc": "DEPRECATED",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -18135,7 +18169,7 @@
     ]
   },
   {
-    "desc": "Malicious process detected in pod or host. This rule is deprecated. The malicious_processes list will no longer be maintained.",
+    "desc": "DEPRECATED",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -18255,6 +18289,30 @@
       "MITRE TA0006 credential access",
       "MITRE TA0009 collection",
       "Container",
+      "Host"
+    ]
+  },
+  {
+    "desc": "This rule detects changes to GRUB configuration files that may be subjected to the set of vulnerabilities affecting image parser at DXE runtime known as LogoFail.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (8)",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "Modify Grub Configuration Files",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1036.005 match legitimate names or location",
+      "MITRE T1036 masquerading",
+      "MITRE T1211 exploitation for defense evasion",
+      "MITRE T1542.002 component firmware",
+      "MITRE T1542.003 bootkit",
+      "MITRE T1542 pre-OS boot",
+      "MITRE TA0005 defense evasion",
       "Host"
     ]
   },
@@ -19494,6 +19552,28 @@
     "updated_oss_condition": true
   },
   {
+    "desc": "Adversaries may attempt to access detailed information about the password policy used within an enterprise network or cloud environment. This information may help in creating a list of common passwords and launch dictionary and/or brute force attacks which adheres to the policy.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (4)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Password Policy Discovery Activity Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1083 file and directory discovery",
+      "MITRE T1201 password policy discovery",
+      "MITRE TA0007 discovery",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect AWS IAM password recovery requests.",
     "disabled": true,
     "has_exceptions": true,
@@ -20355,7 +20435,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (8)",
+      "MITRE (9)",
       "Container",
       "Host",
       "Ioc"
@@ -20372,6 +20452,7 @@
       "MITRE T1486 data encrypted for impact",
       "MITRE T1608.001 upload malware",
       "MITRE T1608 stage capabilities",
+      "MITRE T1657 financial theft",
       "MITRE TA0005 defense evasion",
       "MITRE TA0040 impact",
       "MITRE TA0042 resource development",
@@ -22644,7 +22725,7 @@
     "tags": [
       "MITRE",
       "MITRE T1070 indicator removal",
-      "MITRE T1498 network denial of service",
+      "MITRE T1499 endpoint denial of service",
       "MITRE T1562.004 impair defenses disable or modify firewall",
       "MITRE T1562.007 impair defenses disable or modify cloud firewall",
       "MITRE T1562 impair defenses",
