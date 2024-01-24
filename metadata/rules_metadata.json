@@ -288,6 +288,27 @@
     ]
   },
   {
+    "desc": "Detect access to clipboard data which can contain credentials or useful information for the threat actors.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (3)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Access to Clipboard Data Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1115 clipboard data",
+      "MITRE TA0009 collection",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect adding an user to a group.",
     "disabled": true,
     "has_exceptions": true,
@@ -15944,7 +15965,7 @@
     ]
   },
   {
-    "desc": "adversaries may try to hide malicious processes by mounting something else to proc/[pid] folder",
+    "desc": "Utilities like top or ps check the /proc folder to list the running processes and their informations. This can be exploited for hiding malicious processes, threat actors can mount something else (such as another directory with mount --bind) to /proc/[pid] to hide a given process.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -20431,6 +20452,26 @@
     ]
   },
   {
+    "desc": "Detect any attempt at querying the window manager which could provide an attacker  with a list of open application windows and, potentially, information on how the system is used.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (2)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Query to Window Management System Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE T1010 application window discovery",
+      "MITRE TA0007 discovery",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "This rule may be triggered due to the presence of ransomware writing or renaming files with suspicious extension or well known ransom note files.",
     "disabled": false,
     "has_exceptions": true,
@@ -21554,6 +21595,27 @@
     "updated_oss_condition": true
   },
   {
+    "desc": "Detect attaching a policy to a Simple Email Service (SES) identity. This can be leveraged by attackers to authorize an external account they own to send emails from the victim's domains/email addresses.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (3)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "SES Attach Policy to Identity",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE T1566 phishing",
+      "MITRE TA0003 persistence"
+    ]
+  },
+  {
     "desc": "Detect the creation of an SMTP User from the Simple Email Service (SES) console. Attackers could use the SMTP credentials of a new user to send spam emails from an email tool.",
     "disabled": true,
     "has_exceptions": true,
@@ -21594,6 +21656,26 @@
     ]
   },
   {
+    "desc": "Detect the deletion of a policy from a Simple Email Service (SES) identity.",
+    "disabled": true,
+    "has_exceptions": false,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (2)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "SES Delete Identity Policy",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0040 impact"
+    ]
+  },
+  {
     "desc": "Detect enabling/disabling email sending in the Simple Email Service (SES) account. By disabling email sending, attackers could disrupt business operations that use SES to send automated internal and external emails. Instead, if the SES account has email sending disabled, attackers could enable it to send spam emails.",
     "disabled": true,
     "has_exceptions": true,
@@ -21612,6 +21694,27 @@
       "MITRE",
       "MITRE T1566 phishing",
       "MITRE TA0040 impact"
+    ]
+  },
+  {
+    "desc": "Detect updating a policy of a Simple Email Service (SES) identity. This can be leveraged by attackers to authorize an external account they own to send emails from the victim's domains/email addresses.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (3)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "SES Update Identity Policy",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE T1566 phishing",
+      "MITRE TA0003 persistence"
     ]
   },
   {
@@ -22137,6 +22240,27 @@
     ]
   },
   {
+    "desc": "threat actors may need to discovery running services to exploit them or use them to hide their traces",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (3)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Service Discovery Activity Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1007 system service discovery",
+      "MITRE TA0007 discovery",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "When the setuid or setgid bits are set for an application, this means that the application will run with the privileges of the owning user or group respectively. Detect setuid or setgid bits set via chmod",
     "disabled": true,
     "has_exceptions": true,
@@ -22495,6 +22619,28 @@
       "MITRE TA0042 resource development",
       "Container",
       "File",
+      "Host"
+    ]
+  },
+  {
+    "desc": "Adversaries may attempt to open files located under the secrets subfolder in Linux systems with the objective of retrieving sensitive information, such as cached Kerberos tickets.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (4)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Suspicious Access To Kerberos Secrets",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1003 OS credential dumping",
+      "MITRE T1558 steal or forge kerberos tickets",
+      "MITRE TA0006 credential access",
+      "Container",
       "Host"
     ]
   },
@@ -25087,7 +25233,7 @@
     ]
   },
   {
-    "desc": "an attempt to write to any file directly below / or /root",
+    "desc": "an attempt to write to any file directly below / or /root.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
