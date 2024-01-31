@@ -249,6 +249,30 @@
     ]
   },
   {
+    "desc": "This rule detects and warns against the exploitation of CVE-2019-14287, which allows privilege escalation through abusing the sudo command.",
+    "disabled": false,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (4)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
+    "priority": "WARNING",
+    "rule": "Abuse Sudo for Privilege Escalation",
+    "severity": 3,
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1068 exploitation for privilege escalation",
+      "MITRE T1548 abuse elevation control mechanism",
+      "MITRE TA0004 privilege escalation",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect accepting an VPC peering connection.",
     "disabled": true,
     "has_exceptions": true,
@@ -15939,6 +15963,27 @@
     ]
   },
   {
+    "desc": "This rule detects when hardware is added to the system by monitoring specific process names and commands used.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (3)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Hardware Added to the System",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1200 hardware additions",
+      "MITRE TA0001 initial access",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "hexadecimal string decoded detected in cmdline, this technique can be used by attackers to avoid detection",
     "disabled": false,
     "has_exceptions": true,
@@ -17657,7 +17702,7 @@
       "HIPAA (4)",
       "HITRUST (12)",
       "ISO (3)",
-      "MITRE (12)",
+      "MITRE (13)",
       "NIST (15)",
       "SOC2 (3)",
       "Container",
@@ -17696,6 +17741,7 @@
       "MITRE",
       "MITRE  T1016.001 system network configuration discovery internet connection discovery",
       "MITRE T0842 network sniffing",
+      "MITRE T1016 system network configuration discovery",
       "MITRE T1018 remote system discovery",
       "MITRE T1046 network service discovery",
       "MITRE T1046 network service scanning",
@@ -17738,7 +17784,7 @@
       "HIPAA (4)",
       "HITRUST (12)",
       "ISO (3)",
-      "MITRE (9)",
+      "MITRE (10)",
       "NIST (15)",
       "SOC2 (3)",
       "Host",
@@ -17777,6 +17823,7 @@
       "MITRE",
       "MITRE  T1016.001 system network configuration discovery internet connection discovery",
       "MITRE T0842 network sniffing",
+      "MITRE T1016 system network configuration discovery",
       "MITRE T1018 remote system discovery",
       "MITRE T1046 network service discovery",
       "MITRE T1046 network service scanning",
@@ -18735,6 +18782,29 @@
       "MITRE TA0004 privilege escalation",
       "MITRE TA0008 lateral movement",
       "Container"
+    ]
+  },
+  {
+    "desc": "Adversaries may try to mount custom resources in container's path to inject code",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (5)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Mount on Container Path Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE T1578.005 modify cloud compute configurations",
+      "MITRE T1578 modify cloud compute infrastructure",
+      "MITRE T1659 content injection",
+      "MITRE TA0001 initial access",
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "Host"
     ]
   },
   {
@@ -21784,6 +21854,7 @@
     "normalized_tags": [
       "FIM",
       "MITRE (6)",
+      "Container",
       "File",
       "Host"
     ],
@@ -21799,6 +21870,7 @@
       "MITRE T1552.004 unsecured credentials private keys",
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation",
+      "Container",
       "File",
       "Host"
     ]
@@ -22642,6 +22714,79 @@
       "MITRE TA0006 credential access",
       "Container",
       "Host"
+    ]
+  },
+  {
+    "desc": "Detect suspicious connections to the K8S API Server from a container. Suspicious requests such as POST ones sent by curl and wget, or kubectl binary not belonging to the base image of a container may be abused by attackers to interact with the K8s API server leveraging exceeding serviceaccount mounted on pods.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "GDPR (3)",
+      "HIPAA (3)",
+      "HITRUST (13)",
+      "ISO (3)",
+      "MITRE (8)",
+      "NIST (15)",
+      "SOC2 (2)",
+      "Container",
+      "K8S",
+      "Network"
+    ],
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "Suspicious Connection to K8S API Server From Container",
+    "source": "falco",
+    "tags": [
+      "GDPR",
+      "GDPR 32.1",
+      "GDPR 32.2",
+      "HIPAA",
+      "HIPAA 164.308(a)",
+      "HIPAA 164.310(b)",
+      "HITRUST",
+      "HITRUST CSF",
+      "HITRUST CSF 01.i",
+      "HITRUST CSF 01.j",
+      "HITRUST CSF 01.n",
+      "HITRUST CSF 01.x",
+      "HITRUST CSF 01.y",
+      "HITRUST CSF 09.ab",
+      "HITRUST CSF 09.ac",
+      "HITRUST CSF 09.m",
+      "HITRUST CSF 09.s",
+      "HITRUST CSF 11.a",
+      "HITRUST CSF 11.b",
+      "ISO",
+      "ISO 27001",
+      "ISO 27001 A.9.1.2",
+      "MITRE",
+      "MITRE T119 automated-collection",
+      "MITRE T1552.007 unsecured credentials container api",
+      "MITRE T1609 container administration command",
+      "MITRE TA0002 execution",
+      "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery",
+      "MITRE TA0009 collection",
+      "NIST",
+      "NIST 800-171",
+      "NIST 800-171 3.1.1",
+      "NIST 800-171 3.1.2",
+      "NIST 800-171 3.1.3",
+      "NIST 800-171 3.14.6",
+      "NIST 800-171 3.14.7",
+      "NIST 800-190",
+      "NIST 800-190 3.4.2",
+      "NIST 800-190 3.4.4",
+      "NIST 800-53",
+      "NIST 800-53 AC-17",
+      "NIST 800-53 AC-4",
+      "NIST 800-53 SI-4",
+      "NIST 800-53 SI-4(18)",
+      "SOC2",
+      "SOC2 CC6.1",
+      "Container",
+      "K8S",
+      "Network"
     ]
   },
   {
