@@ -119,6 +119,24 @@
     ]
   },
   {
+    "desc": "Detect requests to download an AWS IAM credential report.  This may be leveraged by attackers to get insight on accounts to abuse.",
+    "disabled": true,
+    "has_exceptions": false,
+    "normalized_tags": [
+      "AWS (2)",
+      "Cloud"
+    ],
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "AWS IAM Credential Report Request",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS IAM",
+      "Cloud"
+    ]
+  },
+  {
     "desc": "Detects when the master password for an AWS RDS Database is changed.",
     "disabled": true,
     "has_exceptions": false,
@@ -4445,6 +4463,23 @@
     ]
   },
   {
+    "desc": "Detect the listing of a Service SAS token for a Storage Account. A Service SAS (Shared Access Signature) grants limited access for a limited time and a specific service. This alert is raised whenever a resource successfully retrieves a SAS token to get access into a storage account.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "Azure",
+      "Cloud"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Retrieve Service SAS Token for a Storage Account",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud"
+    ]
+  },
+  {
     "desc": "The potential security problem with using SSH over the Internet is that attackers can use various brute force techniques to gain access to Azure Virtual Machines. Once the attackers gain access, they can use a virtual machine as a launch point for compromising other machines on the Azure Virtual Network or even attack networked devices outside of Azure.",
     "disabled": true,
     "has_exceptions": false,
@@ -5410,6 +5445,26 @@
       "Cloud",
       "GCP",
       "GCP CloudRun"
+    ]
+  },
+  {
+    "desc": "Detect requests to download files through the CloudShell. Attackers can download files containing sensitive information.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (2)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "CloudShell Download File",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0009 collection"
     ]
   },
   {
@@ -8825,6 +8880,26 @@
     ]
   },
   {
+    "desc": "Detect the creation of a case in the AWS Support Center. Attackers can create Support cases to request service limit increases, as well as gain more capabilities for their attacks.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (2)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Create Support Case",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE T1566 phishing"
+    ]
+  },
+  {
     "desc": "Detect symlink created over sensitive files",
     "disabled": false,
     "has_exceptions": true,
@@ -11276,6 +11351,29 @@
     ]
   },
   {
+    "desc": "Detect description of the specified EC2 instances or all EC2 instances.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS (2)",
+      "Cloud",
+      "MITRE (4)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Describe Instances",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS EC2",
+      "Cloud",
+      "MITRE",
+      "MITRE T1082 system information discovery",
+      "MITRE T1580 cloud infrastructure discovery",
+      "MITRE TA0007 discovery"
+    ]
+  },
+  {
     "desc": "Detect a cloned process spawned, possible privilege escalation.",
     "disabled": false,
     "has_exceptions": true,
@@ -12126,7 +12224,7 @@
     "has_exceptions": true,
     "normalized_tags": [
       "FIM",
-      "MITRE (8)",
+      "MITRE (9)",
       "Container",
       "File",
       "Host",
@@ -12147,6 +12245,7 @@
       "MITRE T1033 system owner user discovery",
       "MITRE T1087.001 account discovery local account",
       "MITRE T1552.001 unsecured credentials credentials in file",
+      "MITRE T1555 credentials from password stores",
       "MITRE TA0006 credential access",
       "Container",
       "File",
@@ -12265,6 +12364,28 @@
       "MITRE",
       "MITRE T1578.002 modify cloud compute infrastructure create cloud instance",
       "MITRE TA0005 defense evasion"
+    ]
+  },
+  {
+    "desc": "Detect retrieval of the User Data of an EC2 Instance. This data may include installation scripts and hard-coded secrets for deployment.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS (2)",
+      "Cloud",
+      "MITRE (3)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "EC2 Get User Data",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS EC2",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery"
     ]
   },
   {
@@ -12831,11 +12952,29 @@
     ]
   },
   {
+    "desc": "Copy artifacts via Kubernetes control plane by using commands such as kubectl copy. Detect potential exfiltration of application secrets or data from containers' file systems,  in cases of unauthorized access and misuse of the control plane (e.g. using stolen credentials like Kubernetes serviceaccount tokens)",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (2)",
+      "Container"
+    ],
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "Exfiltrating Artifacts via Kubernetes Control Plane",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE TA0010 exfiltration",
+      "Container"
+    ]
+  },
+  {
     "desc": "Find or grep AWS credentials",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (7)",
+      "MITRE (8)",
       "Aws",
       "Container",
       "Host",
@@ -12849,9 +12988,10 @@
     "source": "falco",
     "tags": [
       "MITRE T1033 system owner user discovery",
-      "MITRE T119 automated-collection",
+      "MITRE T1119 automated collection",
       "MITRE T1552.004 unsecured credentials private keys",
       "MITRE T1552 unsecured credentials",
+      "MITRE T1555 credentials from password stores",
       "MITRE TA0006 credential access",
       "MITRE TA0007 discovery",
       "MITRE TA0009 collection",
@@ -12867,7 +13007,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (7)",
+      "MITRE (8)",
       "Azure",
       "Container",
       "Host",
@@ -12881,9 +13021,10 @@
     "source": "falco",
     "tags": [
       "MITRE",
-      "MITRE T119 automated-collection",
+      "MITRE T1119 automated collection",
       "MITRE T1552.004 unsecured credentials private keys",
       "MITRE T1552 unsecured credentials",
+      "MITRE T1555 credentials from password stores",
       "MITRE TA0006 credential access",
       "MITRE TA0007 discovery",
       "MITRE TA0009 collection",
@@ -12898,7 +13039,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (7)",
+      "MITRE (8)",
       "Container",
       "Gcp",
       "Host",
@@ -12912,9 +13053,10 @@
     "source": "falco",
     "tags": [
       "MITRE",
-      "MITRE T119 automated-collection",
+      "MITRE T1119 automated collection",
       "MITRE T1552.004 unsecured credentials private keys",
       "MITRE T1552 unsecured credentials",
+      "MITRE T1555 credentials from password stores",
       "MITRE TA0006 credential access",
       "MITRE TA0007 discovery",
       "MITRE TA0009 collection",
@@ -15674,6 +15816,104 @@
     ]
   },
   {
+    "desc": "Detect GetFederationToken with an admin policy (the session permissions are the intersection of the IAM user policies and the session policies that are passed). An attacker can leverage this API to generate a set of temporary security credentials that survive revocation of the original persistent credentials.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (3)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Get Federation Token with Admin Policy",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0003 persistence",
+      "MITRE TA0005 defense evasion"
+    ]
+  },
+  {
+    "desc": "Detect retrieval of information about a Lambda function, including a link to download its source code",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS (2)",
+      "Cloud",
+      "MITRE (4)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Get Lambda Function",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS Lambda",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0007 discovery",
+      "MITRE TA0010 exfiltration"
+    ]
+  },
+  {
+    "desc": "Detect retrieval of the encrypted administrator password for a running Windows instance.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS (4)",
+      "Cloud",
+      "MITRE (4)",
+      "SOC2 (2)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Get Password Data",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS EC2",
+      "AWS WAF",
+      "AWS WAF SEC-1",
+      "Cloud",
+      "MITRE",
+      "MITRE T1555 credentials from password stores",
+      "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery",
+      "SOC2",
+      "SOC2 CC8.1"
+    ]
+  },
+  {
+    "desc": "Detect retrieval of the contents of the encrypted fields SecretString or SecretBinary from the specified version of a secret - whichever contains content.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS (4)",
+      "Cloud",
+      "MITRE (5)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Get Secret Value",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS SecretsManager",
+      "AWS WAF",
+      "AWS WAF SEC-1",
+      "Cloud",
+      "MITRE",
+      "MITRE T1082 system information discovery",
+      "MITRE T1528 steal application access token",
+      "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery"
+    ]
+  },
+  {
     "desc": "Detects when a Github Branch Protection Rule has been removed.",
     "disabled": false,
     "has_exceptions": true,
@@ -15967,7 +16207,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (3)",
+      "MITRE (7)",
       "Container",
       "Host"
     ],
@@ -15977,8 +16217,12 @@
     "source": "falco",
     "tags": [
       "MITRE",
+      "MITRE T1025 data from removable media",
+      "MITRE T1052 exfiltration over physical medium",
+      "MITRE T1092 communication through removable media",
       "MITRE T1200 hardware additions",
       "MITRE TA0001 initial access",
+      "MITRE TA0011 command and control",
       "Container",
       "Host"
     ]
@@ -17301,7 +17545,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (7)",
+      "MITRE (9)",
       "Container"
     ],
     "oss_rule": false,
@@ -17313,7 +17557,9 @@
       "MITRE T1027.004 obfuscated files or information compile after delivery",
       "MITRE T1027 obfuscated files or information",
       "MITRE T1072 software deployment tools",
+      "MITRE T1554 compromise client software binary",
       "MITRE T1608 stage capabilities",
+      "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
       "MITRE TA0042 resource development",
       "Container"
@@ -17702,7 +17948,7 @@
       "HIPAA (4)",
       "HITRUST (12)",
       "ISO (3)",
-      "MITRE (13)",
+      "MITRE (14)",
       "NIST (15)",
       "SOC2 (3)",
       "Container",
@@ -17747,6 +17993,7 @@
       "MITRE T1046 network service scanning",
       "MITRE T1049 system network connections discovery",
       "MITRE T1105 ingress tool transfer",
+      "MITRE T1135 network share discovery",
       "MITRE T157 lateral tool transfer",
       "MITRE TA0007 discovery",
       "MITRE TA0010 exfiltration",
@@ -17784,7 +18031,7 @@
       "HIPAA (4)",
       "HITRUST (12)",
       "ISO (3)",
-      "MITRE (10)",
+      "MITRE (11)",
       "NIST (15)",
       "SOC2 (3)",
       "Host",
@@ -17828,6 +18075,7 @@
       "MITRE T1046 network service discovery",
       "MITRE T1046 network service scanning",
       "MITRE T1049 system network connections discovery",
+      "MITRE T1135 network share discovery",
       "MITRE TA0007 discovery",
       "MITRE TA0010 exfiltration",
       "NIST",
@@ -17965,6 +18213,29 @@
       "SOC2 CC6.8",
       "Container",
       "Process"
+    ],
+    "updated_oss_condition": true
+  },
+  {
+    "desc": "Detect listing of all S3 buckets, if the request did not originate from the AWS Management Console.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS (2)",
+      "Cloud",
+      "MITRE (3)"
+    ],
+    "oss_rule": true,
+    "priority": "WARNING",
+    "rule": "List Buckets",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS S3",
+      "Cloud",
+      "MITRE",
+      "MITRE T1580 cloud infrastructure discovery",
+      "MITRE TA0007 discovery"
     ],
     "updated_oss_condition": true
   },
@@ -18160,7 +18431,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (5)",
+      "MITRE (6)",
       "Container",
       "Host",
       "Ioc"
@@ -18173,6 +18444,7 @@
     "source": "falco",
     "tags": [
       "MITRE",
+      "MITRE T1102 web service",
       "MITRE T1496 resource hijacking",
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
@@ -18258,6 +18530,23 @@
       "Container",
       "Host",
       "Ioc"
+    ]
+  },
+  {
+    "desc": "Detect whenever a filename associated with known cryptominers is pushed to a repository through a commit.",
+    "disabled": false,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "Github"
+    ],
+    "oss_rule": false,
+    "policy": "Sysdig Github Threat Intelligence",
+    "priority": "CRITICAL",
+    "rule": "Miner Filename Pushed to Repository",
+    "severity": 3,
+    "source": "github",
+    "tags": [
+      "Github"
     ]
   },
   {
@@ -18739,7 +19028,7 @@
     "has_exceptions": true,
     "normalized_tags": [
       "FIM",
-      "MITRE (4)",
+      "MITRE (7)",
       "Container",
       "File",
       "Host"
@@ -18752,7 +19041,10 @@
     "source": "falco",
     "tags": [
       "FIM",
+      "MITRE",
+      "MITRE T1129 shared modules",
       "MITRE T1574.006 hijack execution flow dynamic linker hijacking",
+      "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation",
       "MITRE TA0005 defense evasion",
@@ -19662,6 +19954,28 @@
       "MITRE TA0007 discovery",
       "Container",
       "Host"
+    ]
+  },
+  {
+    "desc": "Detect password policy discovery",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS (2)",
+      "Cloud",
+      "MITRE (3)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Password Policy Discovery Detected",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS IAM",
+      "Cloud",
+      "MITRE",
+      "MITRE T1201 password policy discovery",
+      "MITRE TA0007 discovery"
     ]
   },
   {
@@ -20595,6 +20909,50 @@
       "MITRE TA0007 discovery",
       "Container",
       "File"
+    ]
+  },
+  {
+    "desc": "Detect a Read operation on objects in watched buckets.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS (2)",
+      "Cloud",
+      "MITRE (3)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Read Object in Watched Bucket",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS S3",
+      "Cloud",
+      "MITRE",
+      "MITRE T1619 cloud storage object discovery",
+      "MITRE TA0007 discovery"
+    ]
+  },
+  {
+    "desc": "Detect a Read operation on objects in bucket through the AWSSupportServiceRolePolicy Assumed Role.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS (2)",
+      "Cloud",
+      "MITRE (3)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Read Object through AWSSupportServiceRolePolicy Assumed Role",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS S3",
+      "Cloud",
+      "MITRE",
+      "MITRE T1619 cloud storage object discovery",
+      "MITRE TA0007 discovery"
     ]
   },
   {
@@ -21746,6 +22104,23 @@
     ]
   },
   {
+    "desc": "Detect unusual requests to get the bulk email sending limits, if the requests did not originate from the AWS Management Console. This may be an indication that attackers may abuse an account to run spam campaigns.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud"
+    ],
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "SES Get Send Quota",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud"
+    ]
+  },
+  {
     "desc": "Detect enabling/disabling email sending in the Simple Email Service (SES) account. By disabling email sending, attackers could disrupt business operations that use SES to send automated internal and external emails. Instead, if the SES account has email sending disabled, attackers could enable it to send spam emails.",
     "disabled": true,
     "has_exceptions": true,
@@ -21848,6 +22223,26 @@
     ]
   },
   {
+    "desc": "Detect requests to get information and settings for sending SMS messages from your AWS account, if the requests did not originate from the AWS Management Console. This may be an indication that attackers may abuse an account to run spam campaigns.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (2)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "SNS Get SMS Sending Information",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0007 discovery"
+    ]
+  },
+  {
     "desc": "After gaining access, attackers can modify the authorized_keys file to maintain persistence on a victim host. Where authorized_keys files are modified via cloud APIs or command line interfaces, an adversary may achieve privilege escalation on the target  virtual machine if they add a key to a higher-privileged user. This rules aims at detecting any modification to the authorized_keys file, that is usually located under the .ssh directory in any user's home directory.",
     "disabled": true,
     "has_exceptions": true,
@@ -21873,6 +22268,27 @@
       "Container",
       "File",
       "Host"
+    ]
+  },
+  {
+    "desc": "Detect reading a parameter from the SSM Parameter Store. Those parameters can contain secrets and configuration data, such as passwords, database strings, Amazon Machine Image (AMI) IDs, and license codes.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud",
+      "MITRE (3)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "SSM Get Parameter",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery"
     ]
   },
   {
@@ -22717,6 +23133,28 @@
     ]
   },
   {
+    "desc": "This rule detects chdir events using file descriptors in the /proc file system executed by the Docker CRI processes. It specifically focuses on the CVE-2024-21626 related to the \"Leaky Vessels\" vulnerability.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (4)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Suspicious Chdir Event Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1068 exploitation for privilege escalation",
+      "MITRE T1611 escape to host",
+      "MITRE TA0004 privilege escalation",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect suspicious connections to the K8S API Server from a container. Suspicious requests such as POST ones sent by curl and wget, or kubectl binary not belonging to the base image of a container may be abused by attackers to interact with the K8s API server leveraging exceeding serviceaccount mounted on pods.",
     "disabled": true,
     "has_exceptions": true,
@@ -22870,7 +23308,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (4)",
+      "MITRE (5)",
       "Container",
       "Host"
     ],
@@ -22882,6 +23320,7 @@
       "MITRE",
       "MITRE T1071.001 application layer protocol web protocols",
       "MITRE T1071.004 application layer protocol dns",
+      "MITRE T1102 web service",
       "MITRE TA0011 command and control",
       "Container",
       "Host"
@@ -23029,6 +23468,27 @@
     ]
   },
   {
+    "desc": "Adversaries can establish persistence or escalate privileges by adding a malicious binary path or shell commands to RC scripts specific to the Unix-like distribution, which, upon reboot, will be executed with root privileges.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (5)",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Suspicious RC Script Modification",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1037.004 RC scripts",
+      "MITRE T1037 boot or logon initialization scripts",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect direct writes to system service files.  May be an indication of compromise.",
     "disabled": true,
     "has_exceptions": true,
@@ -23103,17 +23563,15 @@
   },
   {
     "desc": "the creation of a disk type device and its mount can lead to container escape",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (6)",
       "Container"
     ],
     "oss_rule": false,
-    "policy": "Sysdig Runtime Threat Detection",
     "priority": "WARNING",
     "rule": "Suspicious device created in container",
-    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -23176,6 +23634,27 @@
       "SOC2",
       "SOC2 CC6.2",
       "K8S"
+    ]
+  },
+  {
+    "desc": "As part of reconnaissance activities, adversaries may attempt to calculate the geographical location of a victim host; this can be achieved by connecting to an external IP information retriever, or by executing certain commands on the machine. The data obtained\u00a0can be used by adversaries to influence subsequent actions, including whether to\u00a0infect the target and/or pursue specific malicious operations.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (3)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "System Geolocation Discovery",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1614 system location discovery",
+      "MITRE TA0007 discovery",
+      "Container",
+      "Host"
     ]
   },
   {
