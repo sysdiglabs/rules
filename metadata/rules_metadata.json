@@ -16204,7 +16204,7 @@
   },
   {
     "desc": "This rule detects when hardware is added to the system by monitoring specific process names and commands used.",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (7)",
@@ -16212,8 +16212,10 @@
       "Host"
     ],
     "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
     "priority": "WARNING",
     "rule": "Hardware Added to the System",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -16372,6 +16374,26 @@
       "SOC2 CC6.7",
       "K8S",
       "Network"
+    ]
+  },
+  {
+    "desc": "This rule detects interactive reconnaissance activity, flagging command-line executions associated with reconnaissance tools and commands",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (2)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Interactive Reconnaissance Activity Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE T1057 process discovery",
+      "MITRE TA0007 discovery",
+      "Container",
+      "Host"
     ]
   },
   {
@@ -20003,6 +20025,30 @@
     ]
   },
   {
+    "desc": "Adversaries may attempt to gather information about attached peripheral devices, drivers or components connected to a computer system. This activity can be useful during the reconnaissance phase or to perform virtualization evasion.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (6)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Peripheral Device Discovery Activity Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1120 peripheral device discovery",
+      "MITRE T1497 virtualization-sandbox evasion",
+      "MITRE T1652 device driver discovery",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA0007 discovery",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect any attempt to create a pod in the kube-system or kube-public namespaces",
     "disabled": true,
     "has_exceptions": true,
@@ -20131,6 +20177,26 @@
       "Container",
       "Host",
       "Network"
+    ]
+  },
+  {
+    "desc": "Adversaries might try to take control of an active SSH session by employing a custom SSH agent. This detection rule specifically identifies instances where a custom agent is added and tested.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (4)",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Possible SSH Hijacking Attempt Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1563 remote service session hijacking",
+      "MITRE T1563 remote service session hijacking ssh hijacking",
+      "MITRE TA008 lateral movement",
+      "Host"
     ]
   },
   {
@@ -20853,6 +20919,45 @@
       "MITRE TA0007 discovery",
       "Container",
       "Host"
+    ]
+  },
+  {
+    "desc": "Detect the creation of an RDS DB instance.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS",
+      "Cloud"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "RDS Create DB Instance",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud"
+    ]
+  },
+  {
+    "desc": "Detect the deletion of an RDS DB instance.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "AWS (2)",
+      "Cloud",
+      "MITRE (3)"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "RDS Delete DB Instance",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS RDS",
+      "Cloud",
+      "MITRE",
+      "MITRE T1485 data destruction",
+      "MITRE TA0040 impact"
     ]
   },
   {
@@ -23134,7 +23239,7 @@
   },
   {
     "desc": "This rule detects chdir events using file descriptors in the /proc file system executed by the Docker CRI processes. It specifically focuses on the CVE-2024-21626 related to the \"Leaky Vessels\" vulnerability.",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (4)",
@@ -23142,8 +23247,10 @@
       "Host"
     ],
     "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
     "priority": "WARNING",
     "rule": "Suspicious Chdir Event Detected",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -23301,6 +23408,29 @@
       "Container",
       "File",
       "Host"
+    ]
+  },
+  {
+    "desc": "This rule detects risky Docker settings that could result in container escape, lack of security constraints, or misuse of host resources, enhancing container security.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (7)",
+      "Container"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Suspicious Docker Options",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1562 impair defenses",
+      "MITRE T1609 container administration command",
+      "MITRE T1611 escape to host",
+      "MITRE TA0002 execution",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
+      "Container"
     ]
   },
   {
@@ -23469,15 +23599,17 @@
   },
   {
     "desc": "Adversaries can establish persistence or escalate privileges by adding a malicious binary path or shell commands to RC scripts specific to the Unix-like distribution, which, upon reboot, will be executed with root privileges.",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (5)",
       "Host"
     ],
     "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
     "priority": "WARNING",
     "rule": "Suspicious RC Script Modification",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
