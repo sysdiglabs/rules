@@ -6487,6 +6487,27 @@
     ]
   },
   {
+    "desc": "Attackers might explore network shares on compromised SMB servers to locate valuable files. Sensitive data from remote  systems, available through shared network drives (such as host shared directories or network file servers), and accessible from the present system may be gathered in preparation for exfiltration activities.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (3)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Connection to SMB Server detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1039 data from network shared drive",
+      "MITRE TA0009 collection",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect a console login failure",
     "disabled": true,
     "has_exceptions": true,
@@ -23406,6 +23427,28 @@
       "MITRE T1653 power settings",
       "MITRE TA0003 persistence",
       "MITRE TA0040 impact",
+      "Container",
+      "Host"
+    ]
+  },
+  {
+    "desc": "This rule detects usage of steganography tools available in Unix-like distributions. An adversary may utilize such tools in order to hide C2 traffic and obfuscate data in digital messages transferred between a compromised system and an attacker-controlled one.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (4)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Steganography Tool Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1001.002 steganography",
+      "MITRE T1001 Data Obfuscation",
+      "MITRE TA0011 command and control",
       "Container",
       "Host"
     ]
