@@ -5028,6 +5028,27 @@
     ]
   },
   {
+    "desc": "This rule detects possible CVE-2024-3094 exploitation when the SSH daemon process loads a vulnerable version of the liblzma library. An attacker could exploit this to interfere with authentication in sshd via systemd, potentially compromising sensitive data or escalating their privileges.",
+    "disabled": false,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
+    "priority": "NOTICE",
+    "rule": "Backdoored library loaded into SSHD (CVE-2024-3094)",
+    "severity": 3,
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "This rule detects base64 encoded ELF executables in command line arguments.  Base64 can be used to encode binary data for transfer to ASCII-only command lines.  Attackers can leverage this technique in various exploits to load shellcode and evade detection.",
     "disabled": false,
     "has_exceptions": true,
@@ -11573,7 +11594,7 @@
       "HIPAA (5)",
       "HITRUST (6)",
       "ISO (3)",
-      "MITRE (8)",
+      "MITRE (9)",
       "NIST (7)",
       "SOC2 (2)",
       "Container",
@@ -11605,6 +11626,7 @@
       "MITRE T1070.004 indicator removal file deletion",
       "MITRE T1070 indicator removal on host",
       "MITRE T1485 data destruction",
+      "MITRE T1562.003 impair defenses impair command history logging",
       "MITRE TA0005 defense evasion",
       "MITRE TA0040 impact",
       "NIST",
@@ -18036,7 +18058,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (7)",
+      "MITRE (9)",
       "Container",
       "Network",
       "Process"
@@ -18049,6 +18071,8 @@
       "MITRE",
       "MITRE T1021 remote services",
       "MITRE T1048.003 exfiltration over alternative protocol exfiltration over unencrypted non c2 channel",
+      "MITRE T1074.002 remote data staging",
+      "MITRE T1074 data staged",
       "MITRE T1105 ingress tool transfer",
       "MITRE T1570 lateral tool transfer",
       "MITRE TA0008 lateral movement",
@@ -21914,8 +21938,8 @@
       "MITRE T1070 indicator removal on host",
       "MITRE T1485 data destruction",
       "MITRE T1490 inhibit system recovery",
+      "MITRE T1561.001 disk wipe disk content wipe",
       "MITRE T1561 disk wipe",
-      "MITRE T1561 disk wipe disk content wipe",
       "MITRE T1565 data manipulation",
       "MITRE TA0005 defense evasion",
       "MITRE TA0040 impact",
@@ -22281,6 +22305,28 @@
       "MITRE TA0040 impact",
       "SOC2",
       "SOC2 CC7.2"
+    ]
+  },
+  {
+    "desc": "This rule detects the installation of a root certificate on a system, which adversaries may use to avoid security alerts when establishing connections to their malicious web servers. Attackers could carry out man-in-the-middle attacks, intercepting sensitive data exchanged between the victim and the adversary's servers, without triggering any warnings.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (4)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Root Certificate Installed",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1553.004 install root certificate",
+      "MITRE T1553 subvert trust control",
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "Host"
     ]
   },
   {
@@ -23461,21 +23507,25 @@
   },
   {
     "desc": "This rule detects usage of steganography tools available in Unix-like distributions. An adversary may utilize such tools in order to hide C2 traffic and obfuscate data in digital messages transferred between a compromised system and an attacker-controlled one.",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (4)",
+      "MITRE (6)",
       "Container",
       "Host"
     ],
     "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
     "priority": "WARNING",
     "rule": "Steganography Tool Detected",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
       "MITRE T1001.002 steganography",
       "MITRE T1001 Data Obfuscation",
+      "MITRE T1027.003 obfuscated files and information steganography",
+      "MITRE T1027 obfuscated files and information",
       "MITRE TA0011 command and control",
       "Container",
       "Host"
