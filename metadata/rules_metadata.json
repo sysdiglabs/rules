@@ -346,6 +346,31 @@
     ]
   },
   {
+    "desc": "This rule identifies connections to an LDAP Server on the default port, opened by LDAP tools. Such activity may mimic domain search operations or the creation of user accounts.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (7)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Active Directory Connection Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1078.002 valid accounts domains accounts",
+      "MITRE T1078 valid accounts",
+      "MITRE T1136.001 create account domain account",
+      "MITRE T1136 create account",
+      "MITRE TA0001 initial access",
+      "MITRE TA0003 persistence",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect adding an user to a group.",
     "disabled": true,
     "has_exceptions": true,
@@ -5032,7 +5057,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE",
+      "MITRE (4)",
       "Container",
       "Host"
     ],
@@ -5044,6 +5069,9 @@
     "source": "falco",
     "tags": [
       "MITRE",
+      "MITRE T1195.001 compromise software dependencies and development tools",
+      "MITRE T1195 supply chain compromise",
+      "MITRE TA0001 initial access",
       "Container",
       "Host"
     ]
@@ -6425,7 +6453,7 @@
     ]
   },
   {
-    "desc": "This rule detects connections to known IPFS gateways",
+    "desc": "This rule detects connections to known IPFS gateways, which can be used for evading traditional content monitoring and censorship mechanisms. An attacker could leverage this to access and distribute illicit or sensitive content without detection, potentially violating regulatory requirements and compromising data security.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -7467,7 +7495,7 @@
     ]
   },
   {
-    "desc": "New executable created in a container due to chmod",
+    "desc": "This rule detects drift in container security due to a new executable being created from a container via the chmod command. An attacker could escalate privileges by creating a malicious executable in a container.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -7561,7 +7589,7 @@
     ]
   },
   {
-    "desc": "Detected container running as root user",
+    "desc": "This rule detects when a container is running with root user privileges, potentially allowing an attacker to gain unauthorized access to critical system resources. An attacker could exploit this to execute malicious commands, manipulate system configurations, and compromise sensitive data within the container or host operating system.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -7584,7 +7612,7 @@
     ]
   },
   {
-    "desc": "detect any attempt to read host's file from a container using the \"open_by_handle_at\" and the DAC_READ_SEARCH capability",
+    "desc": "This rule detects unauthorized attempts to access host files from a container using the \"open_by_handle_at\" and DAC_READ_SEARCH capability. An attacker could potentially escape the container and escalate privileges by reading sensitive host files.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -8166,7 +8194,7 @@
     ]
   },
   {
-    "desc": "Detect a hardlink being created over sensitive files",
+    "desc": "This rule detects the creation of hardlinks over sensitive files, such as '/etc/shadow' or '/etc/sudoers', potentially allowing an attacker to gain unauthorized access to critical system information. An attacker could escalate their privileges by manipulating critical configuration files.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -8242,7 +8270,7 @@
     "updated_oss_condition": true
   },
   {
-    "desc": "Detect hidden files or directories created",
+    "desc": "This rule detects the creation of hidden files or directories by an application. An attacker could leverage this to hide malicious tools or exfiltrated data, maintaining persistence on the compromised system.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -9196,7 +9224,7 @@
     ]
   },
   {
-    "desc": "Detect symlink created over sensitive files",
+    "desc": "This rule detects the creation of symbolic links over sensitive files, alerting on potential unauthorized access to critical system configuration files like /etc/shadow and /etc/sudoers. An attacker could leverage this technique to escalate privileges or conceal malicious activities by manipulating system configurations using symbolic links.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -10145,7 +10173,7 @@
     ]
   },
   {
-    "desc": "Detect file system debugger debugfs launched inside a privileged container which might lead to container escape.",
+    "desc": "This rule detects the launch of debugfs within a privileged container, which can facilitate an escape to the host system. An attacker could leverage this to breach the container's isolated environment, potentially leading to unauthorized access or malicious activities on the host itself.",
     "disabled": false,
     "has_exceptions": false,
     "normalized_tags": [
@@ -10171,7 +10199,7 @@
     "updated_oss_condition": true
   },
   {
-    "desc": "Detect file system debugger debugfs launched on host which might lead to escape detection.",
+    "desc": "This rule detects the launch of debugfs on the host system, which could be used to bypass detection mechanisms. An attacker could utilize debugfs to hide malicious activities, such as altering or removing sensitive information on the file system, evading detection by security tools.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -10378,7 +10406,7 @@
     ]
   },
   {
-    "desc": "Detect bash history deletion",
+    "desc": "This rule detects bash history deletions by specific processes or file deletions, which could indicate attempts to cover malicious activities. An attacker could hide their tracks and evade detection by erasing their command history, potentially compromising the integrity of system logs and evading forensic analysis.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -11587,14 +11615,14 @@
     ]
   },
   {
-    "desc": "Detect shell history deletion",
+    "desc": "This rule detects the deletion or renaming of shell history files, aiming to identify potential attempts to cover up unauthorized access or malicious activities. An attacker could remove their command history to erase evidence of unauthorized system access and actions. This could hinder investigations into security incidents and impede the identification of unauthorized activities on the system.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
       "HIPAA (5)",
       "HITRUST (6)",
       "ISO (3)",
-      "MITRE (9)",
+      "MITRE (11)",
       "NIST (7)",
       "SOC2 (2)",
       "Container",
@@ -11621,6 +11649,8 @@
       "ISO 27001",
       "ISO 27001 A.18.1.3",
       "MITRE",
+      "MITRE T1036.003 rename system utilities",
+      "MITRE T1036 masquerading",
       "MITRE T1070.002 indicator removal clear linux or mac system logs",
       "MITRE T1070.003 indicator removal clear command history",
       "MITRE T1070.004 indicator removal file deletion",
@@ -11792,7 +11822,7 @@
     ]
   },
   {
-    "desc": "This rule detects curl being run using a socks proxy.",
+    "desc": "This rule detects the use of curl with a socks proxy, potentially indicating command and control activity or data exfiltration over alternative protocols. An attacker could establish covert communication channels or evade network detection by tunneling their traffic through the socks proxy while leveraging the curl command-line tool.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -11821,7 +11851,7 @@
     ]
   },
   {
-    "desc": "This rule detects the execution of potentially malicious command lines.",
+    "desc": "This rule detects potentially malicious command lines, such as attempts to delete critical system files or modify password-related files. An attacker could delete essential system files like or manipulate password files to gain unauthorized access or impede system recovery processes.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -11850,7 +11880,7 @@
     ]
   },
   {
-    "desc": "Clients reach Proxy/VPN IPs. It will be improved upon in the future.",
+    "desc": "This rule detects outbound connections to Proxy/VPN IPs, potentially indicative of command and control activity. An attacker could establish a covert channel by connecting to a Proxy/VPN to exfiltrate sensitive data undetected.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -11877,7 +11907,7 @@
     ]
   },
   {
-    "desc": "Clients reach the TOR network through its entry nodes. NOTE This is an EXPERIMENTAL rule and only contains a subset of TOR entry nodes. It will be improved upon in the future.",
+    "desc": "This rule detects outbound connections to TOR Entry Nodes, pinpointing potential attempts to evade network detection measures. An attacker could establish covert communication channels using TOR to disguise malicious activities, bypassing traditional network security controls. Engaging with TOR entry nodes facilitates anonymous communication, enabling data exfiltration or command and control operations.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -11905,7 +11935,7 @@
     ]
   },
   {
-    "desc": "Miners typically connect to miner pools on common ports(This rule does not work if the outbound connection is made through a proxy!).",
+    "desc": "This rule detects outbound connections on common miner pool ports, indicating potential cryptocurrency mining activity. An attacker could establish unauthorized mining operations using resources on the target system, potentially causing performance degradation and financial losses.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -11974,7 +12004,7 @@
     ]
   },
   {
-    "desc": "This rule detects the use of reconnaissance scripts.",
+    "desc": "This rule detects reconnaissance scripts executed on systems, aiming to identify malicious activities. An attacker could use reconnaissance scripts to gather sensitive information about the target network, potentially leading to further exploits or data breaches.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -12047,7 +12077,7 @@
     ]
   },
   {
-    "desc": "Detect Diamorphine rootkit activity",
+    "desc": "This rule detects potential Diamorphine rootkit activity on the system by monitoring specific signals and process executions, aiming to identify malicious kernel-level modifications and unauthorized privilege escalations. An attacker could use the Diamorphine rootkit to stealthily gain persistent access to the system, evade detection mechanisms, and potentially perform unauthorized privilege escalations.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -12523,7 +12553,7 @@
     ]
   },
   {
-    "desc": "Detect attempt to read mem or maps file in process folder to get credentials in plaintext",
+    "desc": "This rule detects potential memory dumps to extract plaintext credentials from sensitive process files. An attacker could utilize this to gain unauthorized access to critical systems or sensitive data, possibly compromising user credentials.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -13227,7 +13257,7 @@
     ]
   },
   {
-    "desc": "This rule detects file execution from the /dev/shm directory, a common tactic for threat actors to stash their readable+writable+(sometimes)executable files.",
+    "desc": "This rule detects file execution from the /dev/shm directory, a tactic used by threat actors to hide malicious scripts and binaries. An attacker could execute malicious code from this directory to evade detection by security tools, allowing them to carry out privilege escalation or process injection attacks.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -13254,7 +13284,7 @@
     "updated_oss_condition": true
   },
   {
-    "desc": "This rule detects file execution from the /tmp directory, a common tactic for threat actors to stash their readable+writable+executable files.",
+    "desc": "This rule detects execution of files from /tmp, commonly used by threat actors to hide their malicious files. An attacker could hide malicious scripts in the /tmp directory to evade detection and execute them without being noticed.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -13278,7 +13308,7 @@
     ]
   },
   {
-    "desc": "This rule detects executions from temporary filesystem locations such as /run/lock and /var/tmp, a common adversary technique for defense evasion.",
+    "desc": "This rule detects executions from tmpfs locations, a common technique used by adversaries for defense evasion. An attacker could execute malicious code from a tmpfs location to evade detection by security mechanisms. By exploiting this, an attacker can potentially hide their activities and maintain persistence within the target system.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -13299,7 +13329,7 @@
     ]
   },
   {
-    "desc": "A binary was seen being executed by ld-linux. This method can be used to execute programs that do not have the exec bit set and may possibly evade detection measures.",
+    "desc": "This rule detects the execution of a binary using ld-linux, commonly employed to bypass file execution restrictions. An attacker could use this method to run malicious programs without triggering detection mechanisms, ultimately evading security controls and escalating privileges.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -13375,7 +13405,7 @@
     "updated_oss_condition": true
   },
   {
-    "desc": "Detect authentication certificate theft on Linux by monitoring various directories of the system associated with certificates storage for suspicious activities.",
+    "desc": "This rule detects authentication certificate theft on Linux systems by monitoring for suspicious activities in directories related to certificate storage. An attacker could steal the authentication certificates and misuse them to gain unauthorized access or impersonate legitimate users.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -13396,7 +13426,7 @@
     ]
   },
   {
-    "desc": "Detect attempts to steal Azure Credentials, via find or grep command",
+    "desc": "This rule detects attempts to steal Azure Credentials using find or grep commands. An attacker could obtain sensitive Azure data, such as private keys, leading to unauthorized access to critical resources.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -13428,7 +13458,7 @@
     ]
   },
   {
-    "desc": "detect attempts to steal GCP Credentials, via find or grep command",
+    "desc": "This rule detects attempts to steal GCP Credentials using find or grep commands, aiming to prevent unauthorized access to confidential information stored on the Google Cloud Platform. An attacker could use stolen GCP Credentials to gain illegitimate access to sensitive data or resources within the targeted Google Cloud environment.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -16180,7 +16210,7 @@
     ]
   },
   {
-    "desc": "Detect reconnaissance attempts via find or grep to locate GPG security keys",
+    "desc": "This rule detects reconnaissance attempts that try to locate GPG security keys using 'find' or 'grep' commands. An attacker could potentially identify and steal GPG security keys to gain unauthorized access to encrypted communications or files.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -16591,7 +16621,7 @@
     ]
   },
   {
-    "desc": "This rule detects when hardware is added to the system by monitoring specific process names and commands used.",
+    "desc": "This rule detects hardware additions by monitoring specific processes and commands in the system. An attacker could add unauthorized hardware to establish command and control channels.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -16618,7 +16648,7 @@
     ]
   },
   {
-    "desc": "hexadecimal string decoded detected in cmdline, this technique can be used by attackers to avoid detection",
+    "desc": "This rule detects the presence of hexadecimal string decoding within command lines, a technique used by attackers to obfuscate their activities. An attacker could use this technique to evade detection mechanisms while attempting to decode and execute malicious commands, such as extracting and executing hidden payloads or commands within hexadecimal strings.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -16765,7 +16795,7 @@
     ]
   },
   {
-    "desc": "This rule detects interactive reconnaissance activity, flagging command-line executions associated with reconnaissance tools and commands",
+    "desc": "This rule detects interactive reconnaissance activity, identifying suspicious command-line executions linked to reconnaissance tools and identifying unauthorized users attempting to gather information. An attacker could leverage this activity to gather sensitive data, such as user login credentials or system configuration details, potentially assisting in further malicious actions.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -16892,7 +16922,7 @@
     ]
   },
   {
-    "desc": "Detected Java process downloading a class file which could indicate a successful exploit of the log4shell Log4j vulnerability (CVE-2021-44228)",
+    "desc": "This rule detects a Java process potentially exploiting the log4shell vulnerability by downloading a class file, which could provide an attacker with remote code execution capabilities. An attacker could leverage this access to gain full control over the targeted system, enabling data theft or further compromise of critical infrastructure.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -17798,7 +17828,7 @@
     ]
   },
   {
-    "desc": "This rule detects new kernel modules added",
+    "desc": "This rule detects changes in kernel modules on startup, which can indicate potential privilege escalation or persistence techniques by an attacker. An attacker could surreptitiously load malicious kernel modules to gain elevated privileges or maintain access to the system, evading detection.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -17827,7 +17857,7 @@
     ]
   },
   {
-    "desc": "Detects commands that want to kill known malicious process",
+    "desc": "This rule detects attempts to terminate recognized malicious processes. This is often seen within real attacks during which an adversary firstly tries to remove all competitive malicious software on a newly compromised system, ensuring that only their own will be running.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -17874,7 +17904,7 @@
     ]
   },
   {
-    "desc": "Detect a deletion of logs using techniques and tools seen in real attacks",
+    "desc": "This rule detects the deletion of lastlog files, commonly associated with attempts to cover tracks after unauthorized access. An attacker could delete lastlog records to evade detection, making it difficult to trace login activity. This manipulation could help an attacker avoid accountability and persist within the system undetected.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -17950,7 +17980,7 @@
     ]
   },
   {
-    "desc": "This rule detects the usage of compilers",
+    "desc": "This rule detects the launch of code compilers within containers, which could indicate potential development of malicious software by an attacker aiming to obfuscate their activities. An attacker could utilize this to compile malicious code within a container to evade detection and persistently tamper with system binaries, potentially compromising client software.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -18031,7 +18061,7 @@
     ]
   },
   {
-    "desc": "Detect container started with a powerful set of capabilities. Exceptions are made for known trusted images.",
+    "desc": "This rule detects container startups with excessive capabilities, excluding trusted images. An attacker could leverage a compromised container to escalate privileges, execute malicious code, or move laterally within the network. Excessive capabilities in a container's start-up pose a high-risk scenario for potential privilege escalation attacks.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -18219,7 +18249,7 @@
     ]
   },
   {
-    "desc": "Detect remote file copy tools launched in container",
+    "desc": "This rule detects the launch of remote file copy tools in containers, aiming to prevent unauthorized data exfiltration attempts. An attacker could exfiltrate sensitive information by using tools like 'rsync', 'scp', or 'sftp' to copy files from the container to an external location.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -19365,7 +19395,7 @@
     ]
   },
   {
-    "desc": "This rule detects changes to accessed, modified or created timestamp of files",
+    "desc": "This rule detects changes to file timestamps, which may indicate a timestomp attack attempting to cover up unauthorized access or modification. An attacker could manipulate timestamps using the 'touch' command or its variants to hide malicious activities, evading detection by altering the file's accessed, modified, or created times.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -19396,7 +19426,7 @@
       "HIPAA (4)",
       "HITRUST (12)",
       "ISO (3)",
-      "MITRE (5)",
+      "MITRE (6)",
       "NIST (11)",
       "PCI (3)",
       "SOC2 (3)",
@@ -19433,6 +19463,7 @@
       "ISO 27001",
       "ISO 27001 A.12.1.2",
       "MITRE",
+      "MITRE T1036.003 rename system utilities",
       "MITRE T1036 masquerading",
       "MITRE T1562.001 impair defenses disable or modify tools",
       "MITRE TA0003 persistence",
@@ -19460,7 +19491,7 @@
     ]
   },
   {
-    "desc": "Detect an attempt to write to file /etc/ld.so.preload",
+    "desc": "This rule detects attempts to modify the ld.so.preload file, typically used by attackers to preload malicious shared libraries into a system's library set. An attacker could use this to hijack the execution flow by loading their own libraries during program execution, potentially leading to privilege escalation or evasion of defense mechanisms.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -19492,7 +19523,7 @@
     ]
   },
   {
-    "desc": "Detect file system mount happened inside a privileged container which might lead to container escape.",
+    "desc": "This rule detects mounting within privileged containers, allowing an attacker to potentially escape the container. An attacker could exploit this to gain access to the host system, bypassing container isolation. This could lead to privilege escalation and lateral movement within the environment.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -19635,7 +19666,7 @@
     "updated_oss_condition": true
   },
   {
-    "desc": "Detect traffic to image outside local subnet.",
+    "desc": "This rule detects network connections outside the local subnet, which could indicate unauthorized access attempts from external sources. An attacker could potentially exploit this to exfiltrate sensitive data or establish a persistent presence within the network. This could lead to a breach of confidentiality and compromise the integrity of the system.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -20185,7 +20216,7 @@
     ]
   },
   {
-    "desc": "Detect traffic that is not to authorized server process and port.",
+    "desc": "This rule detects unauthorized network connections to server processes and ports, which could indicate potential attempts at lateral movement within a network. An attacker could potentially access sensitive data or compromise additional systems by bypassing security controls through illegitimate network communications.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -20294,7 +20325,7 @@
     "updated_oss_condition": true
   },
   {
-    "desc": "This rule detects an attempt to inject code into a process using PTRACE.",
+    "desc": "This rule detects a PTRACE attachment to processes, uncovering attempts to inject malicious code. An attacker could abuse this technique to gain unauthorized access to sensitive data or execute unauthorized commands, potentially leading to privilege escalation.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -20321,7 +20352,7 @@
     "updated_oss_condition": true
   },
   {
-    "desc": "Detect new packet socket at the device driver (OSI Layer 2) level in a container. Packet socket could be used for ARP Spoofing and privilege escalation(CVE-2020-14386) by attacker.",
+    "desc": "This rule detects the creation of a new packet socket at the device driver (OSI Layer 2) level in a container, which can be utilized by an attacker for ARP Spoofing and privilege escalation (CVE-2020-14386). An attacker could leverage this to intercept network traffic and potentially elevate their permissions in the system.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -20565,7 +20596,7 @@
     ]
   },
   {
-    "desc": "A process was seen using BPF on a network socket, this could indicate packet sniffing for use in a backdoor such as BPFDoor. Network diagnostic tools may also trigger this rule.",
+    "desc": "This rule detects potential backdoors utilizing BPF filters on network sockets. An attacker could leverage this technique for packet sniffing to gather sensitive information in a backdoor, such as BPFDoor, or initiate covert communication channels undetected.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -20617,7 +20648,7 @@
   },
   {
     "desc": "This rule detects IRC connections starting from flags and strings seen in network activity",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
       "MITRE (2)",
@@ -20625,8 +20656,10 @@
       "Network"
     ],
     "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
     "priority": "NOTICE",
     "rule": "Potential IRC connection detected",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE T1071.001 application layer protocol web protocols",
@@ -21333,6 +21366,28 @@
     ]
   },
   {
+    "desc": "This rule is designed to detect the utilization of QEMU on Linux hosts, by detecting read operations on files. QEMU, a versatile virtualization tool, can be exploited by attackers to conveniently deploy their malicious tools and obscure the compromise of a system.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (4)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "QEMU Activity Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1497 virtualization sandbox evasion",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA0007 discovery",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect any attempt at querying the window manager which could provide an attacker  with a list of open application windows and, potentially, information on how the system is used.",
     "disabled": true,
     "has_exceptions": true,
@@ -21757,7 +21812,7 @@
     ]
   },
   {
-    "desc": "Detect redirecting stdout/stdin to network connection in container (potential reverse shell).",
+    "desc": "This rule detects attempts to redirect standard input/output to a network connection within a container, potentially indicating a reverse shell. An attacker could establish remote access to a compromised system by leveraging this network connection to execute commands and exfiltrate sensitive data.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -21798,7 +21853,7 @@
     "updated_oss_condition": true
   },
   {
-    "desc": "Detect redirecting stdout/stdin to network connection in host (potential reverse shell).",
+    "desc": "This rule detects redirection of STDOUT/STDIN to a network connection in the host, indicative of a potential reverse shell, allowing an attacker to gain unauthorized access to the target system. By intercepting communications through the network connection, the attacker could execute commands remotely and extract sensitive data, compromising system integrity.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -21886,7 +21941,7 @@
     ]
   },
   {
-    "desc": "Detect process running to clear bulk data from disk",
+    "desc": "This rule detects processes attempting to clear bulk data from the disk, such as 'shred' or 'mkfs', potentially erasing sensitive information. An attacker could perform data destruction by running these commands to cover their tracks and hinder forensic investigations.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -23067,7 +23122,7 @@
     ]
   },
   {
-    "desc": "Detect grep private keys or passwords activity.",
+    "desc": "This rule detects activities searching for private keys or passwords, alerting on potential credential exposure. An attacker could gain unauthorized access to sensitive information such as SSH keys, compromising system security.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -23325,7 +23380,7 @@
     ]
   },
   {
-    "desc": "When the setuid or setgid bits are set for an application, this means that the application will run with the privileges of the owning user or group respectively. Detect setuid or setgid bits set via chmod",
+    "desc": "This rule detects when the setuid or setgid bits are set for an application, which may lead to privilege escalation attacks by allowing the application to run with elevated privileges. An attacker could compromise a system by exploiting the elevated privileges granted to the application with the setuid or setgid bits set.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -23458,7 +23513,7 @@
     ]
   },
   {
-    "desc": "A connection was opened using the bash builtins, covert download or possible reverse shell in place",
+    "desc": "This rule detects shell binaries opening connections which could indicate a potential reverse shell or covert download. An attacker could establish unauthorized network connections to exfiltrate data or gain persistent access to the target system.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -23928,7 +23983,7 @@
     ]
   },
   {
-    "desc": "This rule detects risky Docker settings that could result in container escape, lack of security constraints, or misuse of host resources, enhancing container security.",
+    "desc": "This rule detects risky Docker settings that may lead to container escape or misuse of host resources, enhancing container security. An attacker could exploit such Docker options to elevate privilege levels within the container or perform unauthorized actions on the host system, enabling further compromise.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -23951,7 +24006,7 @@
     ]
   },
   {
-    "desc": "This rule detects DNS queries that contain suspicious domains",
+    "desc": "This rule detects suspicious domains in DNS queries, which could indicate potential command-and-control activity or data exfiltration over the network. An attacker could use these suspicious domains to establish covert communication channels, bypassing traditional security controls and exfiltrating sensitive information undetected.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -23977,11 +24032,11 @@
     ]
   },
   {
-    "desc": "An attempt was made to create a home directory in a non-standard location. This usually occurs when an attacker is trying to create a new, stealthy user to use as a backdoor to a compromised system.",
+    "desc": "This rule detects suspicious attempts to create a home directory in non-standard locations, potentially indicating an attacker trying to create a stealthy user for a backdoor on a compromised system. An attacker could use this technique to maintain unauthorized access, hide their activities, and evade detection.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (7)",
+      "MITRE (8)",
       "Container",
       "Host"
     ],
@@ -23994,6 +24049,7 @@
     "tags": [
       "MITRE",
       "MITRE T1059.004 command and scripting interpreter unix shell",
+      "MITRE T1136.001 create account local account",
       "MITRE T1136 create account",
       "MITRE T1564.001 hide artifacts hidden files and directories",
       "MITRE T1564.002 hide artifacts hidden users",
@@ -24004,7 +24060,7 @@
     ]
   },
   {
-    "desc": "Detect suspicious process trees involving Java that are used to exploit Remote Code Execution",
+    "desc": "This rule detects suspicious Java child processes that may indicate an attempt to obtain Remote Code Execution within a system. An attacker could leverage this to execute malicious code, potentially gaining unauthorized access and control over sensitive data and resources.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -24088,7 +24144,7 @@
     ]
   },
   {
-    "desc": "Detect edit/deletion of firewall rules, change logging options for firewall processes, as well as stopping firewall processes. Works with iptables, nftables, ufw, firewalld.",
+    "desc": "This rule detects suspicious operations with firewalls, including modifications to firewall rules, changes in logging configurations, and attempts to stop firewall processes, potentially enabling an attacker to disable network defenses. An attacker could evade detection by altering firewall rules, compromising the network's security posture, and allowing unauthorized access.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -24469,7 +24525,7 @@
     "updated_oss_condition": true
   },
   {
-    "desc": "This rule detects common techniques by threat actors to disable runtime security software.",
+    "desc": "This rule detects attempts to disable security software within a container, a common tactic used by threat actors to evade detection and carry out malicious activities within a compromised environment. An attacker could potentially disable runtime security measures, allowing for the execution of malware or unauthorized code with reduced risk of detection, enhancing their ability to maintain persistence and further compromise the system.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -24658,7 +24714,7 @@
     ]
   },
   {
-    "desc": "Detect a k8s client tool executed inside a container",
+    "desc": "This rule detects the execution of client tools, such as 'kubectl' and 'docker', interacting with container engines or K8s API server within a container, helping prevent unauthorized access and manipulation of containerized resources. An attacker could potentially leverage this to interact with the container engine and even compromise the integrity of the cluster, posing a significant security risk to the environment.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -24719,7 +24775,7 @@
     ]
   },
   {
-    "desc": "Detect a process that is using a network connection and it shouldn't or is using an unusual port.",
+    "desc": "This rule detects suspicious network connections initiated from legitimate processes or non-standard ports, potentially indicating unauthorized activity. An attacker could establish a covert communication channel for command and control operations, enabling data exfiltration or persistence mechanisms to evade detection and escalate privileges.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -25074,7 +25130,7 @@
     ]
   },
   {
-    "desc": "Detect a successful unprivileged userfaultfd syscall which might act as an attack primitive to exploit other bugs",
+    "desc": "This rule detects a successful attempt to delegate the handling of page faults to an unprivileged userspace process, potentially exposing the system to exploitation. An attacker could leverage this to execute malicious code, bypass security restrictions, and escalate privileges on the system.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
@@ -26037,11 +26093,11 @@
     ]
   },
   {
-    "desc": "This rule detects create/modify/delete operations on users",
+    "desc": "This rule detects user management operations like creating, modifying, or deleting users. An attacker could use this information to escalate privileges through unauthorized user account creation. Unauthorized user accounts can be created, allowing the attacker to gain persistent access to the system.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (8)",
+      "MITRE (9)",
       "Container",
       "Host"
     ],
@@ -26053,6 +26109,7 @@
       "MITRE",
       "MITRE T1070 indicator removal",
       "MITRE T1098 account manipulation",
+      "MITRE T1136.001 create account local account",
       "MITRE T1136 create account",
       "MITRE T1531 account access removal",
       "MITRE TA0003 persistence",
@@ -26215,7 +26272,7 @@
     ]
   },
   {
-    "desc": "activity by any programs that can manage users, passwords, or permissions. sudo and su are excluded. Activity in containers is also excluded--some containers create custom users on top of a base linux distribution at startup. Some innocuous commandlines that don't actually change anything are excluded.",
+    "desc": "This rule detects potentially malicious activities related to managing user permissions and passwords in non-container environments using specific binaries. An attacker could compromise user credentials and elevate privileges by using unauthorized user management commands.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
@@ -26291,11 +26348,11 @@
     ]
   },
   {
-    "desc": "This rule detects create/modify/delete operations on groups of users",
+    "desc": "This rule detects create/modify/delete operations on groups of users triggered by specific commands executed by unauthorized users. An attacker could manipulate group memberships to escalate privileges, gaining unauthorized access to sensitive data or resources and potentially compromising the security of the system.",
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (9)",
+      "MITRE (10)",
       "Container",
       "Host"
     ],
@@ -26307,6 +26364,7 @@
       "MITRE",
       "MITRE T1070 indicator removal",
       "MITRE T1098 account manipulation",
+      "MITRE T1136.001 create account local account",
       "MITRE T1136 create account",
       "MITRE T1531 account access removal",
       "MITRE TA0003 persistence",
@@ -26709,7 +26767,7 @@
     ]
   },
   {
-    "desc": "This rule detects an attempt to elevate privileges by switching namespace context to a privileged process.",
+    "desc": "This rule detects attempts to elevate privileges by switching namespace context to a privileged process. An attacker could gain escalated privileges and potentially execute unauthorized actions in the host system.",
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
