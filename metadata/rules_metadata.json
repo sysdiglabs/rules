@@ -350,7 +350,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (7)",
+      "MITRE (10)",
       "Container",
       "Host"
     ],
@@ -360,12 +360,15 @@
     "source": "falco",
     "tags": [
       "MITRE",
+      "MITRE T1069.002 permission groups discovery domain groups",
+      "MITRE T1069 permission groups discovery",
       "MITRE T1078.002 valid accounts domains accounts",
       "MITRE T1078 valid accounts",
-      "MITRE T1136.001 create account domain account",
+      "MITRE T1136.002 create account domain account",
       "MITRE T1136 create account",
       "MITRE TA0001 initial access",
       "MITRE TA0003 persistence",
+      "MITRE TA0007 discovery",
       "Container",
       "Host"
     ]
@@ -10064,7 +10067,7 @@
       "HIPAA (4)",
       "HITRUST (15)",
       "ISO (3)",
-      "MITRE (6)",
+      "MITRE (7)",
       "NIST (12)",
       "PCI (3)",
       "SOC2 (2)",
@@ -10108,6 +10111,7 @@
       "MITRE",
       "MITRE T1190 exploit public facing application",
       "MITRE T1203 exploitation for client execution",
+      "MITRE T1505.001 server software component SQL stored procedures",
       "MITRE T1505 server software component",
       "MITRE TA0001 initial access",
       "MITRE TA0002 execution",
@@ -12854,8 +12858,8 @@
       "MITRE T1546 event triggered execution",
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
-      "MITRE TA0040 impact",
-      "MITRE TA004 privilege escalation"
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0040 impact"
     ]
   },
   {
@@ -13573,7 +13577,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (8)",
+      "MITRE (9)",
       "Aws",
       "Container",
       "Host",
@@ -13588,6 +13592,7 @@
     "tags": [
       "MITRE T1033 system owner user discovery",
       "MITRE T1119 automated collection",
+      "MITRE T1552.003 unsecured credentials bash history",
       "MITRE T1552.004 unsecured credentials private keys",
       "MITRE T1552 unsecured credentials",
       "MITRE T1555 credentials from password stores",
@@ -13627,7 +13632,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (8)",
+      "MITRE (9)",
       "Azure",
       "Container",
       "Host",
@@ -13642,6 +13647,7 @@
     "tags": [
       "MITRE",
       "MITRE T1119 automated collection",
+      "MITRE T1552.003 unsecured credentials bash history",
       "MITRE T1552.004 unsecured credentials private keys",
       "MITRE T1552 unsecured credentials",
       "MITRE T1555 credentials from password stores",
@@ -13659,7 +13665,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (8)",
+      "MITRE (9)",
       "Container",
       "Gcp",
       "Host",
@@ -13674,6 +13680,7 @@
     "tags": [
       "MITRE",
       "MITRE T1119 automated collection",
+      "MITRE T1552.003 unsecured credentials bash history",
       "MITRE T1552.004 unsecured credentials private keys",
       "MITRE T1552 unsecured credentials",
       "MITRE T1555 credentials from password stores",
@@ -16822,7 +16829,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (7)",
+      "MITRE (8)",
       "Container",
       "Host"
     ],
@@ -16835,6 +16842,7 @@
     "tags": [
       "MITRE",
       "MITRE T1025 data from removable media",
+      "MITRE T1052.001 exfiltration over physical medium exfiltration over USB",
       "MITRE T1052 exfiltration over physical medium",
       "MITRE T1092 communication through removable media",
       "MITRE T1200 hardware additions",
@@ -18319,7 +18327,7 @@
       "HIPAA (4)",
       "HITRUST (14)",
       "ISO (5)",
-      "MITRE (8)",
+      "MITRE (11)",
       "NIST (15)",
       "SOC2 (2)",
       "Container",
@@ -18360,11 +18368,14 @@
       "ISO 27001 A.14.2.4",
       "MITRE",
       "MITRE T1068 exploitation for privilege escalation",
+      "MITRE T1562.010 impair defenses downgrade attack",
+      "MITRE T1562 impair defenses",
       "MITRE T1569 system services",
       "MITRE T1608.002 stage capabilities upload tool",
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
       "MITRE TA0042 resource development",
       "NIST",
       "NIST 800-171",
@@ -18651,8 +18662,8 @@
       "ISO 27001",
       "ISO 27001 A.9.4.4",
       "MITRE",
-      "MITRE  T1016.001 system network configuration discovery internet connection discovery",
       "MITRE T0842 network sniffing",
+      "MITRE T1016.001 system network configuration discovery internet connection discovery",
       "MITRE T1016 system network configuration discovery",
       "MITRE T1018 remote system discovery",
       "MITRE T1046 network service discovery",
@@ -19148,7 +19159,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (5)",
+      "MITRE (7)",
       "Container",
       "Host",
       "Ioc"
@@ -19162,6 +19173,8 @@
     "tags": [
       "MITRE",
       "MITRE T1059.004 command and scripting interpreter unix shell",
+      "MITRE T1204 user execution",
+      "MITRE T1204 user execution malicious file",
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
@@ -19290,7 +19303,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (6)",
+      "MITRE (7)",
       "Container",
       "Host"
     ],
@@ -19304,6 +19317,7 @@
       "MITRE",
       "MITRE T1056.001 input capture keylogging",
       "MITRE T1056 input capture",
+      "MITRE T1556.003 modify authentication process pluggable authentication modules",
       "MITRE T1556 modify authentication process",
       "MITRE TA0006 credential access",
       "MITRE TA0009 collection",
@@ -22787,9 +22801,9 @@
       "MITRE T1098 account manipulation",
       "MITRE T1578 modify cloud compute infrastructure",
       "MITRE TA0002 execution",
+      "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
-      "MITRE TA0008 lateral movement",
-      "MITRE TA003 persistence"
+      "MITRE TA0008 lateral movement"
     ],
     "updated_oss_condition": false
   },
@@ -22824,9 +22838,9 @@
       "MITRE T1535 unused unsupported cloud regions",
       "MITRE T1578 modify cloud compute infrastructure",
       "MITRE TA0002 execution",
+      "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
       "MITRE TA0008 lateral movement",
-      "MITRE TA003 persistence",
       "SOC2",
       "SOC2 CC6.6",
       "SOC2 CC7.2"
@@ -22864,9 +22878,9 @@
       "MITRE T1525 implant internal image",
       "MITRE T1578 modify cloud compute infrastructure",
       "MITRE TA0002 execution",
+      "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
       "MITRE TA0008 lateral movement",
-      "MITRE TA003 persistence",
       "SOC2",
       "SOC2 CC6.6",
       "SOC2 CC7.2"
@@ -23330,7 +23344,7 @@
       "HIPAA (3)",
       "HITRUST (14)",
       "ISO (3)",
-      "MITRE (6)",
+      "MITRE (7)",
       "NIST (9)",
       "SOC2 (2)",
       "Container",
@@ -23369,6 +23383,7 @@
       "ISO 27001",
       "ISO 27001 A.9.4.4",
       "MITRE",
+      "MITRE T1053.002 scheduled task job at",
       "MITRE T1053.003 scheduled task job cron",
       "MITRE T1053 scheduled task job",
       "MITRE TA0002 execution",
@@ -26221,7 +26236,7 @@
       "HIPAA (4)",
       "HITRUST (11)",
       "ISO (5)",
-      "MITRE (9)",
+      "MITRE (12)",
       "NIST (13)",
       "SOC2 (2)",
       "Container",
@@ -26262,11 +26277,14 @@
       "MITRE",
       "MITRE T1546.016 event triggered execution installer packages",
       "MITRE T1546 event triggered execution",
+      "MITRE T1562.010 impair defenses downgrade attack",
+      "MITRE T1562 impair defenses",
       "MITRE T1601.001 modify system image patch system image",
       "MITRE T1601 modify system image",
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
       "MITRE TA0005 defense evasion",
       "NIST",
       "NIST 800-171",
@@ -26285,6 +26303,28 @@
       "SOC2 CC6.8",
       "Container",
       "File",
+      "Host"
+    ]
+  },
+  {
+    "desc": "This rule identifies potential malicious activity involving the clearing of page cache. Attackers use this tactic to conceal their presence, erase evidence of malicious actions, and evade security monitoring systems, enabling them to run undetected.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (4)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Update Paging Cache",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1562.001 impair defenses disable or modify tools",
+      "MITRE T1562 impair defenses",
+      "MITRE TA0005 defense evasion",
+      "Container",
       "Host"
     ]
   },
