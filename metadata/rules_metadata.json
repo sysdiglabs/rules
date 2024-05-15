@@ -5195,7 +5195,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "AWS",
+      "AWS (2)",
       "Bedrock",
       "Cloud",
       "MITRE (3)"
@@ -5206,6 +5206,7 @@
     "source": "awscloudtrail",
     "tags": [
       "AWS",
+      "AWS BEDROCK",
       "Bedrock",
       "Cloud",
       "MITRE",
@@ -5218,7 +5219,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "AWS",
+      "AWS (2)",
       "Bedrock",
       "Cloud",
       "MITRE (3)"
@@ -5229,6 +5230,7 @@
     "source": "awscloudtrail",
     "tags": [
       "AWS",
+      "AWS BEDROCK",
       "Bedrock",
       "Cloud",
       "MITRE",
@@ -5241,7 +5243,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "AWS",
+      "AWS (2)",
       "Bedrock",
       "Cloud",
       "MITRE (3)"
@@ -5252,6 +5254,7 @@
     "source": "awscloudtrail",
     "tags": [
       "AWS",
+      "AWS BEDROCK",
       "Bedrock",
       "Cloud",
       "MITRE",
@@ -5264,7 +5267,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "AWS",
+      "AWS (2)",
       "Bedrock",
       "Cloud",
       "MITRE (3)"
@@ -5275,6 +5278,7 @@
     "source": "awscloudtrail",
     "tags": [
       "AWS",
+      "AWS BEDROCK",
       "Bedrock",
       "Cloud",
       "MITRE",
@@ -5287,7 +5291,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "AWS",
+      "AWS (2)",
       "Bedrock",
       "Cloud",
       "MITRE (3)"
@@ -5298,6 +5302,7 @@
     "source": "awscloudtrail",
     "tags": [
       "AWS",
+      "AWS BEDROCK",
       "Bedrock",
       "Cloud",
       "MITRE",
@@ -5310,7 +5315,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "AWS",
+      "AWS (2)",
       "Bedrock",
       "Cloud",
       "MITRE (3)"
@@ -5323,6 +5328,7 @@
     "source": "awscloudtrail",
     "tags": [
       "AWS",
+      "AWS BEDROCK",
       "Bedrock",
       "Cloud",
       "MITRE",
@@ -5335,7 +5341,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "AWS",
+      "AWS (2)",
       "Bedrock",
       "Cloud"
     ],
@@ -5345,6 +5351,7 @@
     "source": "awscloudtrail",
     "tags": [
       "AWS",
+      "AWS BEDROCK",
       "Bedrock",
       "Cloud"
     ]
@@ -5354,7 +5361,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "AWS",
+      "AWS (2)",
       "Bedrock",
       "Cloud"
     ],
@@ -5364,6 +5371,7 @@
     "source": "awscloudtrail",
     "tags": [
       "AWS",
+      "AWS BEDROCK",
       "Bedrock",
       "Cloud"
     ]
@@ -5373,7 +5381,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "AWS",
+      "AWS (2)",
       "Bedrock",
       "Cloud"
     ],
@@ -5383,6 +5391,7 @@
     "source": "awscloudtrail",
     "tags": [
       "AWS",
+      "AWS BEDROCK",
       "Bedrock",
       "Cloud"
     ]
@@ -6740,7 +6749,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (4)",
+      "MITRE (6)",
       "Container",
       "Host"
     ],
@@ -6751,7 +6760,9 @@
     "tags": [
       "MITRE",
       "MITRE T1039 data from network shared drive",
+      "MITRE T1080 taint shared content",
       "MITRE T1210 exploitation of remote services",
+      "MITRE TA0008 lateral movement",
       "MITRE TA0009 collection",
       "Container",
       "Host"
@@ -12027,7 +12038,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (5)",
+      "MITRE (6)",
       "Container",
       "Host",
       "Network",
@@ -12044,6 +12055,7 @@
       "MITRE T1090 proxy",
       "MITRE T1095 non application layer protocol",
       "MITRE T1572 protocol tunneling",
+      "MITRE T1665 hide infrastructure",
       "MITRE TA0011 command and control",
       "Container",
       "Host",
@@ -12085,7 +12097,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (5)",
+      "MITRE (6)",
       "Container",
       "Host",
       "Network"
@@ -12101,6 +12113,7 @@
       "MITRE T1071.001 application layer protocol web protocols",
       "MITRE T1071.004 application layer protocol DNS",
       "MITRE T1090 proxy",
+      "MITRE T1665 hide infrastructure",
       "MITRE TA0011 command and control",
       "Container",
       "Host",
@@ -12534,6 +12547,30 @@
       "MITRE TA0005 defense evasion",
       "SOC2",
       "SOC2 CC7.2"
+    ]
+  },
+  {
+    "desc": "This rule detects modifications to logging configurations, such as changes to configuration files or specific commands, as well as the disabling of logging services like journalctl or auditctl.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (6)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "Disable or Modify Linux Audit System",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1562.001 impair defenses impair defenses disable or modify tools",
+      "MITRE T1562.006 impair defenses indicator blocking",
+      "MITRE T1562.012 impair defenses disable or modify linux audit system",
+      "MITRE T1562 impair defenses",
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "Host"
     ]
   },
   {
@@ -16829,7 +16866,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (8)",
+      "MITRE (11)",
       "Container",
       "Host"
     ],
@@ -16845,7 +16882,10 @@
       "MITRE T1052.001 exfiltration over physical medium exfiltration over USB",
       "MITRE T1052 exfiltration over physical medium",
       "MITRE T1092 communication through removable media",
+      "MITRE T1195.003 supply chain compromise compromise hardware supply chain",
+      "MITRE T1195 supply chain compromise",
       "MITRE T1200 hardware additions",
+      "MITRE TA0001 initial access",
       "MITRE TA0001 initial access",
       "MITRE TA0011 command and control",
       "Container",
@@ -18210,6 +18250,31 @@
     ]
   },
   {
+    "desc": "This rule detects the launch of code compilers on the host, which could indicate potential development of malicious software by an attacker aiming to obfuscate their activities. An attacker could utilize this to compile malicious code to evade detection and persistently tamper with system binaries, potentially compromising client software.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "MITRE (9)",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Launch Code Compiler Tool on Host",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1027.004 obfuscated files or information compile after delivery",
+      "MITRE T1027 obfuscated files or information",
+      "MITRE T1072 software deployment tools",
+      "MITRE T1554 compromise client software binary",
+      "MITRE T1608 stage capabilities",
+      "MITRE TA0003 persistence",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA0042 resource development",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect the initial process started by a container that is not in a list of allowed containers.",
     "disabled": true,
     "has_exceptions": true,
@@ -19104,7 +19169,7 @@
     "disabled": false,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (6)",
+      "MITRE (8)",
       "Container",
       "Host",
       "Ioc"
@@ -19119,9 +19184,11 @@
       "MITRE",
       "MITRE T1102 web service",
       "MITRE T1496 resource hijacking",
+      "MITRE T1665 hide infrastructure",
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
+      "MITRE TA0011 command and control",
       "Container",
       "Host",
       "Ioc"
@@ -19173,8 +19240,8 @@
     "tags": [
       "MITRE",
       "MITRE T1059.004 command and scripting interpreter unix shell",
+      "MITRE T1204.002 user execution malicious file",
       "MITRE T1204 user execution",
-      "MITRE T1204 user execution malicious file",
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
@@ -20429,7 +20496,7 @@
       "HIPAA (7)",
       "HITRUST (14)",
       "ISO (3)",
-      "MITRE (3)",
+      "MITRE (5)",
       "NIST (11)",
       "PCI (3)",
       "SOC2 (3)",
@@ -20476,7 +20543,9 @@
       "ISO 27001 A.9.1.2",
       "MITRE",
       "MITRE T1041 exfiltration over c2 channel",
+      "MITRE T1665 hide infrastructure",
       "MITRE TA0010 exfiltration",
+      "MITRE TA0011 command and control",
       "NIST",
       "NIST 800-171",
       "NIST 800-171 3.1.1",
@@ -21093,7 +21162,7 @@
       "HIPAA (3)",
       "HITRUST (18)",
       "ISO (4)",
-      "MITRE (8)",
+      "MITRE (9)",
       "NIST (14)",
       "SOC2 (3)",
       "Container",
@@ -21140,6 +21209,7 @@
       "MITRE T1090.002 proxy external proxy",
       "MITRE T1562.001 impair defenses disable or modify tools",
       "MITRE T1573 encrypted channel",
+      "MITRE T1665 hide infrastructure",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
       "MITRE TA0011 command and control",
@@ -21717,7 +21787,7 @@
       "MITRE",
       "MITRE T1497 virtualization sandbox evasion",
       "MITRE T1564.001 hide artifacts",
-      "MITRE T1564.001 hide artifacts run virtual instance",
+      "MITRE T1564.006 hide artifacts run virtual instance",
       "MITRE TA0005 defense evasion",
       "MITRE TA0005 defense evasion",
       "MITRE TA0007 discovery",
@@ -22021,7 +22091,7 @@
       "HIPAA (2)",
       "HITRUST (4)",
       "ISO (3)",
-      "MITRE (10)",
+      "MITRE (12)",
       "NIST (9)",
       "SOC2 (4)",
       "Container",
@@ -22044,6 +22114,8 @@
       "ISO 27001",
       "ISO 27001 A.9.4.1",
       "MITRE",
+      "MITRE T1078.001 valid accounts default accounts",
+      "MITRE T1078 valid accounts",
       "MITRE T1083 file and directory discovery",
       "MITRE T1087 account discovery",
       "MITRE T1552.001 unsecured credentials credentials in files",
@@ -22118,6 +22190,32 @@
       "SOC2 CC8.1",
       "Container",
       "File",
+      "Host"
+    ]
+  },
+  {
+    "desc": "An attempt was made to enumerate SETGID binaries. This typically occurs as part of reconnaissance on a compromised machine, where an attacker is looking to escalate privileges.",
+    "disabled": true,
+    "has_exceptions": true,
+    "normalized_tags": [
+      "CIS",
+      "MITRE (6)",
+      "Container",
+      "Host"
+    ],
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Reconnaissance attempt to find SETGID binaries",
+    "source": "falco",
+    "tags": [
+      "CIS",
+      "MITRE",
+      "MITRE T1083 file and directory discovery",
+      "MITRE T1222.002 file and directory permissions modification linux and mac file and directory permissions modification",
+      "MITRE T1548.001 abuse elevation control mechanism setuid and setgid",
+      "MITRE TA0007 discovery",
+      "MITRE TA0043 reconnaissance",
+      "Container",
       "Host"
     ]
   },
@@ -24688,7 +24786,7 @@
     "disabled": true,
     "has_exceptions": true,
     "normalized_tags": [
-      "MITRE (4)",
+      "MITRE (5)",
       "Container",
       "Host"
     ],
@@ -24698,6 +24796,7 @@
     "source": "falco",
     "tags": [
       "MITRE",
+      "MITRE T1124 system time discovery",
       "MITRE T1614.001 system language discovery",
       "MITRE T1614 system location discovery",
       "MITRE TA0007 discovery",
