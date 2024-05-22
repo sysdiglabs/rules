@@ -109,22 +109,6 @@ def parseRulesYAML(rulesdoc, policydoc):
 					tag = tag.title()
 				rule['tags'].append(tag)
 
-		# sorted tags with count
-		rule['normalized_tags'] = []
-		tagcounts = {}
-		for tag in rule['tags']:
-			tagtype = tag.split(' ')[0]
-			if tagtype not in tagcounts:
-				tagcounts[tagtype] = 0
-			tagcounts[tagtype] += 1
-
-		for tagtype in tagcounts:
-			norm_tag = tagtype
-			if tagcounts[tagtype] > 1:
-				norm_tag += ' (%s)' % tagcounts[tagtype]
-
-			rule['normalized_tags'].append(norm_tag)
-
 		# OSS rule comparison check
 		rule['oss_rule'] = False
 
