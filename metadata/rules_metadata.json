@@ -550,6 +550,28 @@
     ]
   },
   {
+    "desc": "This rule detects potential illicit archiving or compression activity. An attacker could exfiltrate sensitive data by maliciously compressing files before exfiltration, concealing their actions.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Archive or Compression Activity Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1048 exfiltration over alternative protocol",
+      "MITRE T1560.001 archive via utility",
+      "MITRE T1560.002 archive via library",
+      "MITRE T1560 archive collected data",
+      "MITRE TA0009 collection",
+      "MITRE TA0010 exfiltration",
+      "Container",
+      "File",
+      "Host",
+      "Process"
+    ]
+  },
+  {
     "desc": "Detect that a public IP address has been associated with a network interface.",
     "disabled": true,
     "has_exceptions": true,
@@ -5314,6 +5336,23 @@
       "MITRE T1210 exploitation of remote services",
       "MITRE TA0008 lateral movement",
       "MITRE TA0009 collection",
+      "Container",
+      "Host"
+    ]
+  },
+  {
+    "desc": "Detects connection with suspicious user agent, commonly used by threat actors for accessing command and control servers.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "Connection with Suspicious User Agent Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1071.001 application layer protocol web protocols",
+      "MITRE T1071 application layer protocol",
+      "MITRE TA0011 command and control",
       "Container",
       "Host"
     ]
@@ -15071,6 +15110,23 @@
     ]
   },
   {
+    "desc": "This rule detects file creation containing leading or trailing spaces within filenames. As appending a space character to the end or the start of a filename can change the way that the OS handles the file content, in some cases an attacker may be able to masquerade the true file type, and, in extreme scenarios, can result in malicious executions.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "Leading or Trailing Space Detected in Filename",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1036.006 masquerading space after filename",
+      "MITRE T1036 masquerading",
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect a member account leaving its organization. This can be used to bypass organization-level policies.",
     "disabled": true,
     "has_exceptions": true,
@@ -19530,6 +19586,8 @@
     "source": "falco",
     "tags": [
       "MITRE",
+      "MITRE T1543.005 container service",
+      "MITRE T1543 create or modify system process",
       "MITRE T1562 impair defenses",
       "MITRE T1609 container administration command",
       "MITRE T1611 escape to host",
