@@ -550,6 +550,28 @@
     ]
   },
   {
+    "desc": "This rule detects potential illicit archiving or compression activity. An attacker could exfiltrate sensitive data by maliciously compressing files before exfiltration, concealing their actions.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Archive or Compression Activity Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1048 exfiltration over alternative protocol",
+      "MITRE T1560.001 archive via utility",
+      "MITRE T1560.002 archive via library",
+      "MITRE T1560 archive collected data",
+      "MITRE TA0009 collection",
+      "MITRE TA0010 exfiltration",
+      "Container",
+      "File",
+      "Host",
+      "Process"
+    ]
+  },
+  {
     "desc": "Detect that a public IP address has been associated with a network interface.",
     "disabled": true,
     "has_exceptions": true,
@@ -5088,6 +5110,28 @@
     ]
   },
   {
+    "desc": "This rule detects the downloading and execution of code compilers in containers, a behavior often associated with malicious attempts to compile and run unauthorized code within a system. An attacker could potentially exploit this to introduce and execute malicious code in a container, bypassing normal application deployment controls and potentially compromising the host system or other resources.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Code compiler downloaded and launched in container",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1027.004 obfuscated file or information compile after delivery",
+      "MITRE T1027 obfuscated files or information",
+      "MITRE T1072 software deployment tools",
+      "MITRE T1554 compromise client software binary",
+      "MITRE T1608.002 stage capabilities upload tool",
+      "MITRE T1608 stage capabilities",
+      "MITRE TA0003 persistence",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA0042 resource development",
+      "Container"
+    ]
+  },
+  {
     "desc": "Detect the creation of a CodeBuild project",
     "disabled": true,
     "has_exceptions": true,
@@ -5314,6 +5358,23 @@
       "MITRE T1210 exploitation of remote services",
       "MITRE TA0008 lateral movement",
       "MITRE TA0009 collection",
+      "Container",
+      "Host"
+    ]
+  },
+  {
+    "desc": "Detects connection with suspicious user agent, commonly used by threat actors for accessing command and control servers.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "Connection with Suspicious User Agent Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1071.001 application layer protocol web protocols",
+      "MITRE T1071 application layer protocol",
+      "MITRE TA0011 command and control",
       "Container",
       "Host"
     ]
@@ -9795,6 +9856,31 @@
     ]
   },
   {
+    "desc": "This rule detects attempts to bypass file detection rules by leveraging symlinked files in the system, which can be used by attackers to obscure malicious activities and evade detection mechanisms.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Detection bypass by symlinked files",
+    "source": "falco",
+    "tags": [
+      "FIM",
+      "MITRE",
+      "MITRE T1083 file and directory discovery",
+      "MITRE T1543 create or modify system process",
+      "MITRE T1547.009 boot or logon autostart execution shortcut modification",
+      "MITRE T1552.001 unsecured credentials credentials in files",
+      "MITRE T1552 unsecured credentials",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA0007 discovery",
+      "Container",
+      "File",
+      "Host"
+    ]
+  },
+  {
     "desc": "This rule detects potential Diamorphine rootkit activity on the system by monitoring specific signals and process executions, aiming to identify malicious kernel-level modifications and unauthorized privilege escalations. An attacker could use the Diamorphine rootkit to stealthily gain persistent access to the system, evade detection mechanisms, and potentially perform unauthorized privilege escalations.",
     "disabled": false,
     "has_exceptions": true,
@@ -9815,6 +9901,27 @@
       "Host",
       "Rootkit"
     ]
+  },
+  {
+    "desc": "Web applications can be vulnerable to directory traversal attacks that allow accessing files outside of the web app's root directory (e.g. Arbitrary File Read bugs). System directories like /etc are typically accessed via absolute paths. Access patterns outside of this (here path traversal) can be regarded as suspicious. This rule includes failed file open attempts.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": true,
+    "priority": "WARNING",
+    "rule": "Directory traversal monitored file read",
+    "source": "falco",
+    "tags": [
+      "FIM",
+      "MITRE",
+      "MITRE T1083 file and directory discovery",
+      "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery",
+      "MITRE TA0010 exfiltration",
+      "Container",
+      "File",
+      "Host"
+    ],
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect disabling of a customer master key's rotation.",
@@ -10169,6 +10276,24 @@
     "updated_oss_condition": true
   },
   {
+    "desc": "Adversaries may try to discover running security services/programs to disable or corrupt them.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
+    "priority": "WARNING",
+    "rule": "Discovery Security Service Activity Detected",
+    "severity": 3,
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1518.001 software discovery security software discovery",
+      "MITRE T1518 software discovery",
+      "MITRE TA0007 discovery",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect dissociation of a Lambda function from a VPC.",
     "disabled": true,
     "has_exceptions": true,
@@ -10197,6 +10322,61 @@
       "SOC2",
       "SOC2 CC7.2"
     ]
+  },
+  {
+    "desc": "This rule detects the download and execution of remote file copy tools in a container, aiming to prevent unauthorized data exfiltration. An attacker could exfiltrate sensitive data by downloading and launching tools like rsync, scp, or sftp in the container, bypassing traditional network security controls.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
+    "priority": "NOTICE",
+    "rule": "Download and launch remote file copy tools in container",
+    "severity": 3,
+    "source": "falco",
+    "tags": [
+      "HIPAA",
+      "HIPAA 164.308(a)",
+      "HITRUST",
+      "HITRUST CSF",
+      "HITRUST CSF 01.w",
+      "ISO",
+      "ISO 27001",
+      "ISO 27001 A.9.4.4",
+      "MITRE",
+      "MITRE T1048 exfiltration over alternative protocol",
+      "MITRE T1071.002 application layer protocol file transfer protocols",
+      "MITRE T1105 ingress tool transfer",
+      "MITRE T1570 lateral tool transfer",
+      "MITRE TA0008 lateral movement",
+      "NIST",
+      "NIST 800-171",
+      "NIST 800-171 3.13.4",
+      "NIST 800-53",
+      "NIST 800-53 SC-4",
+      "NIST 800-53 SI-4(18)",
+      "SOC2",
+      "SOC2 CC6.3",
+      "SOC2 CC6.7",
+      "Container",
+      "Network",
+      "Process"
+    ]
+  },
+  {
+    "desc": "This rule detects when a new binary is being executed within a container, not part of the base image, which could indicate a malicious actor attempting to run unauthorized software. An attacker could use this technique to execute malware or persistent threats within a container, bypassing security controls and potentially leading to further system compromise.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": true,
+    "priority": "WARNING",
+    "rule": "Drop and execute new binary in container",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1525 implant internal image",
+      "MITRE TA0003 persistence",
+      "Container"
+    ],
+    "updated_oss_condition": true
   },
   {
     "desc": "This rule detects potential memory dumps to extract plaintext credentials from sensitive process files. An attacker could utilize this to gain unauthorized access to critical systems or sensitive data, possibly compromising user credentials.",
@@ -10851,6 +11031,33 @@
       "MITRE",
       "MITRE TA0010 exfiltration",
       "Container"
+    ]
+  },
+  {
+    "desc": "This rule detects the loading and execution of a fileless ELF malware, indicating potential memory-based attacks. An attacker could leverage this technique to bypass traditional file-based detection methods and evade detection by executing malicious code directly in memory.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
+    "priority": "WARNING",
+    "rule": "Fileless Malware Detected (memfd)",
+    "severity": 3,
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1027 obfuscated files or information",
+      "MITRE T1055 process injection",
+      "MITRE T1587.001 develop capabilities malware",
+      "MITRE T1587 develop capabilities",
+      "MITRE T1588.001 obtain capabilities malware",
+      "MITRE T1588 obtain capabilities",
+      "MITRE T1620 reflective code loading",
+      "MITRE TA0002 execution",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA0042 resource development",
+      "Container",
+      "Host",
+      "Process"
     ]
   },
   {
@@ -14422,6 +14629,29 @@
     ]
   },
   {
+    "desc": "This rule detects the loading of kernel modules by unexpected programs, excluding common tools like insmod and modprobe, which could indicate an attempt to avoid detection. An attacker could use this technique to load malicious kernel modules for persistence or privilege escalation on the compromised system, potentially leading to further exploitation.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
+    "priority": "WARNING",
+    "rule": "Kernel Module Loaded by Unexpected Program",
+    "severity": 3,
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1068 exploitation for privilege escalation",
+      "MITRE T1495 firmware corruption",
+      "MITRE T1543 create or modify system process",
+      "MITRE T1547.006 boot or logon autostart execution kernel modules and extentions",
+      "MITRE T1611 escape to host",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "This rule detects changes in kernel modules on startup, which can indicate potential privilege escalation or persistence techniques by an attacker. An attacker could surreptitiously load malicious kernel modules to gain elevated privileges or maintain access to the system, evading detection.",
     "disabled": false,
     "has_exceptions": true,
@@ -15068,6 +15298,23 @@
       "MITRE TA0005 defense evasion",
       "Container",
       "Ioc"
+    ]
+  },
+  {
+    "desc": "This rule detects file creation containing leading or trailing spaces within filenames. As appending a space character to the end or the start of a filename can change the way that the OS handles the file content, in some cases an attacker may be able to masquerade the true file type, and, in extreme scenarios, can result in malicious executions.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "Leading or Trailing Space Detected in Filename",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1036.006 masquerading space after filename",
+      "MITRE T1036 masquerading",
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "Host"
     ]
   },
   {
@@ -19530,6 +19777,8 @@
     "source": "falco",
     "tags": [
       "MITRE",
+      "MITRE T1543.005 container service",
+      "MITRE T1543 create or modify system process",
       "MITRE T1562 impair defenses",
       "MITRE T1609 container administration command",
       "MITRE T1611 escape to host",
@@ -19763,6 +20012,70 @@
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation",
       "Container"
+    ]
+  },
+  {
+    "desc": "This rule detects suspicious network tools downloaded and executed in a container environment. An attacker could use a malicious network tool to establish unauthorized communication channels and exfiltrate sensitive data. Such unauthorized activities can bypass traditional security controls and evade detection by security monitoring tools.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "Suspicious network tool downloaded and launched in container",
+    "source": "falco",
+    "tags": [
+      "FedRAMP",
+      "FedRAMP SI-3",
+      "GDPR",
+      "GDPR 32.1",
+      "GDPR 32.2",
+      "HIPAA",
+      "HIPAA 164.308(a)",
+      "HIPAA 164.312(a)",
+      "HIPAA 164.312(b)",
+      "HITRUST",
+      "HITRUST CSF",
+      "HITRUST CSF 01.c",
+      "HITRUST CSF 01.x",
+      "HITRUST CSF 09.aa",
+      "HITRUST CSF 09.ab",
+      "HITRUST CSF 09.ac",
+      "HITRUST CSF 09.j",
+      "HITRUST CSF 09.k",
+      "HITRUST CSF 09.m",
+      "HITRUST CSF 11.a",
+      "HITRUST CSF 11.b",
+      "ISO",
+      "ISO 27001",
+      "ISO 27001 A.9.4.4",
+      "MITRE",
+      "MITRE T1016.001 internet connection discovery",
+      "MITRE T1016 system network configuration discovery",
+      "MITRE T1018 remote system discovery",
+      "MITRE T1046 network service scanning",
+      "MITRE T1135 network share discovery",
+      "MITRE TA0007 discovery",
+      "MITRE TA0010 exfiltration",
+      "NIST",
+      "NIST 800-171",
+      "NIST 800-171 3.14.1",
+      "NIST 800-171 3.14.2",
+      "NIST 800-171 3.14.3",
+      "NIST 800-171 3.14.4",
+      "NIST 800-171 3.14.5",
+      "NIST 800-171 3.14.6",
+      "NIST 800-171 3.14.7",
+      "NIST 800-53",
+      "NIST 800-53 AC-6(10)",
+      "NIST 800-53 AC-6(9)",
+      "NIST 800-53 AU-6(8)",
+      "NIST 800-53 SI-3",
+      "NIST 800-53 SI-4",
+      "SOC2",
+      "SOC2 CC6.1",
+      "SOC2 CC6.7",
+      "Container",
+      "Network",
+      "Process"
     ]
   },
   {
