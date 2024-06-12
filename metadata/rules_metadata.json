@@ -19920,13 +19920,11 @@
   },
   {
     "desc": "Adversaries can establish persistence or escalate privileges by adding a malicious binary path or shell commands to RC scripts specific to the Unix-like distribution, which, upon reboot, will be executed with root privileges.",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "policy": "Sysdig Runtime Threat Detection",
     "priority": "WARNING",
     "rule": "Suspicious RC Script Modification",
-    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
