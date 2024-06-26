@@ -8081,6 +8081,21 @@
     ]
   },
   {
+    "desc": "This rule detects the usage of cURL command line tool to exfiltrate a file to a remote location",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Curl Exfiltrating File",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE TA0010 exfiltration",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "This rule detects when a database-related program spawns a process other than itself. An attacker could leverage this to execute unauthorized commands or access sensitive data.",
     "disabled": true,
     "has_exceptions": true,
@@ -13502,6 +13517,25 @@
     ]
   },
   {
+    "desc": "Detect file copying with gsutil cp command line tool.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Gsutil cp used to copy files from/to GCP buckets",
+    "source": "falco",
+    "tags": [
+      "AWS",
+      "MITRE",
+      "MITRE T1059 command and scripting interpreter",
+      "MITRE T1211 exploitation for defense evasion",
+      "MITRE TA0002 execution",
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect deletion of GuardDuty member accounts (to the current GuardDuty administrator account) specified by the account IDs.",
     "disabled": false,
     "has_exceptions": true,
@@ -15406,6 +15440,23 @@
       "MITRE TA0007 discovery"
     ],
     "updated_oss_condition": true
+  },
+  {
+    "desc": "Adversaries may manipulate emails and mailbox data to remove logs, artifacts, and metadata. This can obscure evidence of malicious activities such as phishing, internal spearphishing, email collection, use of mail protocols for command and control, and email-based exfiltration",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Mailbox Data Modification",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1070 indicator removal on host",
+      "MITRE T1070 indicator removal on host clear mailbox data",
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "Host"
+    ]
   },
   {
     "desc": "Detect making public an EBS snapshot.",
@@ -19920,11 +19971,13 @@
   },
   {
     "desc": "Adversaries can establish persistence or escalate privileges by adding a malicious binary path or shell commands to RC scripts specific to the Unix-like distribution, which, upon reboot, will be executed with root privileges.",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
     "priority": "WARNING",
     "rule": "Suspicious RC Script Modification",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -22114,13 +22167,11 @@
   },
   {
     "desc": "This rule detects attempts to elevate privileges by switching namespace context to a privileged process. An attacker could gain escalated privileges and potentially execute unauthorized actions in the host system.",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "policy": "Sysdig Runtime Threat Detection",
     "priority": "WARNING",
     "rule": "nsenter Container Escape",
-    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
