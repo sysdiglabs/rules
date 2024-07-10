@@ -10942,11 +10942,13 @@
   },
   {
     "desc": "This rule detects usage of \"...\" instead of the canonical \"..\" in a directory traversal attack. Adversaries can execute a process from a directory while masquerading as the current parent directory. If an application is vulnerable to this manipulation, an attacker could navigate to sensitive directories or execute malicious code from unexpected locations, bypassing intended security measures. This could lead to unauthorized access, data breaches, or other security compromises within the system.",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
     "priority": "INFO",
     "rule": "Execute Process from Masqueraded Directory",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -13528,9 +13530,9 @@
       "AWS",
       "MITRE",
       "MITRE T1059 command and scripting interpreter",
-      "MITRE T1211 exploitation for defense evasion",
+      "MITRE T1213 data from information repositories",
       "MITRE TA0002 execution",
-      "MITRE TA0005 defense evasion",
+      "MITRE TA0009 collection",
       "Container",
       "Host"
     ]
@@ -19674,6 +19676,23 @@
       "MITRE T1003 OS credential dumping",
       "MITRE T1558 steal or forge kerberos tickets",
       "MITRE TA0006 credential access",
+      "Container",
+      "Host"
+    ]
+  },
+  {
+    "desc": "Adversaries may grant specific capabilities to a binary, allowing it to perform actions beyond its usual permissions. This allows them to elevate their privileges or extract sensitive information",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Suspicious Capabilities Granted to File",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1548.001 abuse elevation control mechanism setuid and setgid",
+      "MITRE T1548 abuse elevation control mechanism",
+      "MITRE TA0004 privilege escalation",
       "Container",
       "Host"
     ]
