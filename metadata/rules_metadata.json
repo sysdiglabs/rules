@@ -17224,6 +17224,7 @@
       "MITRE T1563.001 remote service session hijacking ssh hijacking",
       "MITRE T1563 remote service session hijacking",
       "MITRE TA008 lateral movement",
+      "Container",
       "Host"
     ]
   },
