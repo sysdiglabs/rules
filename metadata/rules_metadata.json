@@ -283,6 +283,7 @@
       "MITRE T1069 permission groups discovery",
       "MITRE T1078.002 valid accounts domains accounts",
       "MITRE T1078 valid accounts",
+      "MITRE T1087.002 account discovery domain account",
       "MITRE T1136.002 create account domain account",
       "MITRE T1136 create account",
       "MITRE TA0001 initial access",
@@ -343,6 +344,9 @@
     "severity": 3,
     "source": "github",
     "tags": [
+      "MITRE",
+      "MITRE T1078 valid accounts",
+      "MITRE TA0001 initial access",
       "Github"
     ]
   },
@@ -4271,6 +4275,9 @@
     "severity": 3,
     "source": "github",
     "tags": [
+      "MITRE",
+      "MITRE T1098 account manipulation",
+      "MITRE TA0003 persistence",
       "Github"
     ]
   },
@@ -4287,6 +4294,21 @@
       "Cloud",
       "MITRE",
       "MITRE TA0040 impact"
+    ]
+  },
+  {
+    "desc": "This rule detects when a cgroup filesystem is mounted within a container, which can indicate an attempt by an attacker to manipulate control groups for resource management or in preparation for the known release_agent escaping technique.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Cgroup Filesystem Mounted in Container",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1611 escape to host",
+      "MITRE TA0004 privilege escalation",
+      "Container"
     ]
   },
   {
@@ -4673,7 +4695,7 @@
       "SOC2",
       "SOC2 CC7.2"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect disabling CloudTrail multi-region.",
@@ -4760,7 +4782,7 @@
       "SOC2 CC7.1",
       "SOC2 CC7.2"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect deletion of an existing trail.",
@@ -5484,7 +5506,7 @@
       "MITRE TA0001 initial access",
       "MITRE TA0003 persistence"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect a console login without MFA.",
@@ -5529,7 +5551,7 @@
       "SOC2",
       "SOC2 CC5.2"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect root console login without MFA.",
@@ -5560,7 +5582,7 @@
       "SOC2 CC6.2",
       "SOC2 CC6.6"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "This rule detects unauthorized attempts to access Azure Instance Metadata Service from containers. An attacker could potentially gather sensitive information such as access tokens and credentials by leveraging this access. This could lead to escalated privileges and further compromise of the Azure environment.",
@@ -6707,7 +6729,7 @@
       "MITRE T1136 create account",
       "MITRE TA0003 persistence"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect creation of HTTP target group not using SSL.",
@@ -7037,7 +7059,7 @@
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect creation of a Lambda function not using the latest runtime.",
@@ -8163,6 +8185,7 @@
       "MITRE",
       "MITRE T1190 exploit public facing application",
       "MITRE T1203 exploitation for client execution",
+      "MITRE T1212 exploitation for credential access",
       "MITRE T1505.001 server software component SQL stored procedures",
       "MITRE T1505 server software component",
       "MITRE TA0001 initial access",
@@ -8286,7 +8309,7 @@
       "SOC2 CC6.3",
       "SOC2 CC6.6"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect deactivating MFA configuration for user access.",
@@ -8687,7 +8710,7 @@
       "SOC2",
       "SOC2 CC6.1"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect deletion of the lifecycle configuration from the specified bucket.",
@@ -9092,7 +9115,7 @@
       "MITRE TA0003 persistence",
       "MITRE TA0040 impact"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect deletion of the specified listener.",
@@ -13587,6 +13610,8 @@
     "severity": 3,
     "source": "github",
     "tags": [
+      "MITRE T1098 account manipulation",
+      "MITRE TA0004 privilege escalation",
       "Github"
     ]
   },
@@ -13839,6 +13864,24 @@
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion"
+    ]
+  },
+  {
+    "desc": "Detect an attempt to modify or create a new nginx ingress controller bypassing annotation validation (CVE-2024-7646) and potentially gaining unauthorized access to sensitive cluster resources. This attempt could lead to the exploitation of nginx ingress controller version lower than 1.11.2.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "INFO",
+    "rule": "Ingress NGINX Annotation Validation Potential Bypass (CVE-2024-7646)",
+    "source": "k8s_audit",
+    "tags": [
+      "MITRE",
+      "MITRE T1528 steal application access token",
+      "MITRE T1659 content injection",
+      "MITRE TA0001 initial access",
+      "MITRE TA0006 credential access",
+      "K8S",
+      "Network"
     ]
   },
   {
@@ -15541,8 +15584,8 @@
     "source": "falco",
     "tags": [
       "MITRE",
+      "MITRE T1070.008 indicator removal on host clear mailbox data",
       "MITRE T1070 indicator removal on host",
-      "MITRE T1070 indicator removal on host clear mailbox data",
       "MITRE TA0005 defense evasion",
       "Container",
       "Host"
@@ -15791,6 +15834,9 @@
     "severity": 3,
     "source": "github",
     "tags": [
+      "MITRE",
+      "MITRE T1657 financial theft",
+      "MITRE TA0040 impact",
       "Github"
     ]
   },
@@ -15851,6 +15897,25 @@
       "SOC2 CC7.1",
       "Container",
       "File",
+      "Host"
+    ]
+  },
+  {
+    "desc": "This rule detects modifications to udev rules, files read by the udev device manager at system startup that allow users to manage devices and create actions based on hardware events. If maliciously altered, an attacker may be able to specify additional programs and arbitrary scripts to be run, obtaining persistence within the system.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Modification of Udev Rules Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1546 event triggered execution",
+      "MITRE T1548 abuse elevation control mechanism",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
+      "Container",
       "Host"
     ]
   },
@@ -16449,6 +16514,10 @@
     "rule": "New GitHub Action Workflow Deployed",
     "source": "github",
     "tags": [
+      "MITRE",
+      "MITRE T1072 software deployment tools",
+      "MITRE TA0002 execution",
+      "MITRE TA0008 lateral movement",
       "Github"
     ]
   },
@@ -17099,6 +17168,10 @@
     "severity": 3,
     "source": "github",
     "tags": [
+      "MITRE",
+      "MITRE T1550.001 application access token",
+      "MITRE T1550 use alternate authentication material",
+      "MITRE TA0005 defense evasion",
       "Github"
     ]
   },
@@ -17390,6 +17463,10 @@
     "rule": "Push on Github Actions Detected",
     "source": "github",
     "tags": [
+      "MITRE",
+      "MITRE T1072 software deployment tools",
+      "MITRE TA0002 execution",
+      "MITRE TA0008 lateral movement",
       "Github"
     ]
   },
@@ -17417,7 +17494,7 @@
       "MITRE TA0001 initial access",
       "MITRE TA0005 defense evasion"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect setting the permissions on an existing bucket using access control lists to grant AllUsers (public) access.",
@@ -17513,7 +17590,7 @@
       "MITRE TA0001 initial access",
       "MITRE TA0005 defense evasion"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect creation of a replication configuration or the replacement of an existing one.",
@@ -18069,9 +18146,11 @@
       "ISO 27001",
       "ISO 27001 A.9.4.1",
       "MITRE",
+      "MITRE T1069.001 permission groups discovery local groups",
       "MITRE T1078.001 valid accounts default accounts",
       "MITRE T1078 valid accounts",
       "MITRE T1083 file and directory discovery",
+      "MITRE T1087.001 account discovery local account",
       "MITRE T1087 account discovery",
       "MITRE T1552.001 unsecured credentials credentials in files",
       "MITRE T1552 unsecured credentials",
@@ -18353,6 +18432,8 @@
     "rule": "Remove Collaborator from Github Repository",
     "source": "github",
     "tags": [
+      "MITRE T1531 account access removal",
+      "MITRE TA0040 impact",
       "Github"
     ]
   },
@@ -18700,7 +18781,7 @@
       "MITRE TA0005 defense evasion",
       "MITRE TA0008 lateral movement"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect launching of a specified number of instances in a non-approved region.",
@@ -18733,7 +18814,7 @@
       "SOC2 CC6.6",
       "SOC2 CC7.2"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect launching of a specified number of instances with a non-standard image.",
@@ -18821,6 +18902,7 @@
       "MITRE",
       "MITRE T1059.004 command and scripting interpreter unix shell",
       "MITRE T1068 exploitation for privilege escalation",
+      "MITRE T1212 exploitation for credential access",
       "MITRE T1546.004 event triggered execution unix shell configuration modification",
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
@@ -20078,6 +20160,7 @@
       "MITRE",
       "MITRE T1059 command and scripting interpreter",
       "MITRE T1203 exploitation for client execution",
+      "MITRE T1212 exploitation for credential access",
       "MITRE TA0002 execution",
       "MITRE TA0011 command and control",
       "Container",
@@ -21593,7 +21676,7 @@
       "SOC2",
       "SOC2 CC7.2"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect updates to a Lambda function configuration.",
@@ -21614,7 +21697,7 @@
       "SOC2",
       "SOC2 CC7.2"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "This rule detects changes or updates to package repositories on systems, contributing to maintaining the integrity and security of package installation procedures. An attacker exploiting vulnerabilities in package repository updating processes could potentially plant malicious packages or tamper with existing ones, leading to compromised software integrity and unauthorized code execution.",
