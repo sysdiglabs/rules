@@ -283,6 +283,7 @@
       "MITRE T1069 permission groups discovery",
       "MITRE T1078.002 valid accounts domains accounts",
       "MITRE T1078 valid accounts",
+      "MITRE T1087.002 account discovery domain account",
       "MITRE T1136.002 create account domain account",
       "MITRE T1136 create account",
       "MITRE TA0001 initial access",
@@ -343,6 +344,9 @@
     "severity": 3,
     "source": "github",
     "tags": [
+      "MITRE",
+      "MITRE T1078 valid accounts",
+      "MITRE TA0001 initial access",
       "Github"
     ]
   },
@@ -4271,6 +4275,9 @@
     "severity": 3,
     "source": "github",
     "tags": [
+      "MITRE",
+      "MITRE T1098 account manipulation",
+      "MITRE TA0003 persistence",
       "Github"
     ]
   },
@@ -4287,6 +4294,21 @@
       "Cloud",
       "MITRE",
       "MITRE TA0040 impact"
+    ]
+  },
+  {
+    "desc": "This rule detects when a cgroup filesystem is mounted within a container, which can indicate an attempt by an attacker to manipulate control groups for resource management or in preparation for the known release_agent escaping technique.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Cgroup Filesystem Mounted in Container",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1611 escape to host",
+      "MITRE TA0004 privilege escalation",
+      "Container"
     ]
   },
   {
@@ -4438,6 +4460,27 @@
       "Host"
     ],
     "updated_oss_condition": true
+  },
+  {
+    "desc": "Detect cleared Windows Event Log",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Windows Threat Detection",
+    "priority": "CRITICAL",
+    "rule": "Clear Windows Event Log",
+    "severity": 3,
+    "source": "windows",
+    "tags": [
+      "Defense Evasion",
+      "Host",
+      "MITRE",
+      "MITRE T1070.001 indicator removal clear windows event  logs",
+      "MITRE T1070 indicator removal",
+      "MITRE TA0005 defense evasion",
+      "Process",
+      "Windows"
+    ]
   },
   {
     "desc": "Detect the creation of a CloudFormation Stack",
@@ -4673,7 +4716,7 @@
       "SOC2",
       "SOC2 CC7.2"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect disabling CloudTrail multi-region.",
@@ -4760,7 +4803,7 @@
       "SOC2 CC7.1",
       "SOC2 CC7.2"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect deletion of an existing trail.",
@@ -5397,11 +5440,13 @@
   },
   {
     "desc": "Detects connection with suspicious user agent, commonly used by threat actors for accessing command and control servers.",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Intelligence",
     "priority": "WARNING",
     "rule": "Connection with Suspicious User Agent Detected",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -5484,7 +5529,7 @@
       "MITRE TA0001 initial access",
       "MITRE TA0003 persistence"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect a console login without MFA.",
@@ -5529,7 +5574,7 @@
       "SOC2",
       "SOC2 CC5.2"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect root console login without MFA.",
@@ -5560,7 +5605,7 @@
       "SOC2 CC6.2",
       "SOC2 CC6.6"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "This rule detects unauthorized attempts to access Azure Instance Metadata Service from containers. An attacker could potentially gather sensitive information such as access tokens and credentials by leveraging this access. This could lead to escalated privileges and further compromise of the Azure environment.",
@@ -6707,7 +6752,7 @@
       "MITRE T1136 create account",
       "MITRE TA0003 persistence"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect creation of HTTP target group not using SSL.",
@@ -7037,7 +7082,7 @@
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect creation of a Lambda function not using the latest runtime.",
@@ -8163,6 +8208,7 @@
       "MITRE",
       "MITRE T1190 exploit public facing application",
       "MITRE T1203 exploitation for client execution",
+      "MITRE T1212 exploitation for credential access",
       "MITRE T1505.001 server software component SQL stored procedures",
       "MITRE T1505 server software component",
       "MITRE TA0001 initial access",
@@ -8188,6 +8234,338 @@
       "Database",
       "Host",
       "Process"
+    ]
+  },
+  {
+    "desc": "This rule detects DNS lookups to command & control (C2) domains, aiming to identify potential malicious communication. An attacker could establish covert communication channels with malware-infected machines to exfiltrate sensitive data undetected, bypassing traditional security controls.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Intelligence",
+    "priority": "WARNING",
+    "rule": "DNS Lookup for C2 Domain Detected",
+    "severity": 3,
+    "source": "falco",
+    "tags": [
+      "FedRAMP",
+      "FedRAMP AC-2",
+      "FedRAMP AC-2(4)",
+      "GDPR",
+      "GDPR 32.1",
+      "GDPR 32.2",
+      "HIPAA",
+      "HIPAA 164.308(a)",
+      "HIPAA 164.310(a)",
+      "HIPAA 164.310(b)",
+      "HIPAA 164.312(a)",
+      "HIPAA 164.312(c)",
+      "HIPAA 164.312(e)",
+      "HITRUST",
+      "HITRUST CSF",
+      "HITRUST CSF 01.c",
+      "HITRUST CSF 01.x",
+      "HITRUST CSF 09.aa",
+      "HITRUST CSF 09.ab",
+      "HITRUST CSF 09.ac",
+      "HITRUST CSF 09.b",
+      "HITRUST CSF 09.m",
+      "HITRUST CSF 10.c",
+      "HITRUST CSF 10.j",
+      "HITRUST CSF 10.k",
+      "HITRUST CSF 11.a",
+      "HITRUST CSF 11.b",
+      "ISO",
+      "ISO 27001",
+      "ISO 27001 A.9.1.2",
+      "MITRE",
+      "MITRE T1041 exfiltration over c2 channel",
+      "MITRE T1071.004 DNS",
+      "MITRE T1071 application layer protocol",
+      "MITRE T1665 hide infrastructure",
+      "MITRE TA0010 exfiltration",
+      "MITRE TA0011 command and control",
+      "NIST",
+      "NIST 800-171",
+      "NIST 800-171 3.1.1",
+      "NIST 800-171 3.1.2",
+      "NIST 800-171 3.14.6",
+      "NIST 800-171 3.14.7",
+      "NIST 800-171 3.4.5",
+      "NIST 800-190",
+      "NIST 800-190 3.4.2",
+      "NIST 800-53",
+      "NIST 800-53 (pending)",
+      "PCI",
+      "PCI DSS",
+      "PCI DSS 1.1.6",
+      "SOC2",
+      "SOC2 CC6.6",
+      "SOC2 CC7.1",
+      "Container",
+      "Dns",
+      "Host",
+      "Network"
+    ]
+  },
+  {
+    "desc": "This rule detects dynamic DNS domains in DNS queries, which could indicate potential command-and-control activity or data exfiltration over the network. An attacker could use these domains to establish covert communication channels, bypassing traditional security controls and exfiltrating sensitive information undetected, while attempting to hide IPs.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "DNS Lookup for Dynamic DNS Domain Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1048.002 exfiltration over alternative protocol-exfiltration over asymmetric encrypted non-c2 protocol",
+      "MITRE T1071.001 application layer protocol web protocols",
+      "MITRE T1071.004 application layer protocol dns",
+      "MITRE T1102 web service",
+      "MITRE T1567 exfiltration over web service",
+      "MITRE T1568 dynamic resolution",
+      "MITRE TA0010 exfiltration",
+      "MITRE TA0011 command and control",
+      "Container",
+      "Dns",
+      "Host"
+    ]
+  },
+  {
+    "desc": "This rule detects DNS lookups to known IPFS domains, which can be used for evading traditional content monitoring and censorship mechanisms. An attacker could leverage this to access and distribute illicit or sensitive content without detection, potentially violating regulatory requirements and compromising data security.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Intelligence",
+    "priority": "WARNING",
+    "rule": "DNS Lookup for IPFS Domain Detected",
+    "severity": 3,
+    "source": "falco",
+    "tags": [
+      "FedRAMP",
+      "FedRAMP AC-2",
+      "FedRAMP AC-2(4)",
+      "GDPR",
+      "GDPR 32.1",
+      "GDPR 32.2",
+      "HIPAA",
+      "HIPAA 164.308(a)",
+      "HIPAA 164.310(a)",
+      "HIPAA 164.310(b)",
+      "HIPAA 164.312(a)",
+      "HIPAA 164.312(c)",
+      "HIPAA 164.312(e)",
+      "HITRUST",
+      "HITRUST CSF",
+      "HITRUST CSF 01.c",
+      "HITRUST CSF 01.x",
+      "HITRUST CSF 09.aa",
+      "HITRUST CSF 09.ab",
+      "HITRUST CSF 09.ac",
+      "HITRUST CSF 09.b",
+      "HITRUST CSF 09.m",
+      "HITRUST CSF 10.c",
+      "HITRUST CSF 10.j",
+      "HITRUST CSF 10.k",
+      "HITRUST CSF 11.a",
+      "HITRUST CSF 11.b",
+      "ISO",
+      "ISO 27001",
+      "ISO 27001 A.9.1.2",
+      "MITRE",
+      "MITRE T1071.004 DNS",
+      "MITRE T1071 application layer protocol",
+      "MITRE T1190 exploit public facing application",
+      "MITRE T1583.006 acquire infrastructure web services",
+      "MITRE T1598.003 phishing for information spearphishing link",
+      "MITRE T1608.005 stage capabilities link target",
+      "MITRE TA0001 initial access",
+      "MITRE TA0011 command and control",
+      "NIST",
+      "NIST 800-171",
+      "NIST 800-171 3.1.1",
+      "NIST 800-171 3.1.2",
+      "NIST 800-171 3.14.6",
+      "NIST 800-171 3.14.7",
+      "NIST 800-171 3.4.5",
+      "NIST 800-190",
+      "NIST 800-190 3.4.2",
+      "NIST 800-53",
+      "NIST 800-53 (pending)",
+      "PCI",
+      "PCI DSS",
+      "PCI DSS 1.1.6",
+      "SOC2",
+      "SOC2 CC6.6",
+      "SOC2 CC7.1",
+      "Container",
+      "Dns",
+      "Host",
+      "Network"
+    ]
+  },
+  {
+    "desc": "This rule detects DNS lookups for miner pool ports, indicating potential cryptocurrency mining activity. An attacker could establish unauthorized mining operations using resources on the target system, potentially causing performance degradation and financial losses.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Intelligence",
+    "priority": "CRITICAL",
+    "rule": "DNS Lookup for Miner Pool Domain Detected",
+    "severity": 3,
+    "source": "falco",
+    "tags": [
+      "FedRAMP",
+      "FedRAMP CM-7(1)",
+      "FedRAMP SI-4(4)",
+      "HIPAA",
+      "HIPAA 164.308(a)",
+      "HIPAA 164.310(b)",
+      "HITRUST",
+      "HITRUST CSF",
+      "HITRUST CSF 01.i",
+      "HITRUST CSF 01.j",
+      "HITRUST CSF 01.l",
+      "HITRUST CSF 01.n",
+      "HITRUST CSF 01.y",
+      "HITRUST CSF 09.ab",
+      "HITRUST CSF 09.m",
+      "HITRUST CSF 09.s",
+      "ISO",
+      "ISO 27001",
+      "ISO 27001 A.9.1.2",
+      "MITRE",
+      "MITRE T0885 commonly used port",
+      "MITRE T1059.004 command and scripting interpreter unix shell",
+      "MITRE T1071.004 DNS",
+      "MITRE T1071 application layer protocol",
+      "MITRE T1071 application layer protocol",
+      "MITRE T1496 resource hijacking",
+      "MITRE T1657 financial theft",
+      "MITRE TA0002 execution",
+      "MITRE TA0011 command and control",
+      "MITRE TA0040 impact",
+      "NIST",
+      "NIST 800-171",
+      "NIST 800-171 3.1.1",
+      "NIST 800-171 3.1.2",
+      "NIST 800-53",
+      "NIST 800-53 AC-17",
+      "NIST 800-53 CM-7(1)",
+      "NIST 800-53 SC-7(3)",
+      "NIST 800-53 SI-4(4)",
+      "SOC2",
+      "SOC2 CC6.8",
+      "Container",
+      "Crypto",
+      "Dns",
+      "Host",
+      "Network"
+    ]
+  },
+  {
+    "desc": "This rule detects dns lookups to Proxy/VPN domains, potentially indicative of command and control activity. An attacker could establish a covert channel by connecting to a Proxy/VPN to exfiltrate sensitive data undetected.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Intelligence",
+    "priority": "WARNING",
+    "rule": "DNS Lookup for Proxy/VPN Domain Detected",
+    "severity": 3,
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1071.001 application layer protocol web protocols",
+      "MITRE T1071.004 application layer protocol DNS",
+      "MITRE T1090 proxy",
+      "MITRE T1665 hide infrastructure",
+      "MITRE TA0011 command and control",
+      "Container",
+      "Dns",
+      "Host",
+      "Network"
+    ]
+  },
+  {
+    "desc": "This rule detects DNS lookups to domains offering IP and geo check services, generally public services which are often abused by malware to conduct reconnaissance activities upon landing on a compromised system.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "CRITICAL",
+    "rule": "DNS Lookup for Reconnaissance Service Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1592 gather victim host information",
+      "MITRE T1614 system location discovery",
+      "MITRE TA0007 discovery",
+      "MITRE TA0043 reconnaissance",
+      "Container",
+      "Dns",
+      "Host"
+    ]
+  },
+  {
+    "desc": "This rule detects suspicious domains in DNS queries, which could indicate potential command-and-control activity or data exfiltration over the network. An attacker could use these suspicious domains to establish covert communication channels, bypassing traditional security controls and exfiltrating sensitive information undetected.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Intelligence",
+    "priority": "WARNING",
+    "rule": "DNS Lookup for Suspicious Domain Detected",
+    "severity": 3,
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1048.002 exfiltration over alternative protocol-exfiltration over asymmetric encrypted non-c2 protocol",
+      "MITRE T1071.001 application layer protocol web protocols",
+      "MITRE T1071.004 application layer protocol dns",
+      "MITRE T1102 web service",
+      "MITRE T1567.001 exfiltration over web service exfiltration to code repositories",
+      "MITRE T1567.003 exfiltration over web service exfiltration to text storage sites",
+      "MITRE T1567 exfiltration over web service",
+      "MITRE TA0010 exfiltration",
+      "MITRE TA0011 command and control",
+      "Container",
+      "Dns",
+      "Host"
+    ]
+  },
+  {
+    "desc": "This rule detects DNS queries to domains with a high likelihood of suspicious or malicious behaviour, often seen in phishing and malware campaigns.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "DNS Lookup for Uncommon TLD Domain Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1204.001 malicious link",
+      "MITRE T1204 user execution",
+      "MITRE T1566.002 spearphishing link",
+      "MITRE T1566 phishing",
+      "MITRE TA0001 initial access",
+      "MITRE TA0002 execution",
+      "Container",
+      "Host"
+    ]
+  },
+  {
+    "desc": "This rule detects suspiciously long DNS queries, which may be indicative of a DNS tunneling attack.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "DNS Tunneling Activity Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1048.003 exfiltration over unencrypted non c2 protocol",
+      "MITRE T1048 exfiltration over alternative protocol",
+      "MITRE TA0010 exfiltration",
+      "Container",
+      "Dns",
+      "Host"
     ]
   },
   {
@@ -8286,7 +8664,7 @@
       "SOC2 CC6.3",
       "SOC2 CC6.6"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect deactivating MFA configuration for user access.",
@@ -8687,7 +9065,7 @@
       "SOC2",
       "SOC2 CC6.1"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect deletion of the lifecycle configuration from the specified bucket.",
@@ -9092,7 +9470,7 @@
       "MITRE TA0003 persistence",
       "MITRE TA0040 impact"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect deletion of the specified listener.",
@@ -10124,6 +10502,101 @@
     ]
   },
   {
+    "desc": "MS Office security features can be disabled via registry",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Disable Office Security Feature via Registry",
+    "source": "windows",
+    "tags": [
+      "Host",
+      "MITRE",
+      "MITRE T1562.001 disable or modify tools",
+      "MITRE T1562 impair defenses",
+      "MITRE TA0005 defense evasion",
+      "Process",
+      "Windows"
+    ]
+  },
+  {
+    "desc": "Windows password change disabled in registry",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "CRITICAL",
+    "rule": "Disable Password Change Via Registry",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Defense Evasion",
+      "Host",
+      "MITRE",
+      "MITRE T1112 modify registry",
+      "MITRE TA0005 defense evasion",
+      "Registry",
+      "Windows"
+    ]
+  },
+  {
+    "desc": "An user account was set with a never-expiring password",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "CRITICAL",
+    "rule": "Disable Password Expiration Policy",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Host",
+      "MITRE",
+      "MITRE T1562.001 disable or modify tools",
+      "MITRE T1562 impair defenses",
+      "MITRE TA0005 defense evasion",
+      "Process",
+      "Windows"
+    ]
+  },
+  {
+    "desc": "Disable Powershell History Logging",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Windows Threat Detection",
+    "priority": "WARNING",
+    "rule": "Disable Powershell History",
+    "severity": 3,
+    "source": "windows",
+    "tags": [
+      "Host",
+      "MITRE",
+      "MITRE T1070.003 indicator removal clear command history",
+      "MITRE T1070 indicator removal",
+      "MITRE TA0005 defense evasion",
+      "Powershell",
+      "Process",
+      "Windows"
+    ]
+  },
+  {
+    "desc": "Disabling remote UAC can lead to Pass-the-hash attack",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "CRITICAL",
+    "rule": "Disable Remote UAC",
+    "source": "windows",
+    "tags": [
+      "Host",
+      "MITRE",
+      "MITRE T1550 use alternate authentication material pass the hash",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA0008 lateral movement",
+      "Registry",
+      "Windows"
+    ]
+  },
+  {
     "desc": "Detect disabling the Security Hub in the current region.",
     "disabled": false,
     "has_exceptions": true,
@@ -10150,6 +10623,49 @@
       "MITRE TA0005 defense evasion",
       "SOC2",
       "SOC2 CC7.2"
+    ]
+  },
+  {
+    "desc": "Adversaries may disable security tools to avoid possible detection of their malware/tools and activities.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Windows Threat Detection",
+    "priority": "CRITICAL",
+    "rule": "Disable Windows Defender via Registry",
+    "severity": 3,
+    "source": "windows",
+    "tags": [
+      "Host",
+      "MITRE",
+      "MITRE T1112 modify registry",
+      "MITRE T1562.001 disable or modify tools",
+      "MITRE T1562 impair defenses",
+      "MITRE TA0005 defense evasion",
+      "Registry",
+      "Windows"
+    ]
+  },
+  {
+    "desc": "Windows Firewall was disabled",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Windows Threat Detection",
+    "priority": "CRITICAL",
+    "rule": "Disable Windows Firewall",
+    "severity": 3,
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Defense Evasion",
+      "Host",
+      "MITRE",
+      "MITRE T1562.004 impair defenses disable or modify system firewall",
+      "MITRE T1562 impair defenses",
+      "MITRE TA0005 defense evasion",
+      "Process",
+      "Windows"
     ]
   },
   {
@@ -10368,6 +10884,24 @@
     ]
   },
   {
+    "desc": "Adversaries may add malicious domains to the Trusted Sites Zone in order to evade defenses.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Domain added to Trusted Sites Zone",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Host",
+      "MITRE",
+      "MITRE T1112 modify registry",
+      "MITRE TA0005 defense evasion",
+      "Registry",
+      "Windows"
+    ]
+  },
+  {
     "desc": "This rule detects the download and execution of remote file copy tools in a container, aiming to prevent unauthorized data exfiltration. An attacker could exfiltrate sensitive data by downloading and launching tools like rsync, scp, or sftp in the container, bypassing traditional network security controls.",
     "disabled": false,
     "has_exceptions": true,
@@ -10439,6 +10973,27 @@
       "Container",
       "File",
       "Host"
+    ]
+  },
+  {
+    "desc": "The SAM file was dumped using tools like essentutl.exe",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Windows Threat Detection",
+    "priority": "CRITICAL",
+    "rule": "Dump SAM File",
+    "severity": 3,
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Credential Access",
+      "File",
+      "Host",
+      "MITRE T1003.002 os credential dumping security account manager",
+      "MITRE T1003 os credential dumping",
+      "MITRE TA0006 credential access",
+      "Windows"
     ]
   },
   {
@@ -10869,6 +11424,468 @@
     ]
   },
   {
+    "desc": "The Guest user account was enabled",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Windows Threat Detection",
+    "priority": "CRITICAL",
+    "rule": "Enable Guest User Account",
+    "severity": 3,
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Host",
+      "MITRE",
+      "MITRE T1078.001 valid accounts default accounts",
+      "MITRE T1078 valid accounts",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
+      "Privilege Escalation",
+      "Process",
+      "Windows"
+    ]
+  },
+  {
+    "desc": "Windows Remote Management was enabled.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "Enable Windows Remote Management",
+    "source": "windows",
+    "tags": [
+      "Host",
+      "MITRE",
+      "MITRE T1021.006 remote services windows remote management",
+      "MITRE T1021 remote services",
+      "MITRE T1133 external remote services",
+      "MITRE TA0001 initial access",
+      "MITRE TA0008 lateral movement",
+      "Shell",
+      "Windows"
+    ]
+  },
+  {
+    "desc": "Encoded Powershell Script Execution",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Windows Threat Detection",
+    "priority": "WARNING",
+    "rule": "Encoded Powershell Execution",
+    "severity": 3,
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Defense Evasion",
+      "Host",
+      "MITRE",
+      "MITRE T1027.010 obfuscated files or information command obfuscation",
+      "MITRE T1027 obfuscated files or information",
+      "MITRE TA0005 defense evasion",
+      "Process",
+      "Windows"
+    ]
+  },
+  {
+    "desc": "Detect the creation of an Administrative Unit in Microsoft Entra ID.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Add Administrative Unit",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect the creation of an application in Microsoft Entra ID.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Add Application",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect the creation of a group in Microsoft Entra ID.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Add Group",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect a role assignment of guest user to an Administrative Role. This can be used by attackers to grant privileges to an external user they have control over.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Microsoft Entra Threat Detection",
+    "priority": "WARNING",
+    "rule": "Entra Add Guest Member to Administrative Role",
+    "severity": 3,
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect adding a member to an Administrative Role in Microsoft Entra ID.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Microsoft Entra Threat Detection",
+    "priority": "WARNING",
+    "rule": "Entra Add Member to Administrative Role",
+    "severity": 3,
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect adding a member to an Administrative Unit in Microsoft Entra ID.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Add Member to Administrative Unit",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect adding a member to a group in Microsoft Entra ID.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Add Member to Group",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect the addition of an owner to an application in Microsoft Entra ID.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Add Owner To Application",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect adding an owner to a Service Principal in Microsoft Entra ID.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Add Owner to Service Principal",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect the assignment of a user to an application in Microsoft Entra ID.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Assign User to Application",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect changing a password of a user in Microsoft Entra ID.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Change User Password",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect the creation of a Directory in Microsoft Entra ID.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Create Directory",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect the deletion of an Administrative Unit in Microsoft Entra ID.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Delete Administrative Unit",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect the deletion of an application in Microsoft Entra ID.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Delete Application",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect the deletion of an application password for a user in Microsoft Entra ID.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Delete Application Password for User",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect the deletion of a group in Microsoft Entra ID.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Delete Group",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect disabling access to an application in Microsoft Entra ID.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Microsoft Entra Threat Detection",
+    "priority": "WARNING",
+    "rule": "Entra Disable Access to Application",
+    "severity": 3,
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect the hard deletion of an application in Microsoft Entra ID.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Microsoft Entra Threat Detection",
+    "priority": "WARNING",
+    "rule": "Entra Hard Delete Application",
+    "severity": 3,
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "This rule detects successful invitations of external users to join the organization in Azure. An attacker could use this to gain persistence in the environment and access it at will. This can enable an attacker to maintain unauthorized access and potentially compromise sensitive data.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Invite External User",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect removing an app role assignment from a user in Microsoft Entra ID.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Remove App Role Assignment from User",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect removing a member from an Administrative Unit in Microsoft Entra ID.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Remove Member from Administrative Unit",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect removing a member from a role in Microsoft Entra ID.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Remove Member from Role",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect removing a verified domain in Microsoft Entra ID.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Microsoft Entra Threat Detection",
+    "priority": "WARNING",
+    "rule": "Entra Remove Verified Domain",
+    "severity": 3,
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect inbound requests from known suspicious IP sources, such as TOR exit nodes, to Microsoft Entra ID.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Microsoft Entra Threat Intelligence",
+    "priority": "WARNING",
+    "rule": "Entra Suspicious IP Inbound Request",
+    "severity": 3,
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect addition of a secret or certificate to an app in Microsoft Entra ID.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Update Application Certificates And Secrets Management",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Detect verifying a domain in Microsoft Entra ID.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Verify Domain",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra"
+    ]
+  },
+  {
+    "desc": "Logged-on users were enumerated",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Enumerate Logged-on Users",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Discovery",
+      "Host",
+      "MITRE",
+      "MITRE T1087.001 account discovery local account",
+      "MITRE T1087 account discovery",
+      "MITRE TA0007 discovery",
+      "Process",
+      "Windows"
+    ]
+  },
+  {
     "desc": "Detect any ephemeral container created",
     "disabled": true,
     "has_exceptions": true,
@@ -10943,6 +11960,27 @@
       "MITRE TA0002 execution",
       "MITRE TA0004 privilege escalation",
       "Container"
+    ]
+  },
+  {
+    "desc": "Executable file created in startup location",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Executable Created in Startup Location",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "File",
+      "Host",
+      "MITRE",
+      "MITRE T1547.002 boot or login autostart execution registry run keys startup folder",
+      "MITRE T1547 boot or logon autostart execution",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "Persistence",
+      "Windows"
     ]
   },
   {
@@ -11120,6 +12158,25 @@
       "MITRE",
       "MITRE TA0010 exfiltration",
       "Container"
+    ]
+  },
+  {
+    "desc": "Detects an attempt of the command shell process to create a file in the system directory",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "File Created in System Directory",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "File",
+      "Host",
+      "MITRE",
+      "MITRE T1204.002 user execution malicious file",
+      "MITRE T1204 user execution",
+      "MITRE TA0002 execution",
+      "Windows"
     ]
   },
   {
@@ -13587,6 +14644,8 @@
     "severity": 3,
     "source": "github",
     "tags": [
+      "MITRE T1098 account manipulation",
+      "MITRE TA0004 privilege escalation",
       "Github"
     ]
   },
@@ -13736,6 +14795,358 @@
     ]
   },
   {
+    "desc": "A high severity GuardDuty finding has been found on a container",
+    "disabled": false,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "policy": "Sysdig AWS GuardDuty Threat Detection",
+    "priority": "Warning",
+    "rule": "GuardDuty High Severity Finding on Container",
+    "severity": 3,
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A high severity GuardDuty finding has been found on an EC2 instance",
+    "disabled": false,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "policy": "Sysdig AWS GuardDuty Threat Detection",
+    "priority": "Warning",
+    "rule": "GuardDuty High Severity Finding on EC2",
+    "severity": 3,
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A high severity GuardDuty finding has been found on an ECS cluster",
+    "disabled": false,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "policy": "Sysdig AWS GuardDuty Threat Detection",
+    "priority": "Warning",
+    "rule": "GuardDuty High Severity Finding on ECS",
+    "severity": 3,
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A high severity GuardDuty finding has been found on an EKS cluster",
+    "disabled": false,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "policy": "Sysdig AWS GuardDuty Threat Detection",
+    "priority": "Warning",
+    "rule": "GuardDuty High Severity Finding on EKS",
+    "severity": 3,
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A high severity GuardDuty finding has been found on an IAM entity",
+    "disabled": false,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "policy": "Sysdig AWS GuardDuty Threat Detection",
+    "priority": "Warning",
+    "rule": "GuardDuty High Severity Finding on IAM",
+    "severity": 3,
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A high severity GuardDuty finding has been found on a Lambda function",
+    "disabled": false,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "policy": "Sysdig AWS GuardDuty Threat Detection",
+    "priority": "Warning",
+    "rule": "GuardDuty High Severity Finding on Lambda",
+    "severity": 3,
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A high severity GuardDuty finding has been found on an RDS DB instance",
+    "disabled": false,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "policy": "Sysdig AWS GuardDuty Threat Detection",
+    "priority": "Warning",
+    "rule": "GuardDuty High Severity Finding on RDS",
+    "severity": 3,
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A high severity GuardDuty finding has been found on an S3 bucket",
+    "disabled": false,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "policy": "Sysdig AWS GuardDuty Threat Detection",
+    "priority": "Warning",
+    "rule": "GuardDuty High Severity Finding on S3",
+    "severity": 3,
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A low severity GuardDuty finding has been found on a container",
+    "disabled": true,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "priority": "Warning",
+    "rule": "GuardDuty Low Severity Finding on Container",
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A low severity GuardDuty finding has been found on an EC2 instance",
+    "disabled": true,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "priority": "Warning",
+    "rule": "GuardDuty Low Severity Finding on EC2",
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A low severity GuardDuty finding has been found on an ECS cluster",
+    "disabled": true,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "priority": "Warning",
+    "rule": "GuardDuty Low Severity Finding on ECS",
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A low severity GuardDuty finding has been found on an EKS cluster",
+    "disabled": true,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "priority": "Warning",
+    "rule": "GuardDuty Low Severity Finding on EKS",
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A low severity GuardDuty finding has been found on an IAM entity",
+    "disabled": true,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "priority": "Warning",
+    "rule": "GuardDuty Low Severity Finding on IAM",
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A low severity GuardDuty finding has been found on a Lambda function",
+    "disabled": true,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "priority": "Warning",
+    "rule": "GuardDuty Low Severity Finding on Lambda",
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A low severity GuardDuty finding has been found on an RDS DB instance",
+    "disabled": true,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "priority": "Warning",
+    "rule": "GuardDuty Low Severity Finding on RDS",
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A low severity GuardDuty finding has been found on an S3 bucket",
+    "disabled": true,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "priority": "Warning",
+    "rule": "GuardDuty Low Severity Finding on S3",
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A medium severity GuardDuty finding has been found on a container",
+    "disabled": true,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "priority": "Warning",
+    "rule": "GuardDuty Medium Severity Finding on Container",
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A medium severity GuardDuty finding has been found on an EC2 instance",
+    "disabled": true,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "priority": "Warning",
+    "rule": "GuardDuty Medium Severity Finding on EC2",
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A medium severity GuardDuty finding has been found on an ECS cluster",
+    "disabled": true,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "priority": "Warning",
+    "rule": "GuardDuty Medium Severity Finding on ECS",
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A medium severity GuardDuty finding has been found on an EKS cluster",
+    "disabled": true,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "priority": "Warning",
+    "rule": "GuardDuty Medium Severity Finding on EKS",
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A medium severity GuardDuty finding has been found on an IAM entity",
+    "disabled": true,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "priority": "Warning",
+    "rule": "GuardDuty Medium Severity Finding on IAM",
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A medium severity GuardDuty finding has been found on a Lambda function",
+    "disabled": true,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "priority": "Warning",
+    "rule": "GuardDuty Medium Severity Finding on Lambda",
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A medium severity GuardDuty finding has been found on an RDS DB instance",
+    "disabled": true,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "priority": "Warning",
+    "rule": "GuardDuty Medium Severity Finding on RDS",
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
+    "desc": "A medium severity GuardDuty finding has been found on an S3 bucket",
+    "disabled": true,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "priority": "Warning",
+    "rule": "GuardDuty Medium Severity Finding on S3",
+    "source": "guardduty",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "GuardDuty"
+    ]
+  },
+  {
     "desc": "This rule detects hardware additions by monitoring specific processes and commands in the system. An attacker could add unauthorized hardware to establish command and control channels.",
     "disabled": false,
     "has_exceptions": true,
@@ -13839,6 +15250,24 @@
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion"
+    ]
+  },
+  {
+    "desc": "Detect an attempt to modify or create a new nginx ingress controller bypassing annotation validation (CVE-2024-7646) and potentially gaining unauthorized access to sensitive cluster resources. This attempt could lead to the exploitation of nginx ingress controller version lower than 1.11.2.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "INFO",
+    "rule": "Ingress NGINX Annotation Validation Potential Bypass (CVE-2024-7646)",
+    "source": "k8s_audit",
+    "tags": [
+      "MITRE",
+      "MITRE T1528 steal application access token",
+      "MITRE T1659 content injection",
+      "MITRE TA0001 initial access",
+      "MITRE TA0006 credential access",
+      "K8S",
+      "Network"
     ]
   },
   {
@@ -14012,6 +15441,41 @@
       "MITRE T1588 obtain capabilities",
       "MITRE TA0001 initial access",
       "MITRE TA0042 resource development",
+      "Container",
+      "Host"
+    ]
+  },
+  {
+    "desc": "Adversaries may place a JavaScript block in the registry to achieve persistence.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "CRITICAL",
+    "rule": "JavaScript block placed in registry",
+    "source": "windows",
+    "tags": [
+      "Host",
+      "MITRE",
+      "MITRE T1037 boot or logon initialization scripts",
+      "MITRE T1112 modify registry",
+      "MITRE TA0003 persistence",
+      "Registry",
+      "Windows"
+    ]
+  },
+  {
+    "desc": "This rule detects the use of junk data padding, whereby junk data is added to a binary or a file to alter their on-disk representation without changing their functionality. As binary padding changes the file's checksum, adversaries may be able to evade hash-based blocklists and static anti-virus signatures.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Junk Data Padding Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1027.001 binary padding",
+      "MITRE T1027 obfuscated files or information",
+      "MITRE TA0005 defense evasion",
       "Container",
       "Host"
     ]
@@ -14383,6 +15847,9 @@
       "HITRUST CSF 09.ab",
       "HITRUST CSF 09.ad",
       "HITRUST CSF 09.ae",
+      "MITRE",
+      "MITRE T1136 create account",
+      "MITRE TA003 persistence",
       "NIST",
       "NIST",
       "NIST 800-171",
@@ -14427,6 +15894,9 @@
       "HITRUST CSF 09.ab",
       "HITRUST CSF 09.ad",
       "HITRUST CSF 09.ae",
+      "MITRE",
+      "MITRE T1531 account access removal",
+      "MITRE TA0040 impact",
       "NIST",
       "NIST",
       "NIST 800-171",
@@ -14492,6 +15962,9 @@
       "HIPAA 164.310(a)",
       "HIPAA 164.310(b)",
       "HIPAA 164.312(a)",
+      "MITRE",
+      "MITRE T1531 account access removal",
+      "MITRE TA0040 impact",
       "NIST",
       "NIST",
       "NIST 800-171",
@@ -14690,6 +16163,9 @@
       "HITRUST CSF 09.ab",
       "HITRUST CSF 09.ad",
       "HITRUST CSF 09.ae",
+      "MITRE",
+      "MITRE T1136 create account",
+      "MITRE TA003 persistence",
       "NIST",
       "NIST 800-171",
       "NIST 800-171 3.1.1",
@@ -14735,6 +16211,9 @@
       "HITRUST CSF 09.ab",
       "HITRUST CSF 09.ad",
       "HITRUST CSF 09.ae",
+      "MITRE",
+      "MITRE T1531 account access removal",
+      "MITRE TA0040 impact",
       "NIST",
       "NIST 800-171",
       "NIST 800-171 3.1.1",
@@ -14771,6 +16250,23 @@
       "MITRE T1611 escape to host",
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation",
+      "Container",
+      "Host"
+    ]
+  },
+  {
+    "desc": "Detect the unloading of kernel modules, which can be used to disable security features or other important kernel functionality.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Kernel module unloaded",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1562.001 impair defenses disable or modify tools",
+      "MITRE T1562 impair defenses",
+      "MITRE TA0005 defense evasion",
       "Container",
       "Host"
     ]
@@ -14833,6 +16329,44 @@
       "MITRE T1133 external remote services",
       "MITRE T1496 resource hijacking",
       "K8S"
+    ]
+  },
+  {
+    "desc": "Finds changes made to a section of the registry that regulates which DLLs from the authentication package are loaded. By updating the Windows registry with a reference to a malicious\u00a0binary, adversaries can leverage the autostart capability offered by the Local Security Authority (LSA) authentication packages for persistence or privilege escalation. As soon as the authentication packages are loaded, SYSTEM will execute the binary.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "LSA Authentication Package Modification",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Host",
+      "MITRE",
+      "MITRE T1546 event triggered execution",
+      "MITRE T1547.002 boot or login autostart execution authentication package",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "Registry",
+      "Windows"
+    ]
+  },
+  {
+    "desc": "Unauthorized access to lsass.exe may be an indication of credential dumping from LSASS memory, often caused by the execution of malicious tools, such as Mimikatz's module sekurlsa::logonpasswords.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "CRITICAL",
+    "rule": "LSASS Memory Read Access",
+    "source": "windows",
+    "tags": [
+      "Host",
+      "MITRE",
+      "MITRE T1003.001 OS credential dumping LSASS memory",
+      "MITRE T1003 os credential dumping",
+      "MITRE TA0006 credential access",
+      "Memory",
+      "Windows"
     ]
   },
   {
@@ -15268,6 +16802,27 @@
     ]
   },
   {
+    "desc": "A suspicious network tool was executed",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Windows Threat Detection",
+    "priority": "CRITICAL",
+    "rule": "Launch Suspicious Network Tool",
+    "severity": 3,
+    "source": "windows",
+    "tags": [
+      "Command and Control",
+      "Container",
+      "Host",
+      "MITRE",
+      "MITRE T1095 non-application layer protocol",
+      "MITRE TA0011 command and control",
+      "Process",
+      "Windows"
+    ]
+  },
+  {
     "desc": "This rule detects the launch of suspicious network tools inside a container, aiming to identify potential malicious activities such as unauthorized network scanning or data exfiltration. An attacker could use a suspicious network tool to establish unauthorized network connections to exfiltrate sensitive data from the container environment.",
     "disabled": true,
     "has_exceptions": true,
@@ -15532,6 +17087,25 @@
     "updated_oss_condition": true
   },
   {
+    "desc": "Threat actors may gain persistence by adding logon scripts",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Logon script added",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Host",
+      "MITRE",
+      "MITRE T1037.001 boot or logon initialization scripts logon script windows",
+      "MITRE T1037 boot or logon initialization scripts",
+      "MITRE TA0003 persistence",
+      "Process",
+      "Windows"
+    ]
+  },
+  {
     "desc": "Adversaries may manipulate emails and mailbox data to remove logs, artifacts, and metadata. This can obscure evidence of malicious activities such as phishing, internal spearphishing, email collection, use of mail protocols for command and control, and email-based exfiltration",
     "disabled": true,
     "has_exceptions": true,
@@ -15541,8 +17115,8 @@
     "source": "falco",
     "tags": [
       "MITRE",
+      "MITRE T1070.008 indicator removal on host clear mailbox data",
       "MITRE T1070 indicator removal on host",
-      "MITRE T1070 indicator removal on host clear mailbox data",
       "MITRE TA0005 defense evasion",
       "Container",
       "Host"
@@ -15673,6 +17247,29 @@
     ]
   },
   {
+    "desc": "Detects usage of bitsadmin downloading a file from a suspicious file sharing domain. Adversaries may abuse Windows Background Intelligent Transfer Service (BITS) jobs to persistently execute malicious payloads.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Windows Threat Intelligence",
+    "priority": "CRITICAL",
+    "rule": "Malicious Download via BITS Jobs",
+    "severity": 3,
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Host",
+      "MITRE",
+      "MITRE T1105 ingress tool transfer",
+      "MITRE T1197 BITS jobs",
+      "MITRE TA0003 persistence",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA0011 command and control",
+      "Process",
+      "Windows"
+    ]
+  },
+  {
     "desc": "This rule detects a spawned process with a known-malicious environment variable set. An example of this is the Symbiote rootkit.",
     "disabled": false,
     "has_exceptions": true,
@@ -15691,6 +17288,30 @@
       "MITRE TA0005 defense evasion",
       "Container",
       "Host",
+      "Ioc"
+    ]
+  },
+  {
+    "desc": "This rule was triggered by the IP or domains in proc_cmdline.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Windows Threat Intelligence",
+    "priority": "CRITICAL",
+    "rule": "Malicious IP or Domain Detected on cmdline",
+    "severity": 3,
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Host",
+      "MITRE",
+      "MITRE T1102 web service",
+      "MITRE T1496 resource hijacking",
+      "MITRE TA0002 execution",
+      "MITRE TA0003 persistence",
+      "MITRE TA0005 defense evasion",
+      "Process",
+      "Windows",
       "Ioc"
     ]
   },
@@ -15716,6 +17337,28 @@
       "Container",
       "Host",
       "Ioc"
+    ]
+  },
+  {
+    "desc": "Powershell executed a known malicious cmdlet",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Windows Threat Intelligence",
+    "priority": "CRITICAL",
+    "rule": "Malicious Powershell Cmdlet detected",
+    "severity": 3,
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Execution",
+      "Host",
+      "MITRE",
+      "MITRE T1059.001 command and scripting interpreter powershell",
+      "MITRE T1059 command and scripting interpreter",
+      "MITRE TA0002 execution",
+      "Process",
+      "Windows"
     ]
   },
   {
@@ -15791,6 +17434,9 @@
     "severity": 3,
     "source": "github",
     "tags": [
+      "MITRE",
+      "MITRE T1657 financial theft",
+      "MITRE TA0040 impact",
       "Github"
     ]
   },
@@ -15851,6 +17497,25 @@
       "SOC2 CC7.1",
       "Container",
       "File",
+      "Host"
+    ]
+  },
+  {
+    "desc": "This rule detects modifications to udev rules, files read by the udev device manager at system startup that allow users to manage devices and create actions based on hardware events. If maliciously altered, an attacker may be able to specify additional programs and arbitrary scripts to be run, obtaining persistence within the system.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Modification of Udev Rules Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1546 event triggered execution",
+      "MITRE T1548 abuse elevation control mechanism",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
+      "Container",
       "Host"
     ]
   },
@@ -16449,6 +18114,10 @@
     "rule": "New GitHub Action Workflow Deployed",
     "source": "github",
     "tags": [
+      "MITRE",
+      "MITRE T1072 software deployment tools",
+      "MITRE TA0002 execution",
+      "MITRE TA0008 lateral movement",
       "Github"
     ]
   },
@@ -17099,6 +18768,10 @@
     "severity": 3,
     "source": "github",
     "tags": [
+      "MITRE",
+      "MITRE T1550.001 application access token",
+      "MITRE T1550 use alternate authentication material",
+      "MITRE TA0005 defense evasion",
       "Github"
     ]
   },
@@ -17212,6 +18885,29 @@
     ]
   },
   {
+    "desc": "This rule detects potential instances of COM hijacking on Windows systems, a technique whereby attackers manipulate COM registry entries to redirect legitimate calls to malicious code. It monitors registry activity related to COM objects and identifies suspicious modifications made by unauthorized processes.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Possible COM Hijacking",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Host",
+      "MITRE",
+      "MITRE T1055 process injection",
+      "MITRE T1218 system binary proxy execution",
+      "MITRE T1546.015 event triggered execution component object model hijacking",
+      "MITRE T1546 event triggered execution",
+      "MITRE TA0002 initial access",
+      "MITRE TA0004 execution",
+      "MITRE TA0005 defense evasion",
+      "Registry",
+      "Windows"
+    ]
+  },
+  {
     "desc": "Adversaries might try to take control of an active SSH session by employing a custom SSH agent. This detection rule specifically identifies instances where a custom agent is added and tested.",
     "disabled": true,
     "has_exceptions": true,
@@ -17229,6 +18925,52 @@
     ]
   },
   {
+    "desc": "Adversaries may establish persistence and/or elevate privileges by executing malicious content triggered by application shims.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Windows Threat Detection",
+    "priority": "CRITICAL",
+    "rule": "Potential Application Shimming",
+    "severity": 3,
+    "source": "windows",
+    "tags": [
+      "Container",
+      "File",
+      "Host",
+      "MITRE",
+      "MITRE T1112 modify registry",
+      "MITRE T1546.011 event triggered execution application shimming",
+      "MITRE T1546 event triggered execution",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "Process",
+      "Registry",
+      "Windows"
+    ]
+  },
+  {
+    "desc": "This rule targets potential instances of DLL injection through the AppCertDLLs registry key on Windows systems, which can be abused by attackers to insert malicious DLLs, as DLLs specified within the AppCertDLLs registry key are loaded into every process that calls certain API functions associated with it, allowing for privilege escalation and defense evasion.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "CRITICAL",
+    "rule": "Potential DLL Injection via AppCertDLLs",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Host",
+      "MITRE",
+      "MITRE T1112 modify registry",
+      "MITRE T1546.009 event triggered execution AppCertDLLs",
+      "MITRE T1546 event triggered execution",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
+      "Registry",
+      "Windows"
+    ]
+  },
+  {
     "desc": "This rule detects potential IRC connections based on suspicious network activity, providing visibility into possible command and control communications. An attacker could establish covert communication channels through IRC to remotely control compromised systems and exfiltrate sensitive data, evading detection through common web protocols.",
     "disabled": false,
     "has_exceptions": true,
@@ -17243,6 +18985,49 @@
       "MITRE TA0011 command and control",
       "Host",
       "Network"
+    ]
+  },
+  {
+    "desc": "Registry value that can be used for UAC bypass is being added or overwritten",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "CRITICAL",
+    "rule": "Potential UAC Bypass Using Registry Manipulation",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Defense Evasion",
+      "Host",
+      "MITRE",
+      "MITRE T1112 modify registry",
+      "MITRE T1548.002 abuse elevation control mechanism bypass user account control",
+      "MITRE T1548 abuse elevation control mechanism",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
+      "Registry",
+      "Windows"
+    ]
+  },
+  {
+    "desc": "Adversaries may abuse print processors or print monitors to run malicious DLLs during system boot for persistence and/or privilege escalation. At system boot the malicious binary will be executed as SYSTEM as part of privilege escalation and/or persistence.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Print Processor or Port Monitor Registry Change",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Host",
+      "MITRE",
+      "MITRE T1112 modify registry",
+      "MITRE T1547.012 boot or login autostart execution print processors",
+      "MITRE T1547 boot or logon autostart execution",
+      "MITRE TA0003 persistence",
+      "MITRE TA0005 defense evasion",
+      "Registry",
+      "Windows"
     ]
   },
   {
@@ -17309,6 +19094,46 @@
       "SOC2 CC6.1",
       "Container",
       "Shell"
+    ]
+  },
+  {
+    "desc": "Detect a memory dump taken from a process. This can lead to credential exfiltration.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Windows Threat Detection",
+    "priority": "WARNING",
+    "rule": "Process Memory Dump",
+    "severity": 3,
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Credential Access",
+      "Host",
+      "MITRE",
+      "MITRE T1003.001 OS credential dumping LSASS memory",
+      "MITRE T1003 os credential dumping",
+      "MITRE TA0006 credential access",
+      "Process",
+      "Windows"
+    ]
+  },
+  {
+    "desc": "Detect process memory injection via process_vm_writev system call, an easier way to potentially inject code inside another process' memory alternatively to ptrace.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Process memory injection via process_vm_writev",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1055 process injection",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "Host",
+      "Process"
     ]
   },
   {
@@ -17390,6 +19215,10 @@
     "rule": "Push on Github Actions Detected",
     "source": "github",
     "tags": [
+      "MITRE",
+      "MITRE T1072 software deployment tools",
+      "MITRE TA0002 execution",
+      "MITRE TA0008 lateral movement",
       "Github"
     ]
   },
@@ -17417,7 +19246,7 @@
       "MITRE TA0001 initial access",
       "MITRE TA0005 defense evasion"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect setting the permissions on an existing bucket using access control lists to grant AllUsers (public) access.",
@@ -17513,7 +19342,7 @@
       "MITRE TA0001 initial access",
       "MITRE TA0005 defense evasion"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect creation of a replication configuration or the replacement of an existing one.",
@@ -18069,9 +19898,11 @@
       "ISO 27001",
       "ISO 27001 A.9.4.1",
       "MITRE",
+      "MITRE T1069.001 permission groups discovery local groups",
       "MITRE T1078.001 valid accounts default accounts",
       "MITRE T1078 valid accounts",
       "MITRE T1083 file and directory discovery",
+      "MITRE T1087.001 account discovery local account",
       "MITRE T1087 account discovery",
       "MITRE T1552.001 unsecured credentials credentials in files",
       "MITRE T1552 unsecured credentials",
@@ -18353,6 +20184,8 @@
     "rule": "Remove Collaborator from Github Repository",
     "source": "github",
     "tags": [
+      "MITRE T1531 account access removal",
+      "MITRE TA0040 impact",
       "Github"
     ]
   },
@@ -18546,6 +20379,41 @@
     ]
   },
   {
+    "desc": "Restricted Admin Mode was introduced in Windows 8.1 as an attempt to prevent credential exposure via RDP. While well intentioned, it introduced the ability for an attacker to perform pass-the-hash attacks via RDP. Disabled by default, any attempt at enabling this policy should be considered suspicious.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Restricted Admin Mode Enabled",
+    "source": "windows",
+    "tags": [
+      "Host",
+      "MITRE",
+      "MITRE T1112 modify registry",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "Registry",
+      "Windows"
+    ]
+  },
+  {
+    "desc": "This rule detects the spawning of a reverse shell, which is a shell process with stdin and one of stdout or stderr file handles redirected to a network connection. This is a common technique used by attackers to gain remote access to a compromised system.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Reverse Shell Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1059 command and scripting interpreter",
+      "MITRE T1104 multi stage channels",
+      "MITRE TA0002 execution",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect revocation ingress from a DBSecurityGroup for previously authorized IP ranges or EC2 or VPC Security Groups.",
     "disabled": true,
     "has_exceptions": true,
@@ -18700,7 +20568,7 @@
       "MITRE TA0005 defense evasion",
       "MITRE TA0008 lateral movement"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect launching of a specified number of instances in a non-approved region.",
@@ -18733,7 +20601,7 @@
       "SOC2 CC6.6",
       "SOC2 CC7.2"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect launching of a specified number of instances with a non-standard image.",
@@ -18821,6 +20689,7 @@
       "MITRE",
       "MITRE T1059.004 command and scripting interpreter unix shell",
       "MITRE T1068 exploitation for privilege escalation",
+      "MITRE T1212 exploitation for credential access",
       "MITRE T1546.004 event triggered execution unix shell configuration modification",
       "MITRE TA0002 execution",
       "MITRE TA0003 persistence",
@@ -18978,6 +20847,25 @@
       "Cloud",
       "MITRE",
       "MITRE T1566 phishing"
+    ]
+  },
+  {
+    "desc": "Disabling Security Signature can lead to unauthorized authentication via SMB",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "CRITICAL",
+    "rule": "SMB Disable Messages Security Signature",
+    "source": "windows",
+    "tags": [
+      "Host",
+      "MITRE",
+      "MITRE T1021 remote services SMB-windows admin shares",
+      "MITRE T1562.001 impair defenses disable or modify tools",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA008 lateral movement",
+      "Registry",
+      "Windows"
     ]
   },
   {
@@ -19435,6 +21323,64 @@
     ]
   },
   {
+    "desc": "Adversaries may enable services to be run in Safe Mode with the intent of executing a malicious service under the radar.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Services enabled to run in Safe Mode",
+    "source": "windows",
+    "tags": [
+      "Host",
+      "MITRE",
+      "MITRE T1112 modify registry",
+      "MITRE TA0005 defense evasion",
+      "Registry",
+      "Windows"
+    ]
+  },
+  {
+    "desc": "This rule detects any attempt at setting the PowerShell handler for history logging with a user-inputted line. Examples of malicious usage of this handler include  providing a specific line that will instead disable all history logging for the current session.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Windows Threat Detection",
+    "priority": "NOTICE",
+    "rule": "Set Custom Handler for Command History",
+    "severity": 3,
+    "source": "windows",
+    "tags": [
+      "Host",
+      "MITRE",
+      "MITRE T1070.003 indicator removal clear command history",
+      "MITRE T1070 indicator removal",
+      "MITRE TA0005 defense evasion",
+      "Powershell",
+      "Process",
+      "Windows"
+    ]
+  },
+  {
+    "desc": "The hidden attribute was applied to a file",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Set File Hidden Attribute",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Defense Evasion",
+      "Host",
+      "MITRE",
+      "MITRE T1222.001 file and directory permissions modification windows file and directory permissions modification",
+      "MITRE T1222 file and directory permissions modification",
+      "MITRE TA0005 defense evasion",
+      "Process",
+      "Windows"
+    ]
+  },
+  {
     "desc": "This rule detects when the setuid or setgid bits are set for an application, which may lead to privilege escalation attacks by allowing the application to run with elevated privileges. An attacker could compromise a system by exploiting the elevated privileges granted to the application with the setuid or setgid bits set.",
     "disabled": true,
     "has_exceptions": true,
@@ -19580,6 +21526,25 @@
       "MITRE TA0004 privilege escalation",
       "Container",
       "Host"
+    ]
+  },
+  {
+    "desc": "Adversaries may abuse legitimate applications, not intended to spawn a windows shell, with the objective of obtaining execution within a compromised system.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "CRITICAL",
+    "rule": "Shell Spawned by Unauthorized Program",
+    "source": "windows",
+    "tags": [
+      "Host",
+      "MITRE",
+      "MITRE T1059.001 windows command shell",
+      "MITRE T1059 command and scripting interpreter",
+      "MITRE TA0002 execution",
+      "Process",
+      "Shell",
+      "Windows"
     ]
   },
   {
@@ -19845,6 +21810,87 @@
     ]
   },
   {
+    "desc": "Adversaries may establish persistence and/or elevate privileges by executing malicious content triggered by Image File Execution Options (IFEO) debuggers. IFEOs enable a developer to attach a debugger to an application. When a process is created, a debugger present in an application\u2019s IFEO will be prepended to the application\u2019s name, effectively launching the new process under the debugger.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Suspicious Binary added via IFEO Debugger",
+    "source": "windows",
+    "tags": [
+      "Host",
+      "MITRE",
+      "MITRE T1112 modify registry",
+      "MITRE T1546.012 event triggered execution image file execution options injections",
+      "MITRE T1546 event triggered execution",
+      "MITRE TA0003 persistence",
+      "MITRE TA0005 defense evasion",
+      "Registry",
+      "Windows"
+    ]
+  },
+  {
+    "desc": "Adversaries may establish persistence by executing malicious content triggered by Netsh Helper DLLs. Adversaries can use netsh.exe helper DLLs to trigger execution of arbitrary code in a persistent manner. This execution would take place anytime netsh.exe is executed.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Suspicious Binary added via NetSh Helper",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Host",
+      "MITRE",
+      "MITRE T1112 modify registry",
+      "MITRE T1546.007 netsh helper dll",
+      "MITRE T1546 event triggered execution",
+      "MITRE TA0003 persistence",
+      "MITRE TA0005 defense evasion",
+      "Registry",
+      "Windows"
+    ]
+  },
+  {
+    "desc": "Windows Time service (W32Time) enables time synchronization across and within domains. Time providers are implemented as dynamic-link libraries (DLLs) that are registered in the subkeys of the registry path monitored by this rule. Adversaries may abuse this architecture to establish persistence, specifically by registering and enabling a malicious DLL as a time provider.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Suspicious Binary added via Time Providers",
+    "source": "windows",
+    "tags": [
+      "Host",
+      "MITRE",
+      "MITRE T1112 modify registry",
+      "MITRE T1547.003 boot or login autostart execution time providers",
+      "MITRE T1547 boot or logon autostart execution",
+      "MITRE TA0003 persistence",
+      "MITRE TA0005 defense evasion",
+      "Registry",
+      "Windows"
+    ]
+  },
+  {
+    "desc": "Winlogon is a Windows component which handles various activities such as the Logon, Logoff or loading user profile during authentication. This behavior is managed by the registry and an adversary may be able to execute an arbitrary payload for persistence.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Suspicious Binary added via WinLogon Helper",
+    "source": "windows",
+    "tags": [
+      "Host",
+      "MITRE",
+      "MITRE T1112 modify registry",
+      "MITRE T1547.004 boot or login autostart execution winlogon helper dll",
+      "MITRE T1547 boot or logon autostart execution",
+      "MITRE TA0003 persistence",
+      "MITRE TA0005 defense evasion",
+      "Registry",
+      "Windows"
+    ]
+  },
+  {
     "desc": "Adversaries may grant specific capabilities to a binary, allowing it to perform actions beyond its usual permissions. This allows them to elevate their privileges or extract sensitive information",
     "disabled": true,
     "has_exceptions": true,
@@ -20078,6 +22124,7 @@
       "MITRE",
       "MITRE T1059 command and scripting interpreter",
       "MITRE T1203 exploitation for client execution",
+      "MITRE T1212 exploitation for credential access",
       "MITRE TA0002 execution",
       "MITRE TA0011 command and control",
       "Container",
@@ -20150,6 +22197,29 @@
       "Firewall",
       "Host",
       "Network"
+    ]
+  },
+  {
+    "desc": "As part of credential dumping activities adversaries may load the Windows Credential Vault DLL vaultcli. This rule detects suspicious processes loading the image.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Suspicious Process Loading Vault DLL",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Host",
+      "MITRE",
+      "MITRE T1078.001 default accounts",
+      "MITRE T1078.002 domain accounts",
+      "MITRE T1078 valid accounts",
+      "MITRE T1555.004 credentials from password stores windows credential manager",
+      "MITRE T1555 credentials from password stores",
+      "MITRE TA0001 initial access",
+      "MITRE TA0006 credential access",
+      "Process",
+      "Windows"
     ]
   },
   {
@@ -20228,6 +22298,25 @@
       "Container",
       "File",
       "Host"
+    ]
+  },
+  {
+    "desc": "Modify event viewer registry values to alter the behavior of the online help redirection. Upon opening an event in event viewer and attempting to view the help page for the event, it will open the URL or execute the program defined in the redirection URL registry entry.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Suspicious URL added to Redirection Registry Key",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Host",
+      "MITRE",
+      "MITRE T1036 masquerading",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA1036.005 masquerading match legitimate name or location",
+      "Network",
+      "Windows"
     ]
   },
   {
@@ -20372,6 +22461,25 @@
       "MITRE TA0007 discovery",
       "Container",
       "Host"
+    ]
+  },
+  {
+    "desc": "The AlwaysInstallElevated policy is able to install a Windows Installer package with elevated (system) privileges, and its enablement is usually not recommended. Suspicious usage of this registry key may be tied to an adversary's attempt to perform privilege escalation on a compromised system.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Windows Threat Detection",
+    "priority": "CRITICAL",
+    "rule": "System Privileges Granted via Registry Modification",
+    "severity": 3,
+    "source": "windows",
+    "tags": [
+      "Host",
+      "MITRE",
+      "MITRE T1548 abuse elevation control mechanism",
+      "MITRE TA0004 privilege escalation",
+      "Registry",
+      "Windows"
     ]
   },
   {
@@ -20547,6 +22655,29 @@
     ]
   },
   {
+    "desc": "Adversaries may attempt to create a scheduled task with the highest privileges to perform privilege escalation within a compromised Windows system, as the privileged scheduled task may be set to run an attacker-owned executable.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Windows Threat Detection",
+    "priority": "CRITICAL",
+    "rule": "Task Scheduled with Highest Privileges",
+    "severity": 3,
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Host",
+      "MITRE",
+      "MITRE T1053.005 scheduled task",
+      "MITRE T1053 scheduled task job",
+      "MITRE TA0002 execution",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "Process",
+      "Windows"
+    ]
+  },
+  {
     "desc": "A terminal shell has been executed inside an ECS container.",
     "disabled": true,
     "has_exceptions": true,
@@ -20711,6 +22842,46 @@
       "NIST 800-53 AU-2",
       "NIST 800-53 SI-4",
       "Container"
+    ]
+  },
+  {
+    "desc": "Detects an attempt to create or modify the wpbbin.exe file in the system32 directory. This may be an indicator of UEFI pre-OS boot persistence mechanisms.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "UEFI Persistence via wpbbin.exe Creation in System32",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "File",
+      "Host",
+      "MITRE",
+      "MITRE T1542.005 pre-os boot system firmware",
+      "MITRE T1542 pre-os boot",
+      "MITRE TA0003 persistence",
+      "MITRE TA0005 defense evasion",
+      "Windows"
+    ]
+  },
+  {
+    "desc": "Assistive technologies such as ATBroker are able to launch utilities originally designed for accessibility in a Windows system. An attacker may be able to improperly change its registry configuration keys with the objective of launching an attacker-controlled application.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Unauthorized Accessibility Binaries Modification",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Host",
+      "MITRE",
+      "MITRE T1546.008 event triggered execution accessibility features",
+      "MITRE T1546 event triggered execution",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "Registry",
+      "Windows"
     ]
   },
   {
@@ -21593,7 +23764,7 @@
       "SOC2",
       "SOC2 CC7.2"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "Detect updates to a Lambda function configuration.",
@@ -21614,7 +23785,7 @@
       "SOC2",
       "SOC2 CC7.2"
     ],
-    "updated_oss_condition": false
+    "updated_oss_condition": true
   },
   {
     "desc": "This rule detects changes or updates to package repositories on systems, contributing to maintaining the integrity and security of package installation procedures. An attacker exploiting vulnerabilities in package repository updating processes could potentially plant malicious packages or tamper with existing ones, leading to compromised software integrity and unauthorized code execution.",
@@ -21769,6 +23940,25 @@
     ]
   },
   {
+    "desc": "Powershell execution policy was updated",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Update Powershell Execution Policy",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Defense Evasion",
+      "Host",
+      "MITRE",
+      "MITRE T1112 modify registry",
+      "MITRE TA0005 defense evasion",
+      "Process",
+      "Windows"
+    ]
+  },
+  {
     "desc": "Detect the update of a Secret in Secrets Manager.",
     "disabled": true,
     "has_exceptions": true,
@@ -21800,6 +23990,64 @@
       "MITRE TA0005 defense evasion",
       "SOC2",
       "SOC2 CC7.2"
+    ]
+  },
+  {
+    "desc": "This rule detects whenever a new user object is created.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "User Account Created",
+    "source": "windows",
+    "tags": [
+      "Host",
+      "MITRE",
+      "MITRE T1136.001 create account local account",
+      "MITRE T1136 create account",
+      "MITRE TA0003 persistence",
+      "Windows",
+      "User"
+    ]
+  },
+  {
+    "desc": "This rule detects whenever an existent user object is deleted.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "NOTICE",
+    "rule": "User Account Deleted",
+    "source": "windows",
+    "tags": [
+      "Host",
+      "MITRE",
+      "MITRE T1531 account access removal",
+      "MITRE TA0040 impact",
+      "Windows",
+      "User"
+    ]
+  },
+  {
+    "desc": "A user was added to the administrators group",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "User Added to Administrators Group",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Host",
+      "MITRE",
+      "MITRE T1078.003 valid accounts local accounts",
+      "MITRE T1078 valid accounts",
+      "MITRE TA0001 initial access",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
+      "Persistence",
+      "Process",
+      "Windows"
     ]
   },
   {
@@ -22028,6 +24276,44 @@
       "MITRE TA0040 impact",
       "Container",
       "Host"
+    ]
+  },
+  {
+    "desc": "Vssadmin is a default Windows process that controls volume shadow duplicates on a given PC. Adversaries may create shadow copies for defense evasion in order to to bypass file access controls and file system monitoring.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Volume Shadow Copy via vssadmin",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "Host",
+      "MITRE",
+      "MITRE T1006 direct volume access",
+      "MITRE TA0005 defense evasion",
+      "Process",
+      "Windows"
+    ]
+  },
+  {
+    "desc": "Detects when the command shell is spawned inside a container.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "CRITICAL",
+    "rule": "Windows Shell Spawned Inside Container",
+    "source": "windows",
+    "tags": [
+      "Container",
+      "MITRE",
+      "MITRE T1068 exploitation for privilege escalation",
+      "MITRE T1609 container administration command",
+      "MITRE TA0002 execution",
+      "MITRE TA0004 privilege escalation",
+      "Process",
+      "Shell",
+      "Windows"
     ]
   },
   {
