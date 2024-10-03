@@ -147,8 +147,48 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "NOTICE",
+    "priority": "INFO",
     "rule": "AWS SSM Agent Activity",
+    "source": "falco",
+    "tags": [
+      "AWS",
+      "AWS EC2",
+      "AWS SSM",
+      "MITRE",
+      "MITRE T1078.004 valid accounts cloud accounts",
+      "MITRE T1078 valid accounts",
+      "MITRE TA0004 privilege escalation",
+      "Cloud",
+      "Host"
+    ]
+  },
+  {
+    "desc": "Detects commands by AWS Simple Systems Manager (SSM) SendCommand using document names AWS-RunShellScript or AWS-RunPowerShellScript. This rule can be tuned to exclude any known scripts to detect unknown activity.  An authenticated AWS user with necessary privileges could run arbitrary commands as root without EC2 system credentials.  For use in conjunction with rule \"SSM Send Command\"",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "AWS SSM Agent Activity Using SendCommand RunShellScript or RunPowerShellScript",
+    "source": "falco",
+    "tags": [
+      "AWS",
+      "AWS EC2",
+      "AWS SSM",
+      "MITRE",
+      "MITRE T1078.004 valid accounts cloud accounts",
+      "MITRE T1078 valid accounts",
+      "MITRE TA0004 privilege escalation",
+      "Cloud",
+      "Host"
+    ]
+  },
+  {
+    "desc": "Detects commands by AWS Simple Systems Manager (SSM) StartSession.  This rule can be tuned to exclude any known scripts to detect unknown activity.  An authenticated AWS user with necessary privileges could start SSM session to get an interactive shell on the target machine. For use in conjunction with rule \"SSM StartSession\"",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "AWS SSM Agent Activity using StartSession",
     "source": "falco",
     "tags": [
       "AWS",
@@ -167,7 +207,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "NOTICE",
+    "priority": "INFO",
     "rule": "AWS SSM Agent File Write",
     "source": "falco",
     "tags": [
@@ -258,7 +298,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Access to Clipboard Data Detected",
     "source": "falco",
     "tags": [
@@ -274,7 +314,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Active Directory Connection Detected",
     "source": "falco",
     "tags": [
@@ -558,7 +598,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Archive or Compression Activity Detected",
     "source": "falco",
     "tags": [
@@ -702,6 +742,58 @@
       "NIST 800-171 3.1.5",
       "NIST 800-53",
       "NIST 800-53 AC-6",
+      "SOC2",
+      "SOC2 CC6.6"
+    ]
+  },
+  {
+    "desc": "Detect attaching an administrator policy to a group",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Attach Administrator Policy to Group",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE T1098.003 account manipulation additional cloud roles",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation"
+    ]
+  },
+  {
+    "desc": "Detect attaching an administrator policy to a role.  This can be abused to elevate privileges.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "Warning",
+    "rule": "Attach Administrator Policy to Role",
+    "source": "awscloudtrail",
+    "tags": [
+      "003 Account Manipulation Additional Cloud Roles",
+      "AWS",
+      "AWS FSBP",
+      "AWS FSBP iam.2",
+      "AWS IAM",
+      "AWS WAF",
+      "AWS WAF SEC-3",
+      "Cloud",
+      "GDPR",
+      "GDPR 25.1",
+      "GDPR 25.2",
+      "GDPR 25.3",
+      "ISO",
+      "ISO 27001",
+      "ISO 27001 A.6.1.2",
+      "MITRE",
+      "MITRE T1098.003 account manipulation additional cloud roles",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "PCI",
+      "PCI DSS",
+      "PCI DSS 7.2.1",
       "SOC2",
       "SOC2 CC6.6"
     ]
@@ -934,7 +1026,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Auditd Logging Commands",
     "source": "falco",
     "tags": [
@@ -3987,7 +4079,8 @@
       "MITRE T1195 supply chain compromise",
       "MITRE TA0001 initial access",
       "Container",
-      "Host"
+      "Host",
+      "Oss"
     ]
   },
   {
@@ -4351,7 +4444,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "NOTICE",
+    "priority": "INFO",
     "rule": "Change thread namespace",
     "source": "falco",
     "tags": [
@@ -4394,6 +4487,7 @@
       "SOC2 CC6.8",
       "Container",
       "Host",
+      "Oss",
       "Process"
     ]
   },
@@ -4457,7 +4551,8 @@
       "SOC2 CC6.7",
       "Container",
       "File",
-      "Host"
+      "Host",
+      "Oss"
     ],
     "updated_oss_condition": true
   },
@@ -4502,7 +4597,7 @@
   {
     "desc": "Detect creation of a CloudRun Service.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "CloudRun Create Service",
@@ -4523,7 +4618,7 @@
   {
     "desc": "Detect the replacement of a CloudRun Service.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "CloudRun Replace Service",
@@ -5356,7 +5451,7 @@
     "has_exceptions": true,
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Intelligence",
-    "priority": "WARNING",
+    "priority": "CRITICAL",
     "rule": "Connection to IPFS Network Detected",
     "severity": 3,
     "source": "falco",
@@ -5424,7 +5519,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Connection to SMB Server detected",
     "source": "falco",
     "tags": [
@@ -5444,7 +5539,7 @@
     "has_exceptions": true,
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Intelligence",
-    "priority": "WARNING",
+    "priority": "CRITICAL",
     "rule": "Connection with Suspicious User Agent Detected",
     "severity": 3,
     "source": "falco",
@@ -5820,7 +5915,8 @@
       "SOC2 CC6.8",
       "Aws",
       "Container",
-      "Network"
+      "Network",
+      "Oss"
     ]
   },
   {
@@ -6042,7 +6138,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": true,
-    "priority": "NOTICE",
+    "priority": "INFO",
     "rule": "Contact K8S API Server From Container",
     "source": "falco",
     "tags": [
@@ -6097,7 +6193,8 @@
       "SOC2 CC6.1",
       "Container",
       "K8S",
-      "Network"
+      "Network",
+      "Oss"
     ],
     "updated_oss_condition": true
   },
@@ -6234,7 +6331,8 @@
       "SOC2 CC6.1",
       "SOC2 CC6.8",
       "Container",
-      "Network"
+      "Network",
+      "Oss"
     ]
   },
   {
@@ -6271,7 +6369,8 @@
       "SOC2",
       "SOC2 CC6.8",
       "SOC2 CC7.2",
-      "Container"
+      "Container",
+      "Oss"
     ]
   },
   {
@@ -6308,7 +6407,8 @@
       "SOC2",
       "SOC2 CC6.8",
       "SOC2 CC7.2",
-      "Container"
+      "Container",
+      "Oss"
     ]
   },
   {
@@ -6325,6 +6425,7 @@
       "MITRE T1611 escape to host",
       "MITRE TA0004 privilege escalation",
       "Container",
+      "Oss",
       "Process"
     ]
   },
@@ -6853,7 +6954,8 @@
       "SOC2 CC6.3",
       "Container",
       "File",
-      "Host"
+      "Host",
+      "Oss"
     ],
     "updated_oss_condition": true
   },
@@ -6902,7 +7004,8 @@
       "NIST 800-53 SI-7",
       "Container",
       "File",
-      "Host"
+      "Host",
+      "Oss"
     ]
   },
   {
@@ -7702,7 +7805,8 @@
       "SOC2 CC6.3",
       "Container",
       "File",
-      "Host"
+      "Host",
+      "Oss"
     ],
     "updated_oss_condition": true
   },
@@ -8007,7 +8111,8 @@
       "SOC2 CC6.8",
       "Container",
       "File",
-      "Host"
+      "Host",
+      "Oss"
     ]
   },
   {
@@ -8233,7 +8338,25 @@
       "Container",
       "Database",
       "Host",
+      "Oss",
       "Process"
+    ]
+  },
+  {
+    "desc": "This rule detects unusually short Time-To-Live DNS responses, which could be indicative of shuffling activities related to IP Address resolution, known as Fast Flux. This technique is often employed by attackers for command and control resilience.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "DNS Fast Flux Activity Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1568.001 fast flux DNS",
+      "MITRE T1568 dynamic resolution",
+      "MITRE TA0011 command and control",
+      "Container",
+      "Host"
     ]
   },
   {
@@ -8242,7 +8365,7 @@
     "has_exceptions": true,
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Intelligence",
-    "priority": "WARNING",
+    "priority": "CRITICAL",
     "rule": "DNS Lookup for C2 Domain Detected",
     "severity": 3,
     "source": "falco",
@@ -8336,7 +8459,7 @@
     "has_exceptions": true,
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Intelligence",
-    "priority": "WARNING",
+    "priority": "CRITICAL",
     "rule": "DNS Lookup for IPFS Domain Detected",
     "severity": 3,
     "source": "falco",
@@ -8468,7 +8591,7 @@
     "has_exceptions": true,
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Intelligence",
-    "priority": "WARNING",
+    "priority": "CRITICAL",
     "rule": "DNS Lookup for Proxy/VPN Domain Detected",
     "severity": 3,
     "source": "falco",
@@ -8487,11 +8610,13 @@
   },
   {
     "desc": "This rule detects DNS lookups to domains offering IP and geo check services, generally public services which are often abused by malware to conduct reconnaissance activities upon landing on a compromised system.",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Intelligence",
     "priority": "CRITICAL",
     "rule": "DNS Lookup for Reconnaissance Service Detected",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -8510,7 +8635,7 @@
     "has_exceptions": true,
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Intelligence",
-    "priority": "WARNING",
+    "priority": "CRITICAL",
     "rule": "DNS Lookup for Suspicious Domain Detected",
     "severity": 3,
     "source": "falco",
@@ -8551,12 +8676,32 @@
     ]
   },
   {
-    "desc": "This rule detects suspiciously long DNS queries, which may be indicative of a DNS tunneling attack.",
+    "desc": "This rule detects compromised DNS servers that may have been altered by attackers on a victim system in order to stealthily redirect legitimate connections to attacker-controlled network infrastructure.",
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
+    "rule": "DNS Rogue Server Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1548.002 DNS server",
+      "MITRE T1584 compromise infrastructure",
+      "MITRE TA0042 resource development",
+      "Container",
+      "Dns",
+      "Host"
+    ]
+  },
+  {
+    "desc": "This rule detects unusually long DNS queries, which could signal the use of DNS tunneling as a covert channel for data exfiltration or communication. Attackers can use DNS tunneling to bypass network defenses, smuggle sensitive data out of a network, or maintain persistent control over a compromised system.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Intelligence",
+    "priority": "CRITICAL",
     "rule": "DNS Tunneling Activity Detected",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -8773,7 +8918,8 @@
       "MITRE T1622 debugger evasion",
       "MITRE TA0005 defense evasion",
       "MITRE TA0008 lateral movement",
-      "Container"
+      "Container",
+      "Oss"
     ],
     "updated_oss_condition": true
   },
@@ -9908,7 +10054,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Delete or rename shell history",
     "source": "falco",
     "tags": [
@@ -9948,6 +10094,7 @@
       "SOC2 CC6.7",
       "Container",
       "Host",
+      "Oss",
       "Process"
     ]
   },
@@ -10068,6 +10215,7 @@
       "Container",
       "Crypto",
       "Host",
+      "Oss",
       "Process"
     ]
   },
@@ -10123,7 +10271,7 @@
     "has_exceptions": true,
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Intelligence",
-    "priority": "WARNING",
+    "priority": "CRITICAL",
     "rule": "Detect outbound connections to Proxy/VPN",
     "severity": 3,
     "source": "falco",
@@ -10214,7 +10362,8 @@
       "Container",
       "Crypto",
       "Host",
-      "Network"
+      "Network",
+      "Oss"
     ]
   },
   {
@@ -10261,7 +10410,8 @@
       "MITRE T1611 escape to host",
       "MITRE TA0004 privilege escalation",
       "MITRE TA0008 lateral movement",
-      "Container"
+      "Container",
+      "Oss"
     ],
     "updated_oss_condition": true
   },
@@ -10341,7 +10491,8 @@
       "MITRE TA0010 exfiltration",
       "Container",
       "File",
-      "Host"
+      "Host",
+      "Oss"
     ],
     "updated_oss_condition": true
   },
@@ -10831,6 +10982,7 @@
       "Container",
       "Host",
       "Network",
+      "Oss",
       "Process"
     ],
     "updated_oss_condition": true
@@ -10945,14 +11097,15 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": true,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Drop and execute new binary in container",
     "source": "falco",
     "tags": [
       "MITRE",
       "MITRE T1525 implant internal image",
       "MITRE TA0003 persistence",
-      "Container"
+      "Container",
+      "Oss"
     ],
     "updated_oss_condition": true
   },
@@ -11138,11 +11291,31 @@
     ]
   },
   {
+    "desc": "Detect an EC2 instance attaching a policy to a user, using credentials retrieved from the IMDS server. This could be an indication of an attacker trying to elevate privileges into the cloud environment.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig AWS Threat Detection",
+    "priority": "WARNING",
+    "rule": "EC2 Instance Attach Policy to User",
+    "severity": 3,
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS EC2",
+      "AWS IAM",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation"
+    ]
+  },
+  {
     "desc": "This rule detects access to a system using AWS EC2 Instance Connect, potentially indicating lateral movement within an AWS environment. An attacker could use this method to escalate privileges and gain unauthorized access to sensitive data or compromise additional systems.",
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "NOTICE",
+    "priority": "INFO",
     "rule": "EC2 Instance Connect System Access",
     "source": "falco",
     "tags": [
@@ -11171,6 +11344,29 @@
       "MITRE",
       "MITRE T1021.007 cloud services",
       "MITRE T1021 remote services",
+      "MITRE TA0008 lateral movement"
+    ]
+  },
+  {
+    "desc": "Detect an EC2 instance creating access keys for a user, using credentials retrieved from the IMDS server. This could be an indication of an attacker trying to elevate privilege or persist access to the cloud environment.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig AWS Threat Detection",
+    "priority": "WARNING",
+    "rule": "EC2 Instance Create Access Key for User",
+    "severity": 3,
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS EC2",
+      "AWS IAM",
+      "Cloud",
+      "MITRE",
+      "MITRE T1098 account manipulation",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
       "MITRE TA0008 lateral movement"
     ]
   },
@@ -12087,7 +12283,8 @@
       "MITRE TA0004 privilege escalation",
       "MITRE TA0005 defense evasion",
       "Container",
-      "Host"
+      "Host",
+      "Oss"
     ],
     "updated_oss_condition": true
   },
@@ -12157,7 +12354,8 @@
     "tags": [
       "MITRE",
       "MITRE TA0010 exfiltration",
-      "Container"
+      "Container",
+      "Oss"
     ]
   },
   {
@@ -12229,6 +12427,7 @@
       "Aws",
       "Container",
       "Host",
+      "Oss",
       "Process"
     ],
     "updated_oss_condition": true
@@ -12373,7 +12572,7 @@
   {
     "desc": "Detect adding public users AllUsers or AllAuthenticatedUsers to the permissions on an existing bucket.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Allow Public Access to Bucket",
@@ -12418,7 +12617,7 @@
   {
     "desc": "Detects the unspecified creation of an App Engine Firewall rule.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP App Engine Firewall Rule Created",
@@ -12436,7 +12635,7 @@
   {
     "desc": "Detects the deletion of an App Engine Firewall rule.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP App Engine Firewall Rule Deleted",
@@ -12454,7 +12653,7 @@
   {
     "desc": "Detects unspecified updates to an App Engine Firewall rule.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP App Engine Firewall Rule Updated",
@@ -12486,7 +12685,7 @@
   {
     "desc": "Detects blocked connection events by Cloud Armor.",
     "disabled": false,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "policy": "Sysdig GCP Threat Detection",
     "priority": "WARNING",
@@ -12510,7 +12709,7 @@
   {
     "desc": "Detects high and critical severity alerts generated by Cloud IDS.",
     "disabled": false,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "policy": "Sysdig GCP Threat Detection",
     "priority": "CRITICAL",
@@ -12568,7 +12767,7 @@
   {
     "desc": "Detect GCP command execution on unused regions.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "CRITICAL",
     "rule": "GCP Command Executed on Unused Region",
@@ -12592,7 +12791,7 @@
   {
     "desc": "Detects the creation of a Compute Firewall rule.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Compute Firewall Rule Created",
@@ -12611,7 +12810,7 @@
   {
     "desc": "Detects the deletion of a Compute Firewall rule.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Compute Firewall Rule Deleted",
@@ -12630,7 +12829,7 @@
   {
     "desc": "Detects unspecified updates to a Compute Firewall rule.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Compute Firewall Rule Updated",
@@ -12649,7 +12848,7 @@
   {
     "desc": "Detect creation of API keys for a project.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Create API Keys for a Project",
@@ -12669,7 +12868,7 @@
   {
     "desc": "Detect creation of a bucket.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Create Bucket",
@@ -12690,7 +12889,7 @@
   {
     "desc": "Detect creation of a Cloud function (v1 API).",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Create Cloud Function",
@@ -12709,7 +12908,7 @@
   {
     "desc": "Detect creation of a Cloud Function (v1 API) using and old or deprecated runtime.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Create Cloud Function Not Using Latest Runtime",
@@ -12730,7 +12929,7 @@
   {
     "desc": "Detect creation of a Cloud function (v2 API).",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Create Cloud Function v2",
@@ -12749,7 +12948,7 @@
   {
     "desc": "Detect creation of a Cloud Function (v2 API) using and old or deprecated runtime.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Create Cloud Function v2 Not Using Latest Runtime",
@@ -12785,7 +12984,7 @@
   {
     "desc": "Detect creation of a Data Loss Prevention job.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "NOTICE",
     "rule": "GCP Create DLP Job",
@@ -12802,7 +13001,7 @@
   {
     "desc": "Detect the creation of a DNS record.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "NOTICE",
     "rule": "GCP Create DNS Record",
@@ -12820,7 +13019,7 @@
   {
     "desc": "Detect the creation of a DNS zone.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "NOTICE",
     "rule": "GCP Create DNS Zone",
@@ -12838,7 +13037,7 @@
   {
     "desc": "Detect creating an access key for a GCP-managed service account.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "CRITICAL",
     "rule": "GCP Create GCP-managed Service Account Key",
@@ -12873,7 +13072,7 @@
   {
     "desc": "Detect creation of a new KMS with rotation disabled.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Create KMS Key Without Rotation",
@@ -12960,7 +13159,7 @@
   {
     "desc": "Detect creating an access key for a user-managed service account.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "CRITICAL",
     "rule": "GCP Create User-managed Service Account Key",
@@ -13014,7 +13213,7 @@
   {
     "desc": "Detect creation of a VPN tunnel.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Create VPN",
@@ -13032,7 +13231,7 @@
   {
     "desc": "Detect creation of a default network in a project.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Create a Default VPC Network",
@@ -13083,7 +13282,7 @@
   {
     "desc": "Detect creation of a DNS zone with DNSSEC disabled or a modification of a DNS zone to disable DNSSEC.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Create or Patch DNS Zone without DNSSEC",
@@ -13104,7 +13303,7 @@
   {
     "desc": "Detect creating a VM instance with IP forwarding enabled.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Creation of a VM Instance with IP Forwarding Enabled",
@@ -13137,7 +13336,7 @@
   {
     "desc": "Detect deletion of a bucket.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Delete Bucket",
@@ -13171,7 +13370,7 @@
   {
     "desc": "Detect deletion of a Data Loss Prevention job.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Delete DLP Job",
@@ -13188,7 +13387,7 @@
   {
     "desc": "Detect the deletion of a DNS record.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "NOTICE",
     "rule": "GCP Delete DNS Record",
@@ -13205,7 +13404,7 @@
   {
     "desc": "Detect the deletion of a DNS zone.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "CRITICAL",
     "rule": "GCP Delete DNS Zone",
@@ -13222,7 +13421,7 @@
   {
     "desc": "Detect the deletion of a GKE cluster.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "CRITICAL",
     "rule": "GCP Delete GKE Cluster",
@@ -13240,7 +13439,7 @@
   {
     "desc": "Detect the deletion of a GKE node pool.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "CRITICAL",
     "rule": "GCP Delete GKE Node Pool",
@@ -13258,7 +13457,7 @@
   {
     "desc": "Detect the deletion of an IAM role.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "CRITICAL",
     "rule": "GCP Delete IAM Role",
@@ -13276,7 +13475,7 @@
   {
     "desc": "Detect the deletion of resources from the blueprint environment.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "CRITICAL",
     "rule": "GCP Delete Resources from the PCI Blueprint Environment",
@@ -13308,7 +13507,7 @@
   {
     "desc": "Detect the deletion of a router.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "CRITICAL",
     "rule": "GCP Delete Router",
@@ -13326,7 +13525,7 @@
   {
     "desc": "Detect the deletion of a VPC network.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "CRITICAL",
     "rule": "GCP Delete VPC Network",
@@ -13344,7 +13543,7 @@
   {
     "desc": "Detect the deletion of a VPC subnetwork.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "CRITICAL",
     "rule": "GCP Delete VPC Subnetwork",
@@ -13362,7 +13561,7 @@
   {
     "desc": "Detect deletion of a VPN tunnel.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Delete VPN",
@@ -13382,7 +13581,7 @@
   {
     "desc": "Detect description of the specified GCE instance.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Describe Instance",
@@ -13400,7 +13599,7 @@
   {
     "desc": "Detect that automatic backups have been disabled for a Cloud SQL instance.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Disable Automatic Backups for a Cloud SQL Instance",
@@ -13423,7 +13622,7 @@
   {
     "desc": "Detect disabling the flow logs of a subnet.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Disable Subnet Flow Logs",
@@ -13474,7 +13673,7 @@
   {
     "desc": "Detect that the requirement for all incoming connections to use SSL for a Cloud SQL instance has been disabled.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Disable the Requirement for All Incoming Connections to Use SSL for a Cloud SQL Instance",
@@ -13541,7 +13740,7 @@
   {
     "desc": "Detect enabling of connection to serial ports for a VM instance.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Enable Connecting to Serial Ports for a VM Instance",
@@ -13572,7 +13771,7 @@
   {
     "desc": "Detect enabling of project-wide SSH keys for a VM instance.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Enable Project-wide SSH keys for a VM Instance",
@@ -13609,7 +13808,7 @@
   {
     "desc": "Detect sending invitations to not allowed corporate account.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "CRITICAL",
     "rule": "GCP Invitation Sent to Non-corporate Account",
@@ -13642,7 +13841,7 @@
   {
     "desc": "Detect scheduling of KMS key deletion.  Unauthorized users can use this in an extortion scheme to change encryption on sensitive files and ransom the owner.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP KMS Schedule Key Deletion",
@@ -13670,7 +13869,7 @@
   {
     "desc": "Detect listing of all objects in a bucket.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP List Bucket Objects",
@@ -13689,7 +13888,7 @@
   {
     "desc": "Detect listing of all storage buckets.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP List Buckets",
@@ -13741,7 +13940,7 @@
   {
     "desc": "Detect deletion of an alert.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Monitoring Alert Deleted",
@@ -13787,7 +13986,7 @@
   {
     "desc": "Detect updating of an alert.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Monitoring Alert Updated",
@@ -13832,7 +14031,7 @@
   {
     "desc": "Detect executing an operation by a non-corporate account.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "CRITICAL",
     "rule": "GCP Operation by a Non-corporate Account",
@@ -13865,7 +14064,7 @@
   {
     "desc": "Detects pausing of a Data Loss Prevention job.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Paused DLP Job",
@@ -13882,7 +14081,7 @@
   {
     "desc": "Detect setting the permissions on an existing bucket using access control lists.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Put Bucket ACL",
@@ -13927,7 +14126,7 @@
   {
     "desc": "Detects remote access ports from anywhere being allowed through a firewall.",
     "disabled": false,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "policy": "Sysdig GCP Threat Detection",
     "priority": "CRITICAL",
@@ -13952,7 +14151,7 @@
   {
     "desc": "Detect removal of KMS key rotation.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Remove KMS Key Rotation",
@@ -13980,7 +14179,7 @@
   {
     "desc": "Detect when sensitive roles are added to a user, like \"roles/owner\".",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Sensitive Role Added to User",
@@ -13997,7 +14196,7 @@
   {
     "desc": "Detects sensitive service account roles granted to a user.  These roles may allow the user to impersonate a service account.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Service Account Role Granted to User",
@@ -14015,7 +14214,7 @@
   {
     "desc": "Detect setting the permissions on an existing bucket using IAM policies.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Set Bucket IAM Policy",
@@ -14060,7 +14259,7 @@
   {
     "desc": "Detect that a public IP address has been set for a Cloud SQL instance.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Set a Public IP for a Cloud SQL Instance",
@@ -14095,7 +14294,7 @@
   {
     "desc": "Detect disabling of the Shielded VM parameter(s) of a VM instance.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Shield Disabled for a VM Instance",
@@ -14115,7 +14314,7 @@
   {
     "desc": "Detect super admin executing GPC command.",
     "disabled": false,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "policy": "Sysdig GCP Threat Detection",
     "priority": "CRITICAL",
@@ -14163,7 +14362,7 @@
   {
     "desc": "Detect modification of the enable-oslogin metadata in an instance.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Suspected Disable of OS Login in a VM Instance",
@@ -14183,7 +14382,7 @@
   {
     "desc": "Detect audit log alerts sourced from known suspicious IPs, such as TOR exit nodes.",
     "disabled": false,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "policy": "Sysdig GCP Threat Intelligence",
     "priority": "WARNING",
@@ -14200,7 +14399,7 @@
   {
     "desc": "Detect the update of a bucket.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Update Bucket",
@@ -14217,7 +14416,7 @@
   {
     "desc": "Detect updates to a Cloud Function (v1 API).",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Update Cloud Function",
@@ -14235,7 +14434,7 @@
   {
     "desc": "Detect updates to a Cloud Function (v2 API).",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Update Cloud Function v2",
@@ -14271,7 +14470,7 @@
   {
     "desc": "Detect the updating of a DNS record.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "NOTICE",
     "rule": "GCP Update DNS Record",
@@ -14289,7 +14488,7 @@
   {
     "desc": "Detect the update of a DNS zone.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "NOTICE",
     "rule": "GCP Update DNS Zone",
@@ -14321,7 +14520,7 @@
   {
     "desc": "Detect the updating, disabling or deletion of a sink.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Update, Disable or Delete Sink",
@@ -14371,7 +14570,7 @@
   {
     "desc": "Detects unspecified updates to a Data Loss Prevention job.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "GCP Updated DLP Job",
@@ -14460,6 +14659,23 @@
       "Host",
       "Recon",
       "Reconnaissance"
+    ]
+  },
+  {
+    "desc": "Detect retrieving information about all IAM users, groups, roles, and policies in the AWS account, including their relationships to one another.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Get Account Authorization Details",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE T1069 permission groups discovery",
+      "MITRE T1087 account discovery",
+      "MITRE TA0007 discovery"
     ]
   },
   {
@@ -14654,7 +14870,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Gsutil cp used to copy files from/to GCP buckets",
     "source": "falco",
     "tags": [
@@ -15330,7 +15546,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Interactive Reconnaissance Activity Detected",
     "source": "falco",
     "tags": [
@@ -15380,7 +15596,8 @@
       "SOC2 CC6.7",
       "Container",
       "Host",
-      "Network"
+      "Network",
+      "Oss"
     ]
   },
   {
@@ -15421,7 +15638,8 @@
       "NIST 800-53 SC-7(3)",
       "Container",
       "Host",
-      "Network"
+      "Network",
+      "Oss"
     ]
   },
   {
@@ -15442,7 +15660,8 @@
       "MITRE TA0001 initial access",
       "MITRE TA0042 resource development",
       "Container",
-      "Host"
+      "Host",
+      "Oss"
     ]
   },
   {
@@ -16301,7 +16520,7 @@
     "has_exceptions": true,
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Intelligence",
-    "priority": "WARNING",
+    "priority": "CRITICAL",
     "rule": "Kill known malicious process",
     "severity": 3,
     "source": "falco",
@@ -16436,7 +16655,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Launch Code Compiler Tool in Container",
     "source": "falco",
     "tags": [
@@ -16457,7 +16676,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Launch Code Compiler Tool on Host",
     "source": "falco",
     "tags": [
@@ -16516,7 +16735,8 @@
       "NIST 800-53 CM-7(4)",
       "SOC2",
       "SOC2 CC6.1",
-      "Container"
+      "Container",
+      "Oss"
     ]
   },
   {
@@ -16534,7 +16754,8 @@
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation",
       "MITRE TA0008 lateral movement",
-      "Container"
+      "Container",
+      "Oss"
     ]
   },
   {
@@ -16542,7 +16763,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "NOTICE",
+    "priority": "INFO",
     "rule": "Launch Ingress Remote File Copy Tools in Container",
     "source": "falco",
     "tags": [
@@ -16557,6 +16778,7 @@
       "MITRE TA0011 command and control",
       "Container",
       "Network",
+      "Oss",
       "Process"
     ]
   },
@@ -16626,6 +16848,7 @@
       "SOC2",
       "SOC2 CC6.1",
       "Container",
+      "Oss",
       "Process"
     ]
   },
@@ -16672,7 +16895,8 @@
       "PCI DSS 10.2.5",
       "SOC2",
       "SOC2 CC6.1",
-      "Container"
+      "Container",
+      "Oss"
     ]
   },
   {
@@ -16711,6 +16935,7 @@
       "SOC2 CC6.7",
       "Container",
       "Network",
+      "Oss",
       "Process"
     ]
   },
@@ -16751,7 +16976,8 @@
       "MITRE T1611 escape to host",
       "MITRE TA0004 privilege escalation",
       "MITRE TA0005 defense evasion",
-      "Container"
+      "Container",
+      "Oss"
     ]
   },
   {
@@ -16798,7 +17024,8 @@
       "NIST 800-53 AU-6(8)",
       "SOC2",
       "SOC2 CC6.1",
-      "Container"
+      "Container",
+      "Oss"
     ]
   },
   {
@@ -16889,6 +17116,7 @@
       "SOC2 CC6.7",
       "Container",
       "Network",
+      "Oss",
       "Process"
     ]
   },
@@ -16956,6 +17184,7 @@
       "SOC2 CC6.7",
       "Host",
       "Network",
+      "Oss",
       "Process"
     ]
   },
@@ -16965,7 +17194,7 @@
     "has_exceptions": true,
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Intelligence",
-    "priority": "WARNING",
+    "priority": "CRITICAL",
     "rule": "Launch malicious container image",
     "severity": 3,
     "source": "falco",
@@ -17064,6 +17293,7 @@
       "SOC2 CC6.8",
       "Container",
       "Host",
+      "Oss",
       "Process"
     ],
     "updated_oss_condition": true
@@ -17275,7 +17505,7 @@
     "has_exceptions": true,
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Intelligence",
-    "priority": "WARNING",
+    "priority": "CRITICAL",
     "rule": "Malicious Environment Variable in Spawned Process",
     "severity": 3,
     "source": "falco",
@@ -17321,7 +17551,7 @@
     "has_exceptions": true,
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Intelligence",
-    "priority": "WARNING",
+    "priority": "CRITICAL",
     "rule": "Malicious IPs or domains detected on command line",
     "severity": 3,
     "source": "falco",
@@ -17367,7 +17597,7 @@
     "has_exceptions": true,
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Intelligence",
-    "priority": "WARNING",
+    "priority": "CRITICAL",
     "rule": "Malicious binary detected",
     "severity": 3,
     "source": "falco",
@@ -17388,7 +17618,7 @@
     "has_exceptions": true,
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Intelligence",
-    "priority": "WARNING",
+    "priority": "CRITICAL",
     "rule": "Malicious filenames written",
     "severity": 3,
     "source": "falco",
@@ -17497,7 +17727,8 @@
       "SOC2 CC7.1",
       "Container",
       "File",
-      "Host"
+      "Host",
+      "Oss"
     ]
   },
   {
@@ -17693,7 +17924,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Modify Shell Configuration File",
     "source": "falco",
     "tags": [
@@ -17747,7 +17978,8 @@
       "SOC2 CC6.8",
       "Container",
       "File",
-      "Host"
+      "Host",
+      "Oss"
     ]
   },
   {
@@ -17843,7 +18075,8 @@
       "SOC2 CC7.1",
       "Container",
       "File",
-      "Host"
+      "Host",
+      "Oss"
     ]
   },
   {
@@ -17886,7 +18119,8 @@
       "MITRE T1611 escape to host",
       "MITRE TA0004 privilege escalation",
       "MITRE TA0008 lateral movement",
-      "Container"
+      "Container",
+      "Oss"
     ]
   },
   {
@@ -17983,6 +18217,7 @@
       "SOC2 CC6.1",
       "Container",
       "Network",
+      "Oss",
       "Process"
     ],
     "updated_oss_condition": true
@@ -18051,7 +18286,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Network Connection outside Local Subnet",
     "source": "falco",
     "tags": [
@@ -18102,7 +18337,8 @@
       "SOC2 CC6.1",
       "SOC2 CC6.6",
       "Container",
-      "Network"
+      "Network",
+      "Oss"
     ]
   },
   {
@@ -18126,7 +18362,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "NOTICE",
+    "priority": "INFO",
     "rule": "Non sudo setuid",
     "source": "falco",
     "tags": [
@@ -18159,6 +18395,7 @@
       "SOC2 CC6.1",
       "Container",
       "Host",
+      "Oss",
       "Users"
     ]
   },
@@ -18431,7 +18668,7 @@
     "has_exceptions": true,
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Intelligence",
-    "priority": "WARNING",
+    "priority": "CRITICAL",
     "rule": "Outbound Connection to C2 Servers",
     "severity": 3,
     "source": "falco",
@@ -18579,6 +18816,7 @@
       "MITRE TA0007 discovery",
       "Container",
       "Host",
+      "Oss",
       "Process"
     ],
     "updated_oss_condition": true
@@ -18598,6 +18836,7 @@
       "MITRE TA0005 defense evasion",
       "Container",
       "Host",
+      "Oss",
       "Process"
     ],
     "updated_oss_condition": true
@@ -18681,7 +18920,8 @@
       "SOC2",
       "SOC2 CC6.8",
       "Container",
-      "Network"
+      "Network",
+      "Oss"
     ],
     "updated_oss_condition": true
   },
@@ -18743,7 +18983,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Peripheral Device Discovery Activity Detected",
     "source": "falco",
     "tags": [
@@ -18856,18 +19096,35 @@
       "MITRE TA0042 resource development",
       "Container",
       "Host",
+      "Oss",
       "Process"
     ]
   },
   {
-    "desc": "This rule detects potential backdoors utilizing BPF filters on network sockets. An attacker could leverage this technique for packet sniffing to gather sensitive information in a backdoor, such as BPFDoor, or initiate covert communication channels undetected.",
+    "desc": "This rule detects footmatic-rip process executing common shell programs, which may indicate that an attacker has exploited CVE-2024-47177. Ensure that this is expected behavior and CUPS has been patched for this vulnerability.",
     "disabled": false,
     "has_exceptions": true,
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Detection",
     "priority": "CRITICAL",
-    "rule": "Possible Backdoor using BPF",
+    "rule": "Possible Arbitrary Command Execution through CUPS (CVE-2024-47177)",
     "severity": 3,
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1203 exploitation for client execution",
+      "MITRE TA0002 execution",
+      "Container",
+      "Host"
+    ]
+  },
+  {
+    "desc": "This rule detects potential backdoors utilizing BPF filters on network sockets. An attacker could leverage this technique for packet sniffing to gather sensitive information in a backdoor, such as BPFDoor, or initiate covert communication channels undetected.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Possible Backdoor using BPF",
     "source": "falco",
     "tags": [
       "MITRE",
@@ -19123,7 +19380,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Process memory injection via process_vm_writev",
     "source": "falco",
     "tags": [
@@ -19203,6 +19460,7 @@
       "SOC2 CC6.7",
       "Container",
       "Host",
+      "Oss",
       "Users"
     ]
   },
@@ -19702,7 +19960,7 @@
     "has_exceptions": true,
     "oss_rule": false,
     "policy": "Sysdig Runtime Threat Intelligence",
-    "priority": "WARNING",
+    "priority": "CRITICAL",
     "rule": "Ransomware Filenames Detected",
     "severity": 3,
     "source": "falco",
@@ -19781,7 +20039,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Read Shell Configuration File",
     "source": "falco",
     "tags": [
@@ -19828,7 +20086,8 @@
       "NIST 800-53 SI-7",
       "Container",
       "File",
-      "Host"
+      "Host",
+      "Oss"
     ]
   },
   {
@@ -19836,7 +20095,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": true,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Read sensitive file trusted after startup",
     "source": "falco",
     "tags": [
@@ -19874,7 +20133,8 @@
       "SOC2 CC8.1",
       "Container",
       "File",
-      "Host"
+      "Host",
+      "Oss"
     ],
     "updated_oss_condition": true
   },
@@ -19926,7 +20186,8 @@
       "SOC2 CC7.1",
       "Container",
       "File",
-      "Host"
+      "Host",
+      "Oss"
     ],
     "updated_oss_condition": true
   },
@@ -19935,7 +20196,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "ERROR",
+    "priority": "INFO",
     "rule": "Read ssh information",
     "source": "falco",
     "tags": [
@@ -19964,7 +20225,8 @@
       "SOC2 CC8.1",
       "Container",
       "File",
-      "Host"
+      "Host",
+      "Oss"
     ]
   },
   {
@@ -20038,7 +20300,8 @@
       "SOC2",
       "SOC2 CC6.6",
       "SOC2 CC6.7",
-      "Container"
+      "Container",
+      "Oss"
     ],
     "updated_oss_condition": true
   },
@@ -20171,6 +20434,7 @@
       "SOC2 CC6.7",
       "Container",
       "Host",
+      "Oss",
       "Process"
     ],
     "updated_oss_condition": true
@@ -20398,11 +20662,13 @@
   },
   {
     "desc": "This rule detects the spawning of a reverse shell, which is a shell process with stdin and one of stdout or stderr file handles redirected to a network connection. This is a common technique used by attackers to gain remote access to a compromised system.",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "policy": "Sysdig Runtime Threat Detection",
+    "priority": "CRITICAL",
     "rule": "Reverse Shell Detected",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -20489,7 +20755,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Root Certificate Installed",
     "source": "falco",
     "tags": [
@@ -20724,6 +20990,7 @@
       "SOC2 CC6.1",
       "Container",
       "Host",
+      "Oss",
       "Shell"
     ],
     "updated_oss_condition": true
@@ -21013,7 +21280,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "NOTICE",
+    "priority": "INFO",
     "rule": "Schedule Cron Jobs",
     "source": "falco",
     "tags": [
@@ -21063,7 +21330,8 @@
       "SOC2 CC6.8",
       "Container",
       "File",
-      "Host"
+      "Host",
+      "Oss"
     ]
   },
   {
@@ -21149,6 +21417,7 @@
       "SOC2 CC6.7",
       "Container",
       "Host",
+      "Oss",
       "Process"
     ],
     "updated_oss_condition": true
@@ -21385,7 +21654,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "NOTICE",
+    "priority": "INFO",
     "rule": "Set Setuid or Setgid bit",
     "source": "falco",
     "tags": [
@@ -21431,6 +21700,7 @@
       "SOC2 CC6.6",
       "Container",
       "Host",
+      "Oss",
       "Process"
     ]
   },
@@ -21545,6 +21815,22 @@
       "Process",
       "Shell",
       "Windows"
+    ]
+  },
+  {
+    "desc": "This rule detects the execution of a Python command spawning shell processes through Python's inline command capabilities. An attacker could leverage these capabilities to create a shell and gain unauthorized access to a victim system.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Shell Spawned with Inline Python Command",
+    "source": "falco",
+    "tags": [
+      "MITRE T1059.006 python",
+      "MITRE T1059 command and scripting interpreter",
+      "MITRE TA0002 execution",
+      "Container",
+      "Host"
     ]
   },
   {
@@ -21789,7 +22075,8 @@
       "MITRE TA0042 resource development",
       "Container",
       "File",
-      "Host"
+      "Host",
+      "Oss"
     ]
   },
   {
@@ -22320,6 +22607,24 @@
     ]
   },
   {
+    "desc": "This rule detects cups-browsed process listening for incoming connections on port 631. This may indicate that it is vulnerable to CVE-2024-47176. Ensure that this is expected behavior and the process has been patched.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Suspicious cups-browsed process listening on UDP (CVE-2024-47176)",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1190 exploit public facing application",
+      "MITRE T1210 exploitation of remote services",
+      "MITRE TA0001 initial access",
+      "MITRE TA0008 lateral movement",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "This rule detects suspicious creation of disk devices in containers, which can enable privilege escalation and potential container escape. An attacker could leverage this to gain unauthorized access and execute malicious activities on the host machine, bypassing container isolation.",
     "disabled": true,
     "has_exceptions": true,
@@ -22402,6 +22707,28 @@
     ]
   },
   {
+    "desc": "this rule detects changes to the capabilities.conf file. Monitoring this kind of activity is critical for preventing unauthorized privilege adjustments, ensuring system integrity, and protecting against broader security threats in environments like CI/CD pipelines and production systems.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "System Capabilities Configuration Updated",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1059.004 command and scripting interpreter unix shell",
+      "MITRE T1059 command and scripting interpreter",
+      "MITRE T1078 valid accounts",
+      "MITRE T1222 file and directory permissions modification",
+      "MITRE T1548.001 abuse elevation control mechanism setcap",
+      "MITRE T1548 abuse elevation control mechanism",
+      "MITRE T1562.001 impair defenses disable or modify tools",
+      "MITRE T1562 impair defenses",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect any attempt to modify/delete a ClusterRole/Role starting with system",
     "disabled": true,
     "has_exceptions": true,
@@ -22450,7 +22777,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "NOTICE",
+    "priority": "INFO",
     "rule": "System Geolocation Discovery",
     "source": "falco",
     "tags": [
@@ -22487,7 +22814,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "NOTICE",
+    "priority": "INFO",
     "rule": "System procs network activity",
     "source": "falco",
     "tags": [
@@ -22521,7 +22848,8 @@
       "SOC2 CC6.8",
       "Container",
       "Host",
-      "Network"
+      "Network",
+      "Oss"
     ]
   },
   {
@@ -22612,6 +22940,7 @@
       "SOC2 CC6.1",
       "Container",
       "Host",
+      "Oss",
       "Users"
     ],
     "updated_oss_condition": true
@@ -22772,6 +23101,7 @@
       "SOC2",
       "SOC2 CC6.1",
       "Container",
+      "Oss",
       "Shell"
     ],
     "updated_oss_condition": true
@@ -22969,7 +23299,8 @@
       "SOC2 CC6.1",
       "Container",
       "K8S",
-      "Network"
+      "Network",
+      "Oss"
     ]
   },
   {
@@ -23028,7 +23359,8 @@
       "SOC2 CC6.7",
       "Container",
       "Host",
-      "Network"
+      "Network",
+      "Oss"
     ]
   },
   {
@@ -23110,7 +23442,8 @@
       "SOC2 CC6.1",
       "Container",
       "Host",
-      "Network"
+      "Network",
+      "Oss"
     ]
   },
   {
@@ -23201,6 +23534,7 @@
       "MITRE TA0004 privilege escalation",
       "Container",
       "Host",
+      "Oss",
       "Syscall"
     ]
   },
@@ -23792,7 +24126,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "NOTICE",
+    "priority": "INFO",
     "rule": "Update Package Repository",
     "source": "falco",
     "tags": [
@@ -23851,7 +24185,8 @@
       "SOC2 CC6.8",
       "Container",
       "File",
-      "Host"
+      "Host",
+      "Oss"
     ]
   },
   {
@@ -23859,7 +24194,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Update Paging Cache",
     "source": "falco",
     "tags": [
@@ -24055,7 +24390,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "User Management Event Detected",
     "source": "falco",
     "tags": [
@@ -24199,7 +24534,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "NOTICE",
+    "priority": "INFO",
     "rule": "User mgmt binaries",
     "source": "falco",
     "tags": [
@@ -24240,6 +24575,7 @@
       "SOC2 CC6.1",
       "SOC2 CC6.6",
       "Host",
+      "Oss",
       "Users"
     ]
   },
@@ -24260,7 +24596,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Users Group Management Event Detected",
     "source": "falco",
     "tags": [
@@ -24321,7 +24657,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "ERROR",
+    "priority": "INFO",
     "rule": "Write below binary dir",
     "source": "falco",
     "tags": [
@@ -24385,7 +24721,8 @@
       "SOC2 CC7.1",
       "Container",
       "File",
-      "Host"
+      "Host",
+      "Oss"
     ]
   },
   {
@@ -24393,7 +24730,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "ERROR",
+    "priority": "INFO",
     "rule": "Write below etc",
     "source": "falco",
     "tags": [
@@ -24437,7 +24774,8 @@
       "SOC2 CC7.1",
       "Container",
       "File",
-      "Host"
+      "Host",
+      "Oss"
     ]
   },
   {
@@ -24445,7 +24783,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "ERROR",
+    "priority": "INFO",
     "rule": "Write below monitored dir",
     "source": "falco",
     "tags": [
@@ -24509,7 +24847,8 @@
       "SOC2 CC7.1",
       "Container",
       "File",
-      "Host"
+      "Host",
+      "Oss"
     ]
   },
   {
@@ -24517,7 +24856,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "ERROR",
+    "priority": "INFO",
     "rule": "Write below root",
     "source": "falco",
     "tags": [
@@ -24557,7 +24896,8 @@
       "SOC2 CC7.1",
       "Container",
       "File",
-      "Host"
+      "Host",
+      "Oss"
     ]
   },
   {
@@ -24565,7 +24905,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "ERROR",
+    "priority": "INFO",
     "rule": "Write below rpm database",
     "source": "falco",
     "tags": [
@@ -24608,6 +24948,7 @@
       "Container",
       "File",
       "Host",
+      "Oss",
       "Software Mgmt"
     ]
   },
