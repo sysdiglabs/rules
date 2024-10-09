@@ -4173,6 +4173,50 @@
     ]
   },
   {
+    "desc": "Detect retrieval of up to 20 encrypted secrets. This could be an attacker trying to steal multiple secrets.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Batch Get Secret Value",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS SecretsManager",
+      "AWS WAF",
+      "AWS WAF SEC-1",
+      "Cloud",
+      "MITRE",
+      "MITRE T1082 system information discovery",
+      "MITRE T1528 steal application access token",
+      "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery"
+    ]
+  },
+  {
+    "desc": "Detect retrieval of up to 20 encrypted secrets, using the catch-all filter. Indeed, by fitering out tags that do not exist, an attacker is able to retrieve up to 20 secrets without the need of listing them before.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig AWS Threat Detection",
+    "priority": "WARNING",
+    "rule": "Batch Get Secret Value with Catch-All Filter",
+    "severity": 3,
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS SecretsManager",
+      "AWS WAF",
+      "AWS WAF SEC-1",
+      "Cloud",
+      "MITRE",
+      "MITRE T1082 system information discovery",
+      "MITRE T1528 steal application access token",
+      "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery"
+    ]
+  },
+  {
     "desc": "Detect invoking an Amazon Bedrock model via the Converse API to create conversational flows.",
     "disabled": true,
     "has_exceptions": true,
@@ -5515,6 +5559,26 @@
     ]
   },
   {
+    "desc": "This rule detects connections to the AWS metadata endpoint performed by a process which has been executed via AWS SSM Commands",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Connection to Instance Metadata through AWS SSM",
+    "source": "falco",
+    "tags": [
+      "AWS",
+      "AWS EC2",
+      "AWS SSM",
+      "MITRE",
+      "MITRE T1078.004 valid accounts cloud accounts",
+      "MITRE T1078 valid accounts",
+      "MITRE TA0004 privilege escalation",
+      "Cloud",
+      "Host"
+    ]
+  },
+  {
     "desc": "Attackers might explore network shares on compromised SMB servers to locate valuable files. Sensitive data from remote  systems, available through shared network drives (such as host shared directories or network file servers), and accessible from the present system may be gathered in preparation for exfiltration activities.",
     "disabled": true,
     "has_exceptions": true,
@@ -6466,6 +6530,21 @@
       "MITRE TA0005 defense evasion",
       "Container",
       "Host"
+    ]
+  },
+  {
+    "desc": "Detect a possible container escape technique that make use of writing to /proc/sys/kernel/core_pattern. A privileged container can overwrite this file for the host. This file allows an attacker to run arbitrary code whenever a core dump is generated, with the privileges of host root. A core dump can be generated if an application crashes or easily forced also inside the container by the attacker itself.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Core Pattern Container Escape",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1611 escape to host",
+      "MITRE TA0004 privilege escalation",
+      "Container"
     ]
   },
   {
@@ -14731,7 +14810,7 @@
     ]
   },
   {
-    "desc": "Detect retrieval of the contents of the encrypted fields SecretString or SecretBinary from the specified version of a secret - whichever contains content.",
+    "desc": "Detect retrieval of the contents of the encrypted fields SecretString or SecretBinary from the specified version of a secret.",
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
@@ -15546,7 +15625,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "INFO",
+    "priority": "WARNING",
     "rule": "Interactive Reconnaissance Activity Detected",
     "source": "falco",
     "tags": [
@@ -22210,6 +22289,26 @@
       "MITRE T1611 escape to host",
       "MITRE TA0004 privilege escalation",
       "Container",
+      "Host"
+    ]
+  },
+  {
+    "desc": "This rule detects suspicious processes (such as those involving Kubernetes client tools, network utilities, or reconnaissance binaries) that originate from or are associated with AWS Systems Manager (SSM) command executions. Identifying these processes can help uncover potential malicious activity leveraging AWS SSM for unauthorized access or control.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Suspicious Commands Executed through AWS SSM",
+    "source": "falco",
+    "tags": [
+      "AWS",
+      "AWS EC2",
+      "AWS SSM",
+      "MITRE",
+      "MITRE T1078.004 valid accounts cloud accounts",
+      "MITRE T1078 valid accounts",
+      "MITRE TA0004 privilege escalation",
+      "Cloud",
       "Host"
     ]
   },
