@@ -799,6 +799,23 @@
     ]
   },
   {
+    "desc": "Detect attaching a full access or administrative policy to a user, group or role.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Attach Full Access or Administrative Policy",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "MITRE",
+      "MITRE T1098.003 account manipulation additional cloud roles",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation"
+    ]
+  },
+  {
     "desc": "Detect attaching an IAM policy to a group",
     "disabled": true,
     "has_exceptions": true,
