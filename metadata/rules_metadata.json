@@ -8773,11 +8773,13 @@
   },
   {
     "desc": "This rule detects compromised DNS servers that may have been altered by attackers on a victim system in order to stealthily redirect legitimate connections to attacker-controlled network infrastructure.",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "policy": "Sysdig Runtime Threat Intelligence",
+    "priority": "CRITICAL",
     "rule": "DNS Rogue Server Detected",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -16622,8 +16624,8 @@
     "source": "falco",
     "tags": [
       "MITRE",
-      "MITRE T1083 file and directory discovery",
-      "MITRE TA0007 discovery",
+      "MITRE T1489 service stop",
+      "MITRE TA0040 impact",
       "Container",
       "Host",
       "Process",
