@@ -4619,13 +4619,11 @@
   },
   {
     "desc": "Detect cleared Windows Event Log",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "policy": "Sysdig Windows Threat Detection",
     "priority": "CRITICAL",
     "rule": "Clear Windows Event Log",
-    "severity": 3,
     "source": "windows",
     "tags": [
       "Defense Evasion",
@@ -11471,7 +11469,7 @@
   {
     "desc": "Detect an EC2 instance creating a new IAM user. This could be an indication of an attacker trying to persist access to the cloud environment.",
     "disabled": true,
-    "has_exceptions": false,
+    "has_exceptions": true,
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "EC2 Instance Create User",
@@ -11649,6 +11647,67 @@
       "AWS ECS",
       "AWS Fargate",
       "Cloud"
+    ]
+  },
+  {
+    "desc": "Detect an EKS pod attaching a policy to a user, using an IAM Role for Service Accounts (IRSA). This could be an indication of an attacker trying to elevate privileges into the cloud environment.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig AWS Threat Detection",
+    "priority": "WARNING",
+    "rule": "EKS Pod Attach Policy to User",
+    "severity": 3,
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS EC2",
+      "AWS IAM",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation"
+    ]
+  },
+  {
+    "desc": "Detect an EKS pod creating access keys for a user, using an IAM Role for Service Accounts (IRSA). This could be an indication of an attacker trying to elevate privilege or persist access to the cloud environment.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig AWS Threat Detection",
+    "priority": "WARNING",
+    "rule": "EKS Pod Create Access Key for User",
+    "severity": 3,
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS EC2",
+      "AWS IAM",
+      "Cloud",
+      "MITRE",
+      "MITRE T1098 account manipulation",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA0008 lateral movement"
+    ]
+  },
+  {
+    "desc": "Detect an EKS pod creating a new IAM user, using an IAM Role for Service Accounts (IRSA). This could be an indication of an attacker trying to persist access to the cloud environment.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "EKS Pod Create User",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS EC2",
+      "AWS IAM",
+      "Cloud",
+      "MITRE",
+      "MITRE T1136 create account",
+      "MITRE TA0003 persistence"
     ]
   },
   {
@@ -16646,6 +16705,29 @@
       "MITRE T1133 external remote services",
       "MITRE T1496 resource hijacking",
       "K8S"
+    ]
+  },
+  {
+    "desc": "This rule detects loading of shared objects to the environment variable LD_PRELOAD. Attackers have used this technique to cause a malicious shared object to be loaded before any other library. Legitimate directories are excluded.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "INFO",
+    "rule": "LD_PRELOAD Library Injection",
+    "source": "falco",
+    "tags": [
+      "FIM",
+      "MITRE",
+      "MITRE T1129 shared modules",
+      "MITRE T1574.006 hijack execution flow dynamic linker hijacking",
+      "MITRE T1574 hijack execution flow",
+      "MITRE TA0002 execution",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "File",
+      "Host"
     ]
   },
   {
