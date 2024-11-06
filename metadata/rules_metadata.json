@@ -4068,6 +4068,24 @@
     ]
   },
   {
+    "desc": "Detect the resetting of the local administrator password of a virtual machine. An adversary may manipulate the local admin account on an Azure VM to maintain persistence.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Azure Threat Detection",
+    "priority": "WARNING",
+    "rule": "Azure VM Reset Local Administrator Password",
+    "severity": 3,
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "MITRE",
+      "MITRE T1098 account manipulation",
+      "MITRE TA0003 persistence"
+    ]
+  },
+  {
     "desc": "Detect the deletion of a SQL Availability Group Listener",
     "disabled": true,
     "has_exceptions": true,
@@ -8718,6 +8736,23 @@
       "MITRE T1614 system location discovery",
       "MITRE TA0007 discovery",
       "MITRE TA0043 reconnaissance",
+      "Container",
+      "Dns",
+      "Host"
+    ]
+  },
+  {
+    "desc": "This rule detects DNS lookups to domains associated with remote access software, such as GoToMyPC and other such services which offer interactive desktop and remote support. Adversaries often employ these to maintain persistence, access and/or control over a compromised environment as an alternate mean of command-and-control.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "DNS Lookup for Remote Access Domain Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1219 remote access software",
+      "MITRE TA0011 command and control",
       "Container",
       "Dns",
       "Host"
@@ -19578,7 +19613,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "NOTICE",
+    "priority": "INFO",
     "rule": "Program run with disallowed http proxy env",
     "source": "falco",
     "tags": [
@@ -21082,6 +21117,31 @@
     ]
   },
   {
+    "desc": "Detect launching 10 or more xlarge EC2 instances. Attackers could launch multiple instances to run malicious code. The output of this rule prints the first 10 of the new instances being launched.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig AWS Threat Detection",
+    "priority": "WARNING",
+    "rule": "Run Several XLarge EC2 Instances",
+    "severity": 3,
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS EC2",
+      "Cloud",
+      "MITRE",
+      "MITRE T1021 remote services",
+      "MITRE T1059 command and scripting interpreter",
+      "MITRE T1098 account manipulation",
+      "MITRE T1578 modify cloud compute infrastructure",
+      "MITRE TA0002 execution",
+      "MITRE TA0003 persistence",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA0008 lateral movement"
+    ]
+  },
+  {
     "desc": "This rule detects unauthorized attempts to spawn a shell within non-shell applications using specific binaries or Java processes as entry points. An attacker could gain command execution or navigate to the system's sensitive areas to exfiltrate data.",
     "disabled": true,
     "has_exceptions": true,
@@ -21786,6 +21846,27 @@
       "MITRE TA0005 defense evasion",
       "Registry",
       "Windows"
+    ]
+  },
+  {
+    "desc": "Detect setting a 1-day retention policy on an S3 bucket, using a S3 Lifecycle Rule. Attackers can leverage this to impair a bucket, since the configuration rules apply to both existing objects and objects that will be added later.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig AWS Threat Detection",
+    "priority": "WARNING",
+    "rule": "Set 1-day Retention Policy on Bucket",
+    "severity": 3,
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS S3",
+      "Cloud",
+      "MITRE",
+      "MITRE T1496 resource hijacking",
+      "MITRE T1562 impair defenses",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA0040 impact"
     ]
   },
   {
@@ -24320,6 +24401,26 @@
       "SOC2 CC7.2"
     ],
     "updated_oss_condition": true
+  },
+  {
+    "desc": "Detect updates to a Lambda function layers. Attackers may add a malicious lambda extension to establish persistence.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Update Lambda Function Layers",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS Lambda",
+      "Cloud",
+      "MITRE",
+      "MITRE T1543 create or modify system process",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "SOC2",
+      "SOC2 CC7.2"
+    ]
   },
   {
     "desc": "This rule detects changes or updates to package repositories on systems, contributing to maintaining the integrity and security of package installation procedures. An attacker exploiting vulnerabilities in package repository updating processes could potentially plant malicious packages or tamper with existing ones, leading to compromised software integrity and unauthorized code execution.",
