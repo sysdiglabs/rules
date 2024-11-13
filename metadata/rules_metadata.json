@@ -2686,6 +2686,24 @@
     ]
   },
   {
+    "desc": "Detect deleting Diagnostic Settings for an Azure Subscription. Attackers could delete diagnostic settings to avoid detection.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Azure Threat Detection",
+    "priority": "WARNING",
+    "rule": "Azure Delete Diagnostic Settings for Subscription",
+    "severity": 3,
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "MITRE",
+      "MITRE T1562 impair defenses",
+      "MITRE TA0005 defense evasion"
+    ]
+  },
+  {
     "desc": "Detect the deletion of a Firewall Rules of a Redis Cache",
     "disabled": true,
     "has_exceptions": true,
@@ -2882,11 +2900,13 @@
   },
   {
     "desc": "Detect the deletion of a Key Vault.",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "oss_rule": false,
+    "policy": "Sysdig Azure Threat Detection",
     "priority": "WARNING",
     "rule": "Azure Delete a Key Vault",
+    "severity": 3,
     "source": "azure_platformlogs",
     "tags": [
       "Azure",
@@ -8698,6 +8718,23 @@
     ]
   },
   {
+    "desc": "This rule detects DNS lookups to domains usually contacted during security testing or known penetration testing repositories. These may also be abused by attackers to run exploits and find vulnerabilities on a target system and should be considered suspicious.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "DNS Lookup for Offensive Security Tool Domain Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1105 ingress tool transfer",
+      "MITRE TA0011 command and control",
+      "Container",
+      "Dns",
+      "Host"
+    ]
+  },
+  {
     "desc": "This rule detects dns lookups to Proxy/VPN domains, potentially indicative of command and control activity. An attacker could establish a covert channel by connecting to a Proxy/VPN to exfiltrate sensitive data undetected.",
     "disabled": false,
     "has_exceptions": true,
@@ -8779,6 +8816,24 @@
       "MITRE T1567 exfiltration over web service",
       "MITRE TA0010 exfiltration",
       "MITRE TA0011 command and control",
+      "Container",
+      "Dns",
+      "Host"
+    ]
+  },
+  {
+    "desc": "This rule detects dns lookups to domains offering tunneling services. Attackers may employ these utilities as a mean of command and control, bypass security restrictions and maintain persistence on a compromised system.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "DNS Lookup for Tunneling Service Domain Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1048.003 exfiltration over unencrypted non c2 protocol",
+      "MITRE T1048 exfiltration over alternative protocol",
+      "MITRE TA0010 exfiltration",
       "Container",
       "Dns",
       "Host"
@@ -11906,6 +11961,42 @@
     ]
   },
   {
+    "desc": "Detect adding an external user. Attackers can use this to maintain unauthorized access.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Add External User",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra",
+      "MITRE",
+      "MITRE T1136 create account",
+      "MITRE TA0003 persistence"
+    ]
+  },
+  {
+    "desc": "Detect adding an external user as Member. This can be used by attackers to grant privileges to an external user they have control over.",
+    "disabled": false,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "policy": "Sysdig Microsoft Entra Threat Detection",
+    "priority": "WARNING",
+    "rule": "Entra Add External User as Member",
+    "severity": 3,
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra",
+      "MITRE",
+      "MITRE T1136 create account",
+      "MITRE TA0003 persistence"
+    ]
+  },
+  {
     "desc": "Detect the creation of a group in Microsoft Entra ID.",
     "disabled": true,
     "has_exceptions": true,
@@ -12191,6 +12282,23 @@
       "Azure",
       "Cloud",
       "Entra"
+    ]
+  },
+  {
+    "desc": "Detect Deleting a Service Principal. This can be used by attackers to remove service principals that have access to Azure resources.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Remove Service Principal",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra",
+      "MITRE",
+      "MITRE T1531 account access removal",
+      "MITRE TA0040 impact"
     ]
   },
   {
@@ -21114,6 +21222,38 @@
       "SOC2",
       "SOC2 CC6.6",
       "SOC2 CC7.2"
+    ]
+  },
+  {
+    "desc": "Detect running a PowerShell script in a virtual machine via Custom Script Extension.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Run PowerShell Script in a VM via Custom Script Extension",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "MITRE T1059.001 windows command shell",
+      "MITRE TA0002 execution",
+      "Mitre"
+    ]
+  },
+  {
+    "desc": "Detect running a PowerShell script in a virtual machine via Desired State Configuration Extension.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Run PowerShell Script in a VM via Desired State Configuration Extension",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "MITRE T1059.001 windows command shell",
+      "MITRE TA0002 execution",
+      "Mitre"
     ]
   },
   {
