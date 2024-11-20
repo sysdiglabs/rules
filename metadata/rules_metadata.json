@@ -1272,6 +1272,83 @@
     ]
   },
   {
+    "desc": "Detect the deletion of Automation runbook in Azure. These can be deleted by attackers to disrupt target business and operations.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Automation Runbook Deleted",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "MITRE",
+      "MITRE T1098 account manipulation"
+    ]
+  },
+  {
+    "desc": "Detect the creation/update and publication of a new Automation runbook version in Azure. These can be used by attackers to gain persistence into the cloud platform.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Automation Runbook Published",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0003 persistence"
+    ]
+  },
+  {
+    "desc": "Detect the scheduling of Automation runbook in Azure. These can be created by attackers to gain persistence.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Automation Runbook Scheduled",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0003 persistence"
+    ]
+  },
+  {
+    "desc": "Detects the creation of actions to take from an Automation watcher job in Azure. These can be used by attackers to gain persistence into the cloud platform by executing the runbook on a triggered event.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Automation Watcher Job Action Created",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0003 persistence"
+    ]
+  },
+  {
+    "desc": "Detect the creation of Automation Webhook URI in Azure. These can be created by attackers to gain persistence.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Azure Threat Detection",
+    "priority": "WARNING",
+    "rule": "Azure Automation Webhook URI Created",
+    "severity": 3,
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0003 persistence"
+    ]
+  },
+  {
     "desc": "DEPRECATED",
     "disabled": true,
     "has_exceptions": false,
@@ -2567,6 +2644,23 @@
     ]
   },
   {
+    "desc": "Detect the deletion of DDoS Protection plans in Azure. These can be deleted by attackers in an attempt to eliminate security defenses to their cloud victim.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Azure Threat Detection",
+    "priority": "WARNING",
+    "rule": "Azure DDoS Protection Deleted",
+    "severity": 3,
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA0040 impact"
+    ]
+  },
+  {
     "desc": "Multi-factor authentication requires an individual to present a minimum of two separate forms of authentication before access is granted. Multi-factor authentication provides additional assurance that the individual attempting to gain access is who they claim to be. With multi-factor authentication, an attacker would need to compromise at least two different authentication mechanisms, increasing the difficulty of compromise and thus reducing the risk.",
     "disabled": false,
     "has_exceptions": false,
@@ -3336,6 +3430,39 @@
     ]
   },
   {
+    "desc": "Detect the deletion of Event Hub resource or namespace in Azure. A threat actor may delete event hub resources to evade detection.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Azure Threat Detection",
+    "priority": "WARNING",
+    "rule": "Azure Event Hub Resource Deleted",
+    "severity": 3,
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0005 defense evasion"
+    ]
+  },
+  {
+    "desc": "Detect the execution of command against managed Kubernetes cluster.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Execute RunCommand on Kubernetes Cluster",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "MITRE",
+      "MITRE T1059 command and scripting interpreter",
+      "MITRE TA0002 execution"
+    ]
+  },
+  {
     "desc": "Detect the execution of a Script on the Virtual Machine",
     "disabled": true,
     "has_exceptions": true,
@@ -3372,6 +3499,58 @@
     "tags": [
       "Azure",
       "Cloud"
+    ]
+  },
+  {
+    "desc": "Detect the deletion of Firewall in Azure. It can be deleted by attackers in an attempt to eliminate security defenses to cloud victim.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Azure Threat Detection",
+    "priority": "WARNING",
+    "rule": "Azure Firewall Deleted",
+    "severity": 3,
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA0008 lateral movement",
+      "MITRE TA0040 impact"
+    ]
+  },
+  {
+    "desc": "Detect the deletion of Firewall policy in Azure. These resources can be deleted by attackers in an attempt to eliminate security defenses to cloud victim.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Firewall Policy Deleted",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA0008 lateral movement",
+      "MITRE TA0040 impact"
+    ]
+  },
+  {
+    "desc": "Detect the deletion of Firewall policies rule collection groups in Azure. These resources can be deleted by attackers in an attempt to eliminate security defenses to their cloud victim.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Firewall Policy Rule Collection Group Deleted",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA0008 lateral movement"
     ]
   },
   {
@@ -3530,6 +3709,53 @@
     "tags": [
       "Azure",
       "Cloud"
+    ]
+  },
+  {
+    "desc": "Detect the creation of Network Packet Capture in Azure. These can be created by attackers to inspect network traffic, trying to sniff sensitive data and credentials.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Network Packet Capture Created",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "MITRE",
+      "MITRE T0842 network sniffing",
+      "MITRE TA0006 credential access",
+      "MITRE TA0007 discovery"
+    ]
+  },
+  {
+    "desc": "Detect the deletion of Network Watcher in Azure. They can be used to monitor metrics and logs for resources in Azure, and can be deleted by attackers in an attempt to evade detection.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Network Watcher Deleted",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0005 defense evasion"
+    ]
+  },
+  {
+    "desc": "Detect the deletion of Network Watcher Flow Logs in Azure. It could be deleted by attackers in an attempt to eliminate evidence of their footsteps in the cloud victim platform.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Network Watcher Flow Logs Deleted",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0005 defense evasion"
     ]
   },
   {
@@ -4103,6 +4329,23 @@
       "MITRE",
       "MITRE T1098 account manipulation",
       "MITRE TA0003 persistence"
+    ]
+  },
+  {
+    "desc": "Detect the deletion of Web Application Firewall policies in Azure. These can be deleted by attackers in an attempt to eliminate security defenses to their cloud victim.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure WAF Policy Deleted",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "MITRE",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA0008 lateral movement",
+      "MITRE TA0040 impact"
     ]
   },
   {
@@ -5540,6 +5783,24 @@
       "MITRE TA0004 privilege escalation",
       "MITRE TA0005 defense evasion",
       "K8S"
+    ]
+  },
+  {
+    "desc": "Detect connecting to a virtual machine via Serial Console. Attackers can leverage this to run arbitrary commands on VMs.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Azure Threat Detection",
+    "priority": "WARNING",
+    "rule": "Connect to VM via Serial Console",
+    "severity": 3,
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "MITRE",
+      "MITRE T1059 command and scripting interpreter",
+      "MITRE TA0002 execution"
     ]
   },
   {
@@ -8759,13 +9020,11 @@
   },
   {
     "desc": "This rule detects DNS lookups to domains offering IP and geo check services, generally public services which are often abused by malware to conduct reconnaissance activities upon landing on a compromised system.",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "policy": "Sysdig Runtime Threat Intelligence",
-    "priority": "CRITICAL",
+    "priority": "WARNING",
     "rule": "DNS Lookup for Reconnaissance Service Detected",
-    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -8797,13 +9056,11 @@
   },
   {
     "desc": "This rule detects suspicious domains in DNS queries, which could indicate potential command-and-control activity or data exfiltration over the network. An attacker could use these suspicious domains to establish covert communication channels, bypassing traditional security controls and exfiltrating sensitive information undetected.",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "policy": "Sysdig Runtime Threat Intelligence",
-    "priority": "CRITICAL",
+    "priority": "WARNING",
     "rule": "DNS Lookup for Suspicious Domain Detected",
-    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -12096,6 +12353,22 @@
       "Azure",
       "Cloud",
       "Entra"
+    ]
+  },
+  {
+    "desc": "Detect the creation of service principal credentials in Microsoft Entra ID. This allows to add a certificate or secret to a service principal to get access to it.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Add Service Principal Credentials",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra",
+      "MITRE",
+      "MITRE TA0003 persistence"
     ]
   },
   {
@@ -16791,6 +17064,19 @@
     ]
   },
   {
+    "desc": "Adversaries may dump the kernel or physical memory in order to gain persistence, extract credentials or escape to host from containers.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Kernel or Physical Memory Dumped",
+    "source": "falco",
+    "tags": [
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "This rule detects changes in kernel modules on startup, which can indicate potential privilege escalation or persistence techniques by an attacker. An attacker could surreptitiously load malicious kernel modules to gain elevated privileges or maintain access to the system, evading detection.",
     "disabled": false,
     "has_exceptions": true,
@@ -17353,13 +17639,11 @@
   },
   {
     "desc": "A suspicious network tool was executed",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "policy": "Sysdig Windows Threat Detection",
     "priority": "CRITICAL",
     "rule": "Launch Suspicious Network Tool",
-    "severity": 3,
     "source": "windows",
     "tags": [
       "Command and Control",
@@ -21136,6 +21420,22 @@
     ]
   },
   {
+    "desc": "Detect running commands in VM instances via Virtual Machine Scale Set. Attackers could leverage this to move laterally within the environment.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Run Command in VM Instances via Virtual Machine Scale Set",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "MITRE",
+      "MITRE T1059 command and scripting interpreter",
+      "MITRE TA0002 execution"
+    ]
+  },
+  {
     "desc": "Detect launching of a specified number of instances. The output of this rule prints at most 5 of the new instances being launched.",
     "disabled": true,
     "has_exceptions": true,
@@ -21258,13 +21558,11 @@
   },
   {
     "desc": "Detect launching 10 or more xlarge EC2 instances. Attackers could launch multiple instances to run malicious code. The output of this rule prints the first 10 of the new instances being launched.",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "policy": "Sysdig AWS Threat Detection",
     "priority": "WARNING",
     "rule": "Run Several XLarge EC2 Instances",
-    "severity": 3,
     "source": "awscloudtrail",
     "tags": [
       "AWS",
