@@ -1,5 +1,24 @@
 [
   {
+    "desc": "This rule detects creating a specific Azure container image in a Kubernetes cluster after invoking the Azure RunCommand API. Attackers in Azure can use the RunCommand API to spawn such containers in the cluster, interacting and enumerating its resources, and potentially escalating privileges.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "AKS RunCommand Container Launched",
+    "source": "falco",
+    "tags": [
+      "Azure",
+      "Azure VM",
+      "MITRE",
+      "MITRE T1078.004 valid accounts cloud accounts",
+      "MITRE T1078 valid accounts",
+      "MITRE TA0004 privilege escalation",
+      "Cloud",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect AWS CLI used with the endpoint-url parameter, this may be used to exfiltrate data or download malicious resources from a remote bucket. Furthermore, with this parameter it's possible to avoid Cloudtrail logging requests",
     "disabled": true,
     "has_exceptions": true,
@@ -4314,6 +4333,26 @@
     ]
   },
   {
+    "desc": "This rule detects Azure VM RunCommand activities, potentially indicating unauthorized command executions by authenticated users. An attacker could utilize RunCommand to run malicious code on a target machine, potentially leading to unauthorized data exfiltration or system compromise.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure VM Activity using RunCommand",
+    "source": "falco",
+    "tags": [
+      "AWS",
+      "AWS EC2",
+      "AWS SSM",
+      "MITRE",
+      "MITRE T1078.004 valid accounts cloud accounts",
+      "MITRE T1078 valid accounts",
+      "MITRE TA0004 privilege escalation",
+      "Cloud",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect the resetting of the local administrator password of a virtual machine. An adversary may manipulate the local admin account on an Azure VM to maintain persistence.",
     "disabled": false,
     "has_exceptions": true,
@@ -5873,7 +5912,7 @@
     ]
   },
   {
-    "desc": "This rule detects connections to the AWS metadata endpoint performed by a process which has been executed via AWS SSM Commands",
+    "desc": "This rule detects connections to the AWS metadata endpoint by processes executed through AWS SSM Commands. An attacker could leverage this to exfiltrate sensitive credentials from instance metadata or directly invoke AWS API if the machine is bound to a role, potentially escalating privileges or gaining unauthorized access to cloud resources.",
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
@@ -8736,7 +8775,7 @@
     ]
   },
   {
-    "desc": "This rule detects unusually short Time-To-Live DNS responses, which could be indicative of shuffling activities related to IP Address resolution, known as Fast Flux. This technique is often employed by attackers for command and control resilience.",
+    "desc": "This rule detects unusually short Time-To-Live DNS responses, which could be indicative of shuffling activities related to IP Address resolution, known as Fast Flux. This technique is often employed by attackers for command and control resilience. Response domains are used for detection as they can detect malicious domains hiding behind CNAMES.",
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
@@ -8753,7 +8792,7 @@
     ]
   },
   {
-    "desc": "This rule detects DNS lookups to command & control (C2) domains, aiming to identify potential malicious communication. An attacker could establish covert communication channels with malware-infected machines to exfiltrate sensitive data undetected, bypassing traditional security controls.",
+    "desc": "This rule detects DNS lookups to command & control (C2) domains, aiming to identify potential malicious communication. An attacker could establish covert communication channels with malware-infected machines to exfiltrate sensitive data undetected, bypassing traditional security controls. Response domains are used for detection as they can detect malicious domains hiding behind CNAMES.",
     "disabled": false,
     "has_exceptions": true,
     "oss_rule": false,
@@ -8824,7 +8863,7 @@
     ]
   },
   {
-    "desc": "This rule detects dynamic DNS domains in DNS queries, which could indicate potential command-and-control activity or data exfiltration over the network. An attacker could use these domains to establish covert communication channels, bypassing traditional security controls and exfiltrating sensitive information undetected, while attempting to hide IPs.",
+    "desc": "This rule detects dynamic DNS domains in DNS queries, which could indicate potential command-and-control activity or data exfiltration over the network. An attacker could use these domains to establish covert communication channels, bypassing traditional security controls and exfiltrating sensitive information undetected, while attempting to hide IPs. Response domains are used for detection as they can detect malicious domains hiding behind CNAMES.",
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
@@ -8847,7 +8886,7 @@
     ]
   },
   {
-    "desc": "This rule detects DNS lookups to known IPFS domains, which can be used for evading traditional content monitoring and censorship mechanisms. An attacker could leverage this to access and distribute illicit or sensitive content without detection, potentially violating regulatory requirements and compromising data security.",
+    "desc": "This rule detects DNS lookups to known IPFS domains, which can be used for evading traditional content monitoring and censorship mechanisms. An attacker could leverage this to access and distribute illicit or sensitive content without detection, potentially violating regulatory requirements and compromising data security. Response domains are used for detection as they can detect malicious domains hiding behind CNAMES.",
     "disabled": false,
     "has_exceptions": true,
     "oss_rule": false,
@@ -8920,7 +8959,7 @@
     ]
   },
   {
-    "desc": "This rule detects DNS lookups for miner pool ports, indicating potential cryptocurrency mining activity. An attacker could establish unauthorized mining operations using resources on the target system, potentially causing performance degradation and financial losses.",
+    "desc": "This rule detects DNS lookups for miner pool ports, indicating potential cryptocurrency mining activity. An attacker could establish unauthorized mining operations using resources on the target system, potentially causing performance degradation and financial losses. Response domains are used for detection as they can detect malicious domains hiding behind CNAMES.",
     "disabled": false,
     "has_exceptions": true,
     "oss_rule": false,
@@ -8979,12 +9018,14 @@
     ]
   },
   {
-    "desc": "This rule detects DNS lookups to domains usually contacted during security testing or known penetration testing repositories. These may also be abused by attackers to run exploits and find vulnerabilities on a target system and should be considered suspicious.",
-    "disabled": true,
+    "desc": "This rule detects DNS lookups to domains usually contacted during security testing or known penetration testing repositories. These may also be abused by attackers to run exploits and find vulnerabilities on a target system and should be considered suspicious. Response domains are used for detection as they can detect malicious domains hiding behind CNAMES.",
+    "disabled": false,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "policy": "Sysdig Runtime Threat Intelligence",
+    "priority": "CRITICAL",
     "rule": "DNS Lookup for Offensive Security Tool Domain Detected",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -8996,7 +9037,7 @@
     ]
   },
   {
-    "desc": "This rule detects dns lookups to Proxy/VPN domains, potentially indicative of command and control activity. An attacker could establish a covert channel by connecting to a Proxy/VPN to exfiltrate sensitive data undetected.",
+    "desc": "This rule detects dns lookups to Proxy/VPN domains, potentially indicative of command and control activity. An attacker could establish a covert channel by connecting to a Proxy/VPN to exfiltrate sensitive data undetected. Response domains are used for detection as they can detect malicious domains hiding behind CNAMES.",
     "disabled": false,
     "has_exceptions": true,
     "oss_rule": false,
@@ -9019,7 +9060,7 @@
     ]
   },
   {
-    "desc": "This rule detects DNS lookups to domains offering IP and geo check services, generally public services which are often abused by malware to conduct reconnaissance activities upon landing on a compromised system.",
+    "desc": "This rule detects DNS lookups to domains offering IP and geo check services, generally public services which are often abused by malware to conduct reconnaissance activities upon landing on a compromised system. Response domains are used for detection as they can detect malicious domains hiding behind CNAMES.",
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
@@ -9038,12 +9079,14 @@
     ]
   },
   {
-    "desc": "This rule detects DNS lookups to domains associated with remote access software, such as GoToMyPC and other such services which offer interactive desktop and remote support. Adversaries often employ these to maintain persistence, access and/or control over a compromised environment as an alternate mean of command-and-control.",
-    "disabled": true,
+    "desc": "This rule detects DNS lookups to domains associated with remote access software, such as GoToMyPC and other such services which offer interactive desktop and remote support. Adversaries often employ these to maintain persistence, access and/or control over a compromised environment as an alternate mean of command-and-control. Response domains are used for detection as they can detect malicious domains hiding behind CNAMES.",
+    "disabled": false,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "policy": "Sysdig Runtime Threat Intelligence",
+    "priority": "CRITICAL",
     "rule": "DNS Lookup for Remote Access Domain Detected",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -9055,7 +9098,7 @@
     ]
   },
   {
-    "desc": "This rule detects suspicious domains in DNS queries, which could indicate potential command-and-control activity or data exfiltration over the network. An attacker could use these suspicious domains to establish covert communication channels, bypassing traditional security controls and exfiltrating sensitive information undetected.",
+    "desc": "This rule detects suspicious domains in DNS queries, which could indicate potential command-and-control activity or data exfiltration over the network. An attacker could use these suspicious domains to establish covert communication channels, bypassing traditional security controls and exfiltrating sensitive information undetected. Response domains are used for detection as they can detect malicious domains hiding behind CNAMES.",
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
@@ -9079,7 +9122,7 @@
     ]
   },
   {
-    "desc": "This rule detects dns lookups to domains offering tunneling services. Attackers may employ these utilities as a mean of command and control, bypass security restrictions and maintain persistence on a compromised system.",
+    "desc": "This rule detects dns lookups to domains offering tunneling services. Attackers may employ these utilities as a mean of command and control, bypass security restrictions and maintain persistence on a compromised system. Response domains are used for detection as they can detect malicious domains hiding behind CNAMES.",
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
@@ -9137,7 +9180,7 @@
     ]
   },
   {
-    "desc": "This rule detects unusually long DNS queries, which could signal the use of DNS tunneling as a covert channel for data exfiltration or communication. Attackers can use DNS tunneling to bypass network defenses, smuggle sensitive data out of a network, or maintain persistent control over a compromised system.",
+    "desc": "This rule detects unusually long DNS queries, which could signal the use of DNS tunneling as a covert channel for data exfiltration or communication. Attackers can use DNS tunneling to bypass network defenses, smuggle sensitive data out of a network, or maintain persistent control over a compromised system. Response domains are used for detection as they can detect malicious domains hiding behind CNAMES.",
     "disabled": false,
     "has_exceptions": true,
     "oss_rule": false,
@@ -14886,13 +14929,11 @@
   },
   {
     "desc": "Detect super admin executing GPC command.",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "policy": "Sysdig GCP Threat Detection",
     "priority": "CRITICAL",
     "rule": "GCP Super Admin Executing Command",
-    "severity": 3,
     "source": "gcp_auditlog",
     "tags": [
       "Cloud",
@@ -17121,6 +17162,29 @@
     ]
   },
   {
+    "desc": "This rule detects known malicious eBPF programs doing runtime loading of eBPF programs into the kernel. eBPF programs are extremely powerful, and as long as they conform to the constraints imposed by the eBPF verifier (ex: they don't cause a kernel panic), give near-arbitrary control over a target system.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
+    "priority": "CRITICAL",
+    "rule": "Known Malicious eBPF Program Detected",
+    "severity": 3,
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1068 exploitation for privilege escalation",
+      "MITRE T1495 firmware corruption",
+      "MITRE T1547.006 boot or logon autostart execution kernel modules and extensions",
+      "MITRE T1611 escape to host",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect attempts to expose the Kubernetes Dashboard, which can allow adversaries to exploit authentication and access control gaps and compromise the cluster.",
     "disabled": true,
     "has_exceptions": true,
@@ -18339,6 +18403,25 @@
     ]
   },
   {
+    "desc": "This rule detects attempts to modify container image cache or snapshots on disk, detecting attackers trying to tamper upcoming or running containers. Attackers could manipulate the image cache to plant malicious software within the container, potentially leading to unauthorized access, persistence, and so on.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Modification of Container Image Cache",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1525 implant internal image",
+      "MITRE T1610 deploy container",
+      "MITRE T1612 build image on host",
+      "MITRE TA0002 execution",
+      "MITRE TA0003 persistence",
+      "MITRE TA0005 defense evasion",
+      "Host"
+    ]
+  },
+  {
     "desc": "This rule detects modifications to udev rules, files read by the udev device manager at system startup that allow users to manage devices and create actions based on hardware events. If maliciously altered, an attacker may be able to specify additional programs and arbitrary scripts to be run, obtaining persistence within the system.",
     "disabled": true,
     "has_exceptions": true,
@@ -19225,6 +19308,23 @@
     ]
   },
   {
+    "desc": "This rule detects the execution of suspicious openssl command that connects to a remote host using SSL/TLS client. This is a common technique used by attackers to gain a reverse shell to a compromised system.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "OpenSSL Reverse Shell Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1059 command and scripting interpreter",
+      "MITRE T1104 multi stage channels",
+      "MITRE TA0002 execution",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect the creation of a new Service Control Policy (SCP) in the AWS Organization. SCPs enable central administration over the permissions available within the accounts in the organization.",
     "disabled": true,
     "has_exceptions": true,
@@ -19605,6 +19705,44 @@
     ]
   },
   {
+    "desc": "This rule detects remote command execution via Perl, which is a scripting language that can be used to execute arbitrary commands on a system. An attacker could exploit this to gain unauthorized access to a compromised system.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Perl Remote Command Execution Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1059 command and scripting interpreter",
+      "MITRE T1104 multi stage channels",
+      "MITRE TA0002 execution",
+      "Container",
+      "Host"
+    ]
+  },
+  {
+    "desc": "This rule detects the usage of the RUNNER_TRACKING_ID environment variable set to 0 or empty string. When this variable is set, the cleanup job does not terminate the associated process. Threat actors can exploit this to maintain persistence across workflow executions.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Persistence Across Github Runner Executions Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1480 execution guardrails",
+      "MITRE T1565.001 stored data manipulation disk content wipe",
+      "MITRE T1565 data manipulation",
+      "MITRE T1569.002 system services service execution",
+      "MITRE T1569 system services",
+      "MITRE TA0002 execution",
+      "MITRE TA0003 persistence",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detects whenever a user's requests for a personal access token has been approved.",
     "disabled": false,
     "has_exceptions": true,
@@ -19769,6 +19907,23 @@
       "MITRE TA0005 defense evasion",
       "Registry",
       "Windows"
+    ]
+  },
+  {
+    "desc": "Detect the spawning of common UNIX command via socket, emulating a reverse shell. This is another technique with which attacker can gain the same level of access as a reverse shell.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Possible Remote Command Execution Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1059 command and scripting interpreter",
+      "MITRE T1104 multi stage channels",
+      "MITRE TA0002 execution",
+      "Container",
+      "Host"
     ]
   },
   {
@@ -19987,7 +20142,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "INFO",
+    "priority": "WARNING",
     "rule": "Process memory injection via process_vm_writev",
     "source": "falco",
     "tags": [
@@ -22565,6 +22720,23 @@
       "MITRE T1653 power settings",
       "MITRE TA0003 persistence",
       "MITRE TA0040 impact",
+      "Container",
+      "Host"
+    ]
+  },
+  {
+    "desc": "This rule detects the execution of a suspicious reverse shell spawned by socat by redirecting stdin, stdout, and stderr file descriptors. This is a common technique used by attackers to gain remote access to a compromised system.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Socat Reverse Shell Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1059 command and scripting interpreter",
+      "MITRE T1104 multi stage channels",
+      "MITRE TA0002 execution",
       "Container",
       "Host"
     ]
@@ -25692,14 +25864,33 @@
     ]
   },
   {
-    "desc": "This rule detects the runtime loading of an eBPF program into the kernel. eBPF programs are extremely powerful, and as long as they conform to the constraints imposed by the eBPF verifier (ex: they don't cause a kernel panic), give near-arbitrary control over a target system.",
-    "disabled": false,
+    "desc": "This rule detects the runtime loading of an eBPF program into the kernel from temporary locations, a technique commonly employed by attackers for defense evasion. eBPF programs are extremely powerful, and as long as they conform to the constraints imposed by the eBPF verifier (ex: they don't cause a kernel panic), give near-arbitrary control over a target system.",
+    "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "policy": "Sysdig Runtime Threat Detection",
-    "priority": "CRITICAL",
+    "priority": "WARNING",
+    "rule": "eBPF Program Loaded From Unexpected Location",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1068 exploitation for privilege escalation",
+      "MITRE T1495 firmware corruption",
+      "MITRE T1547.006 boot or logon autostart execution kernel modules and extensions",
+      "MITRE T1611 escape to host",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "Host"
+    ]
+  },
+  {
+    "desc": "This rule detects the runtime loading of an eBPF program into the kernel. eBPF programs are extremely powerful, and as long as they conform to the constraints imposed by the eBPF verifier (ex: they don't cause a kernel panic), give near-arbitrary control over a target system.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
     "rule": "eBPF Program Loaded into Kernel",
-    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
