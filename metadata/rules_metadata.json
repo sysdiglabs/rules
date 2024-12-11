@@ -12796,6 +12796,43 @@
     ]
   },
   {
+    "desc": "This rule detects whenever a new file is created in a container with execute permissions through the kubectl copy command. An attacker could use this technique to run malicious or unauthorized binaries and scripts.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "INFO",
+    "rule": "Executable File Dropped in Container via Kubectl",
+    "source": "falco",
+    "tags": [
+      "HIPAA",
+      "HIPAA 164.308(a)",
+      "HIPAA 164.312(a)",
+      "HIPAA 164.312(b)",
+      "HITRUST",
+      "HITRUST CSF",
+      "HITRUST CSF 01.c",
+      "HITRUST CSF 09.aa",
+      "ISO",
+      "ISO 27001",
+      "ISO 27001 A.12.1.2",
+      "MITRE",
+      "MITRE T1611 escape to host",
+      "MITRE TA0004 privilege escalation",
+      "NIST",
+      "NIST 800-53",
+      "NIST 800-53 AC-6(10)",
+      "NIST 800-53 AC-6(9)",
+      "NIST 800-53 AU-6(8)",
+      "PCI",
+      "PCI DSS",
+      "PCI DSS 11.5.1",
+      "SOC2",
+      "SOC2 CC6.8",
+      "SOC2 CC7.2",
+      "Container"
+    ]
+  },
+  {
     "desc": "Detect execution of a command inside an ECS container.",
     "disabled": true,
     "has_exceptions": true,
@@ -16040,6 +16077,21 @@
       "MITRE TA0005 defense evasion",
       "Container",
       "Host"
+    ]
+  },
+  {
+    "desc": "Detect highly privileged clusterroles being bound to the Kubernetes system anonymous user.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Highly Sensitive Clusterrole Bound To Kubernetes Anonymous User",
+    "source": "k8s_audit",
+    "tags": [
+      "MITRE",
+      "MITRE TA0003 persistence",
+      "MITRE TA0008 lateral movement",
+      "K8S"
     ]
   },
   {
@@ -19308,7 +19360,7 @@
     ]
   },
   {
-    "desc": "This rule detects the execution of suspicious openssl command that connects to a remote host using SSL/TLS client. This is a common technique used by attackers to gain a reverse shell to a compromised system.",
+    "desc": "This rule detects the execution of suspicious openssl command that connects to a remote host using SSL/TLS client with a pipe as input and a FIFO file as output of the openssl command. This is a common technique used by attackers to gain a reverse shell to a compromised system.",
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
@@ -21513,6 +21565,21 @@
     ]
   },
   {
+    "desc": "Detect any rolebinding or clusterrolebinding attached to the Kubernetes system anonymous user.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Role/Clusterrole Bound To Kubernetes Anonymous User",
+    "source": "k8s_audit",
+    "tags": [
+      "MITRE",
+      "MITRE TA0003 persistence",
+      "MITRE TA0008 lateral movement",
+      "K8S"
+    ]
+  },
+  {
     "desc": "This rule detects the installation of a root certificate on a system, which adversaries may use to avoid security alerts when establishing connections to their malicious web servers. Attackers could carry out man-in-the-middle attacks, intercepting sensitive data exchanged between the victim and the adversary's servers, without triggering any warnings.",
     "disabled": true,
     "has_exceptions": true,
@@ -23288,6 +23355,26 @@
       "MITRE TA0003 persistence",
       "Container",
       "Host"
+    ]
+  },
+  {
+    "desc": "This rule detects suspicious interaction with container socket, like docker, crio and containerd sockets. Such processes potentially indicate suspicious activity to discover running containers, images, or to run new containers. An attacker could also this technique by creating privileged pods to gain persistence.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Suspicious Interaction with Container Socket",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1574 hijack execution flow",
+      "MITRE T1611 escape to host",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0007 discovery",
+      "Container",
+      "Host",
+      "Process"
     ]
   },
   {
