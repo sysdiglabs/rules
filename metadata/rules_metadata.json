@@ -8863,6 +8863,24 @@
     ]
   },
   {
+    "desc": "This rule detects dns lookups to domains used for canary services. A canary domain is a tool that can alert a defender that an intruder accessed data which they otherwise wouldn't be able to. The only circumstance in which a canary domain is looked up is during a malicious action. If using your own canary system, the domain can be appended to the existing macro.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "DNS Lookup for Canary Domain",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1048.003 exfiltration over unencrypted non c2 protocol",
+      "MITRE T1048 exfiltration over alternative protocol",
+      "MITRE TA0010 exfiltration",
+      "Container",
+      "Dns",
+      "Host"
+    ]
+  },
+  {
     "desc": "This rule detects dynamic DNS domains in DNS queries, which could indicate potential command-and-control activity or data exfiltration over the network. An attacker could use these domains to establish covert communication channels, bypassing traditional security controls and exfiltrating sensitive information undetected, while attempting to hide IPs. Response domains are used for detection as they can detect malicious domains hiding behind CNAMES.",
     "disabled": true,
     "has_exceptions": true,
@@ -9029,7 +9047,9 @@
     "source": "falco",
     "tags": [
       "MITRE",
+      "MITRE T1040 network sniffing",
       "MITRE T1105 ingress tool transfer",
+      "MITRE TA0006 credential access",
       "MITRE TA0011 command and control",
       "Container",
       "Dns",
@@ -12396,6 +12416,22 @@
       "Azure",
       "Cloud",
       "Entra"
+    ]
+  },
+  {
+    "desc": "This rule detects the creation of a service principal in Microsoft Entra ID. Attackers could abuse this to gain unauthorized access to Azure resources, to maintain persistence and stealthily exploit sensitive data.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Entra Add Service Principal",
+    "source": "azure_entra",
+    "tags": [
+      "Azure",
+      "Cloud",
+      "Entra",
+      "MITRE",
+      "MITRE TA0003 persistence"
     ]
   },
   {
