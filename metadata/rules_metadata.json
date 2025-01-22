@@ -2143,6 +2143,19 @@
     ]
   },
   {
+    "desc": "Detect the creation/update of a Compute Gallery Image. It may come from a VM Snapshot.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Create/Update Gallery Image",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud"
+    ]
+  },
+  {
     "desc": "Detect the creation or update of Storage Account Management Policies",
     "disabled": true,
     "has_exceptions": true,
@@ -2836,6 +2849,19 @@
     "oss_rule": false,
     "priority": "WARNING",
     "rule": "Azure Delete Function Key",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud"
+    ]
+  },
+  {
+    "desc": "Detect the deletion of a Compute Gallery Image.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Delete Gallery Image",
     "source": "azure_platformlogs",
     "tags": [
       "Azure",
@@ -4398,6 +4424,27 @@
     "tags": [
       "Azure",
       "Cloud"
+    ]
+  },
+  {
+    "desc": "This rule detects the execution of a bpf syscall with potentially dangerous commands from a fileless process. eBPF programs are extremely powerful, and as long as they conform to the constraints imposed by the eBPF verifier (ex: they don't cause a kernel panic), give near-arbitrary control over a target system.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "BPF Command Executed by Fileless Program",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1068 exploitation for privilege escalation",
+      "MITRE T1495 firmware corruption",
+      "MITRE T1547.006 boot or logon autostart execution kernel modules and extensions",
+      "MITRE T1611 escape to host",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "Host"
     ]
   },
   {
@@ -6822,6 +6869,101 @@
       "SOC2",
       "SOC2 CC6.8",
       "SOC2 CC7.2",
+      "Container",
+      "Oss"
+    ]
+  },
+  {
+    "desc": "This rule detects the launch of containers in the host network namespace, hindering container isolation. An attacker could leverage this setting to access the node's network, and can potentially lead to sniff network traffic and bypass network policies.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "INFO",
+    "rule": "Container Launched In Host Network Namespace",
+    "source": "falco",
+    "tags": [
+      "CIS",
+      "GDPR",
+      "GDPR 32.1",
+      "GDPR 32.2",
+      "HIPAA",
+      "HIPAA 164.308(a)",
+      "HIPAA 164.312(a)",
+      "HIPAA 164.312(b)",
+      "HITRUST",
+      "HITRUST CSF",
+      "HITRUST CSF 01.c",
+      "HITRUST CSF 09.aa",
+      "ISO",
+      "ISO 27001",
+      "ISO 27001 A.9.2.3",
+      "MITRE",
+      "MITRE T1609 container administration command",
+      "MITRE T1610 deploy container",
+      "MITRE TA0002 execution",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA0008 lateral movement",
+      "NIST",
+      "NIST 800-190",
+      "NIST 800-190 3.4.3",
+      "NIST 800-53",
+      "NIST 800-53 AC-6(10)",
+      "NIST 800-53 AC-6(9)",
+      "NIST 800-53 AU-6(8)",
+      "PCI",
+      "PCI DSS",
+      "PCI DSS 10.2.5",
+      "SOC2",
+      "SOC2 CC6.1",
+      "Container",
+      "Network",
+      "Oss"
+    ]
+  },
+  {
+    "desc": "This rule detects the launch of containers in the host PID namespace, hindering container isolation. An attacker could leverage this setting to escape to the host or read sensitive information from other running processes.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "INFO",
+    "rule": "Container Launched In Host PID Namespace",
+    "source": "falco",
+    "tags": [
+      "CIS",
+      "GDPR",
+      "GDPR 32.1",
+      "GDPR 32.2",
+      "HIPAA",
+      "HIPAA 164.308(a)",
+      "HIPAA 164.312(a)",
+      "HIPAA 164.312(b)",
+      "HITRUST",
+      "HITRUST CSF",
+      "HITRUST CSF 01.c",
+      "HITRUST CSF 09.aa",
+      "ISO",
+      "ISO 27001",
+      "ISO 27001 A.9.2.3",
+      "MITRE",
+      "MITRE T1609 container administration command",
+      "MITRE T1610 deploy container",
+      "MITRE TA0002 execution",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA0008 lateral movement",
+      "NIST",
+      "NIST 800-190",
+      "NIST 800-190 3.4.3",
+      "NIST 800-53",
+      "NIST 800-53 AC-6(10)",
+      "NIST 800-53 AC-6(9)",
+      "NIST 800-53 AU-6(8)",
+      "PCI",
+      "PCI DSS",
+      "PCI DSS 10.2.5",
+      "SOC2",
+      "SOC2 CC6.1",
       "Container",
       "Oss"
     ]
@@ -18203,11 +18345,13 @@
   },
   {
     "desc": "This rule detects the creation of symbolic links over critical log files, such as auth.log and wtmp, to the NULL device. An attacker could leverage this technique to conceal malicious activities by removing signs of their intrusion. By redirecting the log file to /dev/null, no log entries will be recorded.",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "policy": "Sysdig Runtime Threat Detection",
+    "priority": "CRITICAL",
     "rule": "Log File Symlink to Null",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "FIM",
@@ -20179,6 +20323,22 @@
       "MITRE TA0005 defense evasion",
       "Registry",
       "Windows"
+    ]
+  },
+  {
+    "desc": "This rule detects rsync and rsyncd processes executing unexpected binaries, which may indicate arbitrary command execution through the rsync and potential vulnerability exploitation like CVE-2024-12084 which lead to remote code execution.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Possible Remote Code Execution using rsync",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1203 exploitation for client execution",
+      "MITRE TA0002 execution",
+      "Container",
+      "Host"
     ]
   },
   {
