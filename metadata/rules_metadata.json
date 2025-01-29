@@ -2598,6 +2598,32 @@
     ]
   },
   {
+    "desc": "An Azure Virtual Machine with an associated managed identity was created or modified. A system or user managed identity is bound to this Virtual Machine, this means that this VM may have the permissions needed to get access to other Azure resources or services.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Create/Update a Virtual Machine With Managed Identity Assigned",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud"
+    ]
+  },
+  {
+    "desc": "An Azure Virtual Machine was created or modified. This VM is using Password authentication rather than more secure SSH auth keys.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Azure Create/Update a Virtual Machine with Password Authentication Enabled",
+    "source": "azure_platformlogs",
+    "tags": [
+      "Azure",
+      "Cloud"
+    ]
+  },
+  {
     "desc": "Detect the creation or update of a Virtual Network Subnet",
     "disabled": true,
     "has_exceptions": true,
@@ -6869,6 +6895,53 @@
       "SOC2",
       "SOC2 CC6.8",
       "SOC2 CC7.2",
+      "Container",
+      "Oss"
+    ]
+  },
+  {
+    "desc": "This rule detects the launch of containers in the host IPC namespace, hindering container isolation. An attacker could leverage this setting to access shared memory segments in the host used for interprocess communications.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "INFO",
+    "rule": "Container Launched In Host IPC Namespace",
+    "source": "falco",
+    "tags": [
+      "CIS",
+      "GDPR",
+      "GDPR 32.1",
+      "GDPR 32.2",
+      "HIPAA",
+      "HIPAA 164.308(a)",
+      "HIPAA 164.312(a)",
+      "HIPAA 164.312(b)",
+      "HITRUST",
+      "HITRUST CSF",
+      "HITRUST CSF 01.c",
+      "HITRUST CSF 09.aa",
+      "ISO",
+      "ISO 27001",
+      "ISO 27001 A.9.2.3",
+      "MITRE",
+      "MITRE T1609 container administration command",
+      "MITRE T1610 deploy container",
+      "MITRE TA0002 execution",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
+      "MITRE TA0008 lateral movement",
+      "NIST",
+      "NIST 800-190",
+      "NIST 800-190 3.4.3",
+      "NIST 800-53",
+      "NIST 800-53 AC-6(10)",
+      "NIST 800-53 AC-6(9)",
+      "NIST 800-53 AU-6(8)",
+      "PCI",
+      "PCI DSS",
+      "PCI DSS 10.2.5",
+      "SOC2",
+      "SOC2 CC6.1",
       "Container",
       "Oss"
     ]
@@ -11879,6 +11952,30 @@
     "policy": "Sysdig Runtime Behavioral Analytics",
     "priority": "CRITICAL",
     "rule": "Dynamic Linker Hijacking Detected",
+    "severity": 3,
+    "source": "observation",
+    "tags": [
+      "MITRE",
+      "MITRE T1129 shared modules",
+      "MITRE T1574.006 hijack execution flow dynamic linker hijacking",
+      "MITRE T1574 hijack execution flow",
+      "MITRE TA0002 execution",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "File",
+      "Host"
+    ]
+  },
+  {
+    "desc": "This rule detects the creation of a shared object and its subsequent loading into the environment variable LD_AUDIT. Attackers have used this technique to cause a malicious shared object to be loaded before any other library.",
+    "disabled": false,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Behavioral Analytics",
+    "priority": "CRITICAL",
+    "rule": "Dynamic Linker Hijacking Using LD_AUDIT",
     "severity": 3,
     "source": "observation",
     "tags": [
@@ -17469,6 +17566,9 @@
     "rule": "Kernel or Physical Memory Dumped",
     "source": "falco",
     "tags": [
+      "MITRE",
+      "MITRE T1003 os credential dumping",
+      "MITRE TA0006 credential access",
       "Container",
       "Host"
     ]
@@ -19462,6 +19562,29 @@
     ]
   },
   {
+    "desc": "This rule detects compiling and subsequent loading of a newly constructed kernel module into the kernel. This is a common injection technique that is often used by Linux rootkits to achieve defense evasion, execution and privilege escalation.",
+    "disabled": false,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Behavioral Analytics",
+    "priority": "CRITICAL",
+    "rule": "New Kernel Module Created and Loaded",
+    "severity": 3,
+    "source": "observation",
+    "tags": [
+      "MITRE",
+      "MITRE T1068 exploitation for privilege escalation",
+      "MITRE T1495 firmware corruption",
+      "MITRE T1543 create or modify system process",
+      "MITRE T1547.006 boot or logon autostart execution kernel modules and extensions",
+      "MITRE T1611 escape to host",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "This rule detects attempts to change users by calling setuid, excluding sudo/su. An attacker could gain elevated privileges by manipulating the setuid call to evade detection. This manipulation could lead to unauthorized access to sensitive data or perform malicious actions within the system.",
     "disabled": true,
     "has_exceptions": true,
@@ -19517,13 +19640,11 @@
   },
   {
     "desc": "Detect unusual access to the Admin Console that triggers a Velocity behavior condition. The velocity is based on changes in the end user's geographical location using two subsequent sign-in attempts.",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "policy": "Sysdig Okta Threat Detection",
     "priority": "CRITICAL",
     "rule": "Okta Admin Console Access Velocity Behavior",
-    "severity": 3,
     "source": "okta",
     "tags": [
       "Okta"
@@ -19531,13 +19652,11 @@
   },
   {
     "desc": "Detect unusual access to the Admin Console from a new device and IP",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "policy": "Sysdig Okta Threat Detection",
     "priority": "CRITICAL",
     "rule": "Okta Admin Console Access via New Device",
-    "severity": 3,
     "source": "okta",
     "tags": [
       "Okta"
@@ -19593,13 +19712,11 @@
   },
   {
     "desc": "Detects potential MFA bypasses for a given user.",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "policy": "Sysdig Okta Threat Detection",
     "priority": "CRITICAL",
     "rule": "Okta MFA Bypass Attempt",
-    "severity": 3,
     "source": "okta",
     "tags": [
       "Okta"
@@ -19607,13 +19724,11 @@
   },
   {
     "desc": "Detects multiple failed authentication requests for a given client ID to an Okta application. Attackers may utilize previously compromised credentials to attempt accessing applications that the compromised accounts are not authorized to access as part of discovery activities.",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "policy": "Sysdig Okta Threat Detection",
     "priority": "WARNING",
     "rule": "Okta Multiple Application Requests with Invalid Credentials",
-    "severity": 3,
     "source": "okta",
     "tags": [
       "Okta"
@@ -19621,13 +19736,11 @@
   },
   {
     "desc": "This rule detects a second usage of a one-time refresh token.",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "policy": "Sysdig Okta Threat Detection",
     "priority": "CRITICAL",
     "rule": "Okta One-Time Token Reused",
-    "severity": 3,
     "source": "okta",
     "tags": [
       "Okta"
@@ -19674,13 +19787,11 @@
   },
   {
     "desc": "Detect a suspicious user activity report by Okta",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "policy": "Sysdig Okta Threat Detection",
     "priority": "CRITICAL",
     "rule": "Okta Suspicious User Activity Report",
-    "severity": 3,
     "source": "okta",
     "tags": [
       "Okta"
@@ -19688,13 +19799,11 @@
   },
   {
     "desc": "Detect activity by a suspicious IP found by Okta ThreatInsight.",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "policy": "Sysdig Okta Threat Intelligence",
     "priority": "WARNING",
     "rule": "Okta ThreatInsight Suspicious IP Request",
-    "severity": 3,
     "source": "okta",
     "tags": [
       "Okta"
@@ -20122,11 +20231,13 @@
   },
   {
     "desc": "This rule detects remote command execution via Perl, which is a scripting language that can be used to execute arbitrary commands on a system. An attacker could exploit this to gain unauthorized access to a compromised system.",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "policy": "Sysdig Runtime Threat Detection",
+    "priority": "CRITICAL",
     "rule": "Perl Remote Command Execution Detected",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -20323,6 +20434,27 @@
       "MITRE TA0005 defense evasion",
       "Registry",
       "Windows"
+    ]
+  },
+  {
+    "desc": "This rule identifies a critical installation step of the 'Jynx' rootkit, where the group ID of the /etc/ld.so.preload file is modified. This file is often exploited to load malicious libraries, thus changes to its permissions may be an indicator of potential rootkit activity.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Possible Jynx Rootkit Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1222 file and directory permissions modification",
+      "MITRE T1547.006 kernel modules and extensions",
+      "MITRE T1547 boot or logon autostart execution",
+      "MITRE T1548 abuse elevation control mechanism",
+      "MITRE TA0003 persistence",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "Host"
     ]
   },
   {
@@ -21716,13 +21848,11 @@
   },
   {
     "desc": "Detect removing MFA on the Admin in Okta",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "policy": "Sysdig Okta Threat Detection",
     "priority": "CRITICAL",
     "rule": "Removing MFA from Admin in Okta",
-    "severity": 3,
     "source": "okta",
     "tags": [
       "Okta"
@@ -21901,6 +22031,63 @@
     "rule": "Reverse Shell Detected",
     "severity": 3,
     "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1059 command and scripting interpreter",
+      "MITRE T1104 multi stage channels",
+      "MITRE TA0002 execution",
+      "Container",
+      "Host"
+    ]
+  },
+  {
+    "desc": "This rule is able to detect reverse shell redirecting the standard input and output to pipes.",
+    "disabled": false,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Behavioral Analytics",
+    "priority": "CRITICAL",
+    "rule": "Reverse Shell Redirects STDIN/STDOUT To Socket With Pipes",
+    "severity": 3,
+    "source": "observation",
+    "tags": [
+      "MITRE",
+      "MITRE T1059 command and scripting interpreter",
+      "MITRE T1104 multi stage channels",
+      "MITRE TA0002 execution",
+      "Container",
+      "Host"
+    ]
+  },
+  {
+    "desc": "Detect an attempt to spawn a reverse shell through pipes from a binary. Some malicious binaries like meterpreter stageless payloads or golang compiled ones may establish a reverse shell from the victim's machine through a forked/cloned process, using a pipe for interprocess communication.",
+    "disabled": false,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Behavioral Analytics",
+    "priority": "CRITICAL",
+    "rule": "Reverse Shell Spawned From Binary Through Pipes",
+    "severity": 3,
+    "source": "observation",
+    "tags": [
+      "MITRE",
+      "MITRE T1059 command and scripting interpreter",
+      "MITRE T1104 multi stage channels",
+      "MITRE TA0002 execution",
+      "Container",
+      "Host"
+    ]
+  },
+  {
+    "desc": "Detect an attempt to spawn a reverse shell through pipes from an interpreted or compiled program. Some interpreted or compiled programs may establish a reverse shell from the victim's machine through a forked/cloned process, using a pipe for interprocess communication.",
+    "disabled": false,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Behavioral Analytics",
+    "priority": "CRITICAL",
+    "rule": "Reverse Shell Spawned From Interpreted or Compiled Program Through Pipes",
+    "severity": 3,
+    "source": "observation",
     "tags": [
       "MITRE",
       "MITRE T1059 command and scripting interpreter",
@@ -25958,13 +26145,11 @@
   },
   {
     "desc": "Detect a user accessing Okta admin section",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "policy": "Sysdig Okta Threat Detection",
     "priority": "NOTICE",
     "rule": "User accessing Okta admin section",
-    "severity": 3,
     "source": "okta",
     "tags": [
       "Okta"
