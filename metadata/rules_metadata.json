@@ -11260,6 +11260,25 @@
     ]
   },
   {
+    "desc": "This rule detects attempts to directly overwrite the memory of a running process. Attackers may employ this technique to inject payloads into a running process's memory.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Direct Memory Overwrite Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1055.009 proc memory",
+      "MITRE T1055 process injection",
+      "MITRE TA0004 privilege escalation",
+      "MITRE TA0005 defense evasion",
+      "Container",
+      "Host",
+      "Process"
+    ]
+  },
+  {
     "desc": "Web applications can be vulnerable to directory traversal attacks that allow accessing files outside of the web app's root directory (e.g. Arbitrary File Read bugs). System directories like /etc are typically accessed via absolute paths. Access patterns outside of this (here path traversal) can be regarded as suspicious. This rule includes failed file open attempts.",
     "disabled": true,
     "has_exceptions": true,
@@ -11873,6 +11892,23 @@
       "Container",
       "Network",
       "Process"
+    ]
+  },
+  {
+    "desc": "This rule detects dropping with known ingress programs a known malicious and/or offensive security program on a system in the /tmp directory, commonly used by threat actors to hide their malicious files. An attacker could hide malicious scripts in the /tmp directory to evade detection and execute them without being noticed.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Drop Malicious Program in /tmp",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1588.002 obtain capabilities tool",
+      "MITRE T1588 obtain capabilities",
+      "MITRE TA0042 resource development",
+      "Container",
+      "Host"
     ]
   },
   {
@@ -19193,13 +19229,11 @@
   },
   {
     "desc": "The shared library, pam_tty_audit.so can be used to log keystrokes of terminal users. While it may be used for specific security purposes, it can also be used by attackers.",
-    "disabled": false,
+    "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "policy": "Sysdig Runtime Threat Detection",
-    "priority": "CRITICAL",
+    "priority": "WARNING",
     "rule": "Modification of pam.d detected",
-    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -20828,6 +20862,22 @@
     ]
   },
   {
+    "desc": "This rule detects a possible exploitation of IngressNightmare vulnerability (CVE-2025-1974), where the NGINX process loads a shared library from the ProcFS. This execution may indicate a malicious actor attempting to exploit the vulnerability before executing other arbitrary code in the ingress controller container.",
+    "disabled": false,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Threat Detection",
+    "priority": "CRITICAL",
+    "rule": "Potential IngressNightmare Vulnerability Exploitation",
+    "severity": 3,
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE TA0002 execution",
+      "Container"
+    ]
+  },
+  {
     "desc": "Registry value that can be used for UAC bypass is being added or overwritten",
     "disabled": true,
     "has_exceptions": true,
@@ -21497,7 +21547,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "QEMU Activity Detected",
     "source": "falco",
     "tags": [
@@ -23763,7 +23813,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Shutdown or Reboot detected",
     "source": "falco",
     "tags": [
