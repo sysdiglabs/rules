@@ -5795,7 +5795,9 @@
       "MITRE TA0003 persistence",
       "MITRE TA0005 defense evasion",
       "MITRE TA0042 resource development",
-      "Container"
+      "Container",
+      "Container Best Practices",
+      "Container Immutability"
     ]
   },
   {
@@ -9517,6 +9519,22 @@
     ]
   },
   {
+    "desc": "This rule detects execution of commands commonly employed to dump a database. Attackers may do so to steal sensitive information, launch further attacks (e.g. phishing) or sell stolen information. Common and legitimate back-up utilities are excluded.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "Database Dump Command Detected",
+    "source": "falco",
+    "tags": [
+      "MITRE",
+      "MITRE T1003 os credential dumping",
+      "MITRE TA0006 credential access",
+      "Container",
+      "Host"
+    ]
+  },
+  {
     "desc": "Detect deactivating hardware MFA configuration for root.",
     "disabled": true,
     "has_exceptions": true,
@@ -11095,14 +11113,12 @@
     ]
   },
   {
-    "desc": "This rule detects outbound connections on common miner pool ports, indicating potential cryptocurrency mining activity. An attacker could establish unauthorized mining operations using resources on the target system, potentially causing performance degradation and financial losses.",
-    "disabled": false,
+    "desc": "This rule detects outbound connections on common miner pool ports, indicating potential cryptocurrency mining activity. An attacker could establish unauthorized mining operations using resources on the target system, potentially causing performance degradation and financial losses. This rule is IP-based and is more prone to false positives, thus tuning is likely required.",
+    "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "policy": "Sysdig Runtime Threat Intelligence",
-    "priority": "CRITICAL",
+    "priority": "WARNING",
     "rule": "Detect outbound connections to common miner pool ports",
-    "severity": 3,
     "source": "falco",
     "tags": [
       "FedRAMP",
@@ -11890,23 +11906,46 @@
       "SOC2 CC6.3",
       "SOC2 CC6.7",
       "Container",
+      "Container Best Practices",
+      "Container Immutability",
       "Network",
       "Process"
     ]
   },
   {
     "desc": "This rule detects dropping with known ingress programs a known malicious and/or offensive security program on a system in the /tmp directory, commonly used by threat actors to hide their malicious files. An attacker could hide malicious scripts in the /tmp directory to evade detection and execute them without being noticed.",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "policy": "Sysdig Runtime Threat Intelligence",
+    "priority": "CRITICAL",
     "rule": "Drop Malicious Program in /tmp",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
       "MITRE T1588.002 obtain capabilities tool",
       "MITRE T1588 obtain capabilities",
       "MITRE TA0042 resource development",
+      "Container",
+      "Host"
+    ]
+  },
+  {
+    "desc": "This rule detects the dropping of a file by an ingress tool, such as curl, and its subsequent execution in the /tmp location. This may indicate successful attempts to download and run a potentially malicious binary, using /tmp for defense evasion purposes.",
+    "disabled": false,
+    "has_exceptions": false,
+    "oss_rule": false,
+    "policy": "Sysdig Runtime Behavioral Analytics",
+    "priority": "CRITICAL",
+    "rule": "Drop and Execute /tmp Binary",
+    "severity": 3,
+    "source": "observation",
+    "tags": [
+      "MITRE",
+      "MITRE T1564.001 hide artifacts hidden files and directories",
+      "MITRE TA0002 execution",
+      "MITRE TA0005 defense evasion",
       "Container",
       "Host"
     ]
@@ -11998,11 +12037,13 @@
   },
   {
     "desc": "This rule detects printing and piping the content of the environment into a common read utility, such as grep. This may be employed to dump environment variables to search for credentials and sensitive information stored in environment variables, such as access tokens and secrets. Shell built-ins are excluded.",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "policy": "Sysdig Runtime Threat Detection",
+    "priority": "CRITICAL",
     "rule": "Dump Sensitive Environment Variables",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -12343,6 +12384,23 @@
       "MITRE TA0003 persistence",
       "MITRE TA0004 privilege escalation",
       "MITRE TA0040 impact"
+    ]
+  },
+  {
+    "desc": "Detect replacing an existing IAM instance profile association for an EC2 instance. Attackers could replace the IAM instance profile on an EC2 instance with one that has higher privileges.",
+    "disabled": true,
+    "has_exceptions": true,
+    "oss_rule": false,
+    "priority": "WARNING",
+    "rule": "EC2 Replace IAM Instance Profile Association",
+    "source": "awscloudtrail",
+    "tags": [
+      "AWS",
+      "AWS EC2",
+      "Cloud",
+      "MITRE",
+      "MITRE T1098 account manipulation",
+      "MITRE TA0004 privilege escalation"
     ]
   },
   {
@@ -18130,6 +18188,8 @@
       "MITRE TA0004 privilege escalation",
       "MITRE TA0008 lateral movement",
       "Container",
+      "Container Best Practices",
+      "Container Immutability",
       "Oss"
     ]
   },
@@ -18162,7 +18222,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Launch Package Management Process in Container",
     "source": "falco",
     "tags": [
@@ -18223,6 +18283,8 @@
       "SOC2",
       "SOC2 CC6.1",
       "Container",
+      "Container Best Practices",
+      "Container Immutability",
       "Oss",
       "Process"
     ]
@@ -18232,7 +18294,7 @@
     "disabled": true,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "priority": "INFO",
     "rule": "Launch Privileged Container",
     "source": "falco",
     "tags": [
@@ -18271,6 +18333,8 @@
       "SOC2",
       "SOC2 CC6.1",
       "Container",
+      "Container Best Practices",
+      "Container Immutability",
       "Oss"
     ]
   },
@@ -18400,6 +18464,8 @@
       "SOC2",
       "SOC2 CC6.1",
       "Container",
+      "Container Best Practices",
+      "Container Immutability",
       "Oss"
     ]
   },
@@ -19816,11 +19882,13 @@
   },
   {
     "desc": "This rule detects potential data exfiltration activities over network relay binaries, specifically for data transfers through the network from a piped input received by a common compression tools, such as tar, or from a file read by the file system. Attackers may first need to perform archival and/or compression activities on the compromised system before transferring any information through the network.",
-    "disabled": true,
+    "disabled": false,
     "has_exceptions": true,
     "oss_rule": false,
-    "priority": "WARNING",
+    "policy": "Sysdig Runtime Threat Detection",
+    "priority": "CRITICAL",
     "rule": "Network Relay Binary Exfiltration Activities Detected",
+    "severity": 3,
     "source": "falco",
     "tags": [
       "MITRE",
@@ -20983,6 +21051,8 @@
       "SOC2",
       "SOC2 CC6.1",
       "Container",
+      "Container Best Practices",
+      "Container Immutability",
       "Shell"
     ]
   },
@@ -25228,6 +25298,8 @@
       "SOC2",
       "SOC2 CC6.1",
       "Container",
+      "Container Best Practices",
+      "Container Immutability",
       "Oss",
       "Shell"
     ],
